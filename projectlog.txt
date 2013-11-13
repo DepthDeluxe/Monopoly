@@ -1,0 +1,1 @@
+11/13: created the gitlab project for the group and added the project log
