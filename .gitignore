@@ -24,3 +24,6 @@ bin/
 .Icon?
 ehthumbs.db
 Thumbs.db
+
+# btsync dump files...
+*.!sync
