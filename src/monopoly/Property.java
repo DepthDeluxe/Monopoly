@@ -28,6 +28,10 @@ public class Property {
 		return price;
 	}
 	
+	public boolean isOwned() {
+		return (owner != null);
+	}
+	
 	public Player getOwner() {
 		return owner;
 	}
