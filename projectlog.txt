@@ -1,11 +1,13 @@
 11/13: created the gitlab project for the group and added the project log
 
 Open Tasks:
+Task #2 : Finish a detailed plan for the structure of the program and share it 
+Task #3 : UML for Model
+Task #4 : 
 
 Assigned Tasks: 
-Task #1 : Work on BoardPanel GUI - Arjuna
+Task #1 : Work on ControlPanel GUI - Arjuna
 
 Tasks Accomplished:
 
 Impediments:
- 
