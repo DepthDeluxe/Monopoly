@@ -11,3 +11,13 @@ Task #1 : Work on ControlPanel GUI - Arjuna
 Tasks Accomplished:
 
 Impediments:
+
+
+11/19
+
+Group met and assigned tasks for everyone
+
+Patrick: Player class
+Colin: Property class (or tile class)
+Drew: Board class
+Arjuna: GUI
