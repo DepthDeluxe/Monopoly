@@ -5,14 +5,19 @@ public class Property {
 	// Member Variables
 	//
 	
+	private String name;
+	
 	private double price;
-	Player owner;
+	private Player owner;
 	
 	//
 	// Constructors
 	//
 	
-	public Property(double price) {
+	public Property(String name, double price) {
+		this.name = name;
+		this.price = price;
+		
 		this.owner = null;
 	}
 	
