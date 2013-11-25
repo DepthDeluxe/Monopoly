@@ -6,16 +6,15 @@ public class Player {
 	//
 	
 	private int position;
-	private double time;
+	private double money;
 	
 	//
 	// Constructors
 	//
 	
-	public Player(int startTime) {
+	public Player(int startMoney) {
+		this.money = startMoney;
 		position = 0;
-		
-		this.time = startTime;
 	}
 	
 	//
@@ -31,15 +30,19 @@ public class Player {
 		}
 	}
 	
-	public void transferTime(double amount) {
-		this.time += amount;
+	public void giveMoney(double amount) {
+		this.money += amount;
+	}
+	
+	public void takeMoney(double amount) {
+		this.money -= amount;
 	}
 
 	//
 	// Getters
 	//
 	
-	public double getCurrentTime() {
-		return time;
+	public double getCurrentMoney() {
+		return money;
 	}
 }
