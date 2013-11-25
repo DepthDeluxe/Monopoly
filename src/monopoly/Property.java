@@ -10,6 +10,8 @@ public class Property {
 	private double price;
 	private Player owner;
 	
+	// TODO: add support for mortgages
+	
 	//
 	// Constructors
 	//
@@ -25,6 +27,10 @@ public class Property {
 	// Main Functions
 	//
 	
+	public void setOwner(Player newOwner) {
+		this.owner = newOwner;
+	}
+	
 	//
 	// Getters
 	//
@@ -35,6 +41,10 @@ public class Property {
 	
 	public double getPrice() {
 		return price;
+	}
+	
+	public double getRent() {
+		return price / 10;
 	}
 	
 	public boolean isOwned() {
