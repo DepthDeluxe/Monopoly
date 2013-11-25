@@ -20,7 +20,7 @@ public class Dice {
 		// get random values, add one becuase nextInt is
 		// zero inclusive
 		firstValue = (rand.nextInt(NUM_FACES) + 1);
-		secondValue = (rand.nextInt(NUM_FACES + 1);
+		secondValue = (rand.nextInt(NUM_FACES) + 1);
 	}
 	
 	public static int getFirstValue() {
