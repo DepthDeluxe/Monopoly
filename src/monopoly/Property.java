@@ -29,6 +29,10 @@ public class Property {
 	// Getters
 	//
 	
+	public String getName() {
+		return name;
+	}
+	
 	public double getPrice() {
 		return price;
 	}
