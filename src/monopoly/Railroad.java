@@ -26,12 +26,11 @@ public class Railroad extends Property {
 	@Override
 	public double getRent() {
 		// check to see if any other properties player owns is a railroad
-		Player owner;
+		Player owner = getOwner();
 		int rrCount = 0;
 		
-		throw new RuntimeException("Not Implemented");
-		
-		//return (25) * rrCount;
+		// price is $25 times 2 raised to the number of railroads owned
+		return 25.0 * Math.pow(2, (owner.getNumRailroads()-1));
 	}
 	
 	//
