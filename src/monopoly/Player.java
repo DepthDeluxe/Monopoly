@@ -16,7 +16,7 @@ public class Player {
 	// Constructors
 	//
 	
-	public Player(int startMoney) {
+	public Player(double startMoney) {
 		this.money = startMoney;
 		position = 0;
 		
