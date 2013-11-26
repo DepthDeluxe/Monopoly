@@ -10,7 +10,8 @@ public class Property {
 	private double price;
 	private Player owner;
 	
-	// TODO: add support for mortgages
+	private boolean isMortgaged;
+	private double mortgagedValue;
 	
 	//
 	// Constructors
@@ -21,6 +22,8 @@ public class Property {
 		this.price = price;
 		
 		this.owner = null;
+		
+		this.isMortgaged = false;
 	}
 	
 	//
@@ -29,6 +32,37 @@ public class Property {
 	
 	public void setOwner(Player newOwner) {
 		this.owner = newOwner;
+	}
+	
+	public boolean mortgage() {
+		// can't mortgage an unowned house,
+		// can't mortgage an already mortgaged house
+		if (owner == null || isMortgaged == true) {
+			return false;
+		}
+		
+		// give the owner the mortgaged value
+		owner.giveMoney(mortgagedValue);
+		
+		isMortgaged = true;
+	}
+	
+	public boolean unmortgage() {
+		// can't unmortgage an unowned house,
+		// can't unmortgage an already unmortgaged house
+		if (owner == null || isMortgaged == false) {
+			return false;
+		}
+		
+		// try to take the mortgaged value + 10%
+		boolean success = owner.takeMoney(1.1 * mortgagedValue);
+		
+		if (success) {
+			isMortgaged = false;
+		}
+		
+		// returns true if the house was unmortgaged
+		return !isMortgaged;
 	}
 	
 	//
@@ -44,7 +78,13 @@ public class Property {
 	}
 	
 	public double getRent() {
-		return price / 10;
+		// rent is nothing when the house is mortgaged
+		if (isMortgaged) {
+			return 0;
+		}
+		else {
+			return price / 10;
+		}
 	}
 	
 	public boolean isOwned() {
@@ -53,5 +93,9 @@ public class Property {
 	
 	public Player getOwner() {
 		return owner;
+	}
+	
+	public boolean isMortgaged() {
+		return isMortgaged;
 	}
 }
