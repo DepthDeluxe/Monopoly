@@ -20,6 +20,7 @@ public class Property {
 	public Property(String name, double price) {
 		this.name = name;
 		this.price = price;
+		this.mortgagedValue = 0.5 * price;
 		
 		this.owner = null;
 		
@@ -34,6 +35,20 @@ public class Property {
 		this.owner = newOwner;
 	}
 	
+	public boolean chargeRent(Player player) {
+		// can't charge rent if property is unowned or mortaged
+		if (owner == null || isMortgaged == true) {
+			return false;
+		}
+		
+		// transfer the rent from the player that landed on the
+		// tile to the owner of the tile
+		player.takeMoney(getRent());
+		owner.giveMoney(getRent());
+		
+		return true;
+	}
+	
 	public boolean mortgage() {
 		// can't mortgage an unowned house,
 		// can't mortgage an already mortgaged house
@@ -45,6 +60,7 @@ public class Property {
 		owner.giveMoney(mortgagedValue);
 		
 		isMortgaged = true;
+		return true;
 	}
 	
 	public boolean unmortgage() {
@@ -97,5 +113,9 @@ public class Property {
 	
 	public boolean isMortgaged() {
 		return isMortgaged;
+	}
+	
+	public double getMortgagedValue() {
+		return mortgagedValue;
 	}
 }
