@@ -7,10 +7,18 @@ public class Player {
 	// Member Variables
 	//
 	
-	private int position;
 	private double money;
+
+	private int position;
+	private boolean inJail;
 	
 	private LinkedList<Property> properties;
+	
+	//
+	// Static Variables
+	//
+	
+	private static final double GO_MONEY = 200;
 	
 	//
 	// Constructors
@@ -18,7 +26,9 @@ public class Player {
 	
 	public Player(double startMoney) {
 		this.money = startMoney;
-		position = 0;
+		
+		position = 0;	
+		inJail = false;
 		
 		properties = new LinkedList<Property>();
 	}
@@ -30,9 +40,12 @@ public class Player {
 	public void move(int numProperties) {
 		this.position += numProperties;
 		
-		// go back to the beginning
+		// go back to the beginning, and collect money for
+		// passing go
 		if (this.position > Board.SIZE) {
 			this.position -= Board.SIZE;
+			
+			giveMoney(GO_MONEY);
 		}
 	}
 	
@@ -77,6 +90,10 @@ public class Player {
 		return money;
 	}
 	
+	public int getPosition() {
+		return position;
+	}
+	
 	public boolean owns(Property p) {
 		return properties.contains(p);
 	}
@@ -115,5 +132,9 @@ public class Player {
 		}
 		
 		return numUtilities;
+	}
+	
+	public boolean isInJail() {
+		return inJail;
 	}
 }
