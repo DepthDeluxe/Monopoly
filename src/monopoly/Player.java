@@ -98,4 +98,22 @@ public class Player {
 		
 		return numRailroads;
 	}
+	
+	public int getNumUtilities() {
+		// iterate through the properties, seeing which ones you
+		// can typecast to Utility.  If it can't, it will throw
+		// a ClassCastException
+		int numUtilities = 0;
+		for (Property p : properties) {
+			try {
+				Utility u = (Utility)p;
+				numUtilities++;
+			}
+			catch (ClassCastException e) {
+				// don't do anything, this is not a utility
+			}
+		}
+		
+		return numUtilities;
+	}
 }
