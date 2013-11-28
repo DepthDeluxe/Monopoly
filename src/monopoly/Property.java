@@ -1,6 +1,6 @@
 package monopoly;
 
-public class Property {
+public class Property implements ITile {
 	//
 	// Member Variables
 	//
@@ -117,5 +117,20 @@ public class Property {
 	
 	public double getMortgagedValue() {
 		return mortgagedValue;
+	}
+	
+	//
+	// ITile Implementation
+	//
+	
+	public void landOn(Player p) {
+		if (owner == null) {
+			// need to figure out how this segment works...
+		}
+		else {
+			// player has to transfer money
+			p.takeMoney(getRent());
+			owner.giveMoney(getRent());
+		}
 	}
 }
