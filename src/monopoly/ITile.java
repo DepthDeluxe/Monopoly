@@ -1,5 +1,5 @@
 package monopoly;
 
 public interface ITile {
-	void landOn(Player p);
+	MonopolyModelState landOn(Player p);
 }

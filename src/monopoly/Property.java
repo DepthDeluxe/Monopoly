@@ -123,14 +123,34 @@ public class Property implements ITile {
 	// ITile Implementation
 	//
 	
-	public void landOn(Player p) {
+	public MonopolyModelState landOn(Player p) {
+		// if the property is unowned, put game in BUY_REQUEST state
 		if (owner == null) {
-			// need to figure out how this segment works...
+			return MonopolyModelState.BUY_REQUEST;
 		}
+		
+		// if player landed on owned property, they owe rent
 		else {
-			// player has to transfer money
-			p.takeMoney(getRent());
-			owner.giveMoney(getRent());
+			// get the amount to transfer between
+			double amountToTransfer = getRent();
+			
+			// try to take the money from the player who landed
+			boolean success = p.takeMoney(amountToTransfer);
+			if (!success) {
+				// if not enough money, transfer rest of money from player and give to owner
+				double moneyRemaining = p.getCurrentMoney();
+				p.takeMoney(moneyRemaining);
+				p.giveMoney(moneyRemaining);
+				
+				// let controller know a player has lost
+				return MonopolyModelState.PLAYER_LOST;
+			}
+			
+			// give the money to the owner
+			owner.giveMoney(amountToTransfer);
+			
+			// continue playing as usual if transfer worked
+			return MonopolyModelState.PLAYING;
 		}
 	}
 }
