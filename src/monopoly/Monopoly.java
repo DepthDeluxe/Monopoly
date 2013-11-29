@@ -68,6 +68,10 @@ public class Monopoly {
 		return success;
 	}
 	
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+	
 	public Board getBoard() {
 		return board;
 	}
