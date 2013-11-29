@@ -5,7 +5,7 @@ public class Board {
 	// Member Variables
 	//
 	
-	private Property[] properties;
+	private ITile[] tiles;
 	
 	// Static Variables
 	public static final int SIZE = 40;
@@ -16,14 +16,39 @@ public class Board {
 	
 	public Board() {
 		// init the property list
-		properties = new Property[SIZE];
+		tiles = new ITile[SIZE];
+	}
+	
+	//
+	// Setters
+	//
+	
+	public void setTile(ITile t, int index) {
+		tiles[index] = t;
 	}
 	
 	//
 	// Getters
 	//
 	
+	public ITile getTileAt(int index) {
+		return tiles[index];
+	}
+	
 	public Property getPropertyAt(int index) {
-		return properties[index];
+		// get the ITile
+		ITile desiredTile = tiles[index];
+		
+		// try to typecast and if it resulted in exception,
+		// return null
+		Property outProperty;
+		try {
+			outProperty = (Property)desiredTile;
+		}
+		catch (ClassCastException e) {
+			return null;
+		}
+		
+		return outProperty;
 	}
 }
