@@ -6,17 +6,21 @@ public class Board {
 	//
 	
 	private ITile[] tiles;
+	private CardDeck chanceDeck;
+	private CardDeck communityChestDeck;
 	
 	// Static Variables
 	public static final int SIZE = 40;
+	public static final int JAIL = 20;
 	
 	//
 	// Constructors
 	//
 	
-	public Board() {
-		// init the property list
-		tiles = new ITile[SIZE];
+	public Board(ITile[] tiles, CardDeck chanceDeck, CardDeck communityChestDeck) {
+		this.tiles = tiles;
+		this.chanceDeck = chanceDeck;
+		this.communityChestDeck = communityChestDeck;
 	}
 	
 	//
