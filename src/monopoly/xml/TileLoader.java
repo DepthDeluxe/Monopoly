@@ -1,4 +1,4 @@
-package monopoly;
+package monopoly.xml;
 
 //XML DOM Classes
 import java.io.File;
@@ -16,7 +16,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 
-public class XMLMonopoly {
+import monopoly.Property;
+
+public class TileLoader {
 	//
 	// Main Functions
 	//
