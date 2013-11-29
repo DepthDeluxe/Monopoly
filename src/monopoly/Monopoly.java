@@ -68,6 +68,11 @@ public class Monopoly {
 		return success;
 	}
 	
+	public Player[] getPlayers() {
+		Player[] arrayPlayers = new Player[players.size()];
+		return players.toArray(arrayPlayers);
+	}
+	
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
