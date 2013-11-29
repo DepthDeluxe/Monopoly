@@ -18,7 +18,7 @@ public class Player {
 	// Static Variables
 	//
 	
-	private static final double GO_MONEY = 200;
+	public static final double GO_MONEY = 200;
 	
 	//
 	// Constructors
@@ -45,6 +45,16 @@ public class Player {
 		if (this.position > Board.SIZE) {
 			this.position -= Board.SIZE;
 			
+			giveMoney(GO_MONEY);
+		}
+	}
+	
+	public void moveTo(int destination) {
+		int oldPos = this.position;
+		this.position = destination;
+		
+		// give GO_MONEY if player passed go (i.e. destination smaller than start)
+		if (oldPos > this.position) {
 			giveMoney(GO_MONEY);
 		}
 	}
