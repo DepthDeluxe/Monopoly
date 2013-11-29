@@ -1,5 +1,5 @@
 package monopoly;
 
 public enum MonopolyModelState {
-	PLAYING, PLAYER_LOST, BUY_REQUEST;
+	PLAYING, PLAYER_LOST, BUY_REQUEST, COMMUNITY_CHEST, CHANCE;
 }
