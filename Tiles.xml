@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Tiles count="40">
+	<Go></Go>
+	<Property>
+		<Name>Mediterranean Avenue</Name>
+		<Value>60.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Community Chest</Type>
+	</CardTile>
+	<Property>
+		<Name>Baltic Ave</Name>
+		<Value>60.0</Value>
+	</Property>
+	<IncomeTax></IncomeTax>
+	<Railroad>
+		<Name>Reading Railroad</Name>
+	</Railroad>
+	<Property>
+		<Name>Oriental Avenue</Name>
+		<Value>100.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Chance</Type>
+	</CardTile>
+	<Property>
+		<Name>Vermont Avenue</Name>
+		<Value>100.0</Value>
+	</Property>
+	<Property>
+		<Name>Connecticut Avenue</Name>
+		<Value>120.0</Value>
+	</Property>
+	<Jail></Jail>
+	<Property>
+		<Name>St. Charles Place</Name>
+		<Value>140.0</Value>
+	</Property>
+	<Utility>
+		<Name>Electric Company</Name>
+	</Utility>
+	<Property>
+		<Name>States Avenue</Name>
+		<Value>140.0</Value>
+	</Property>
+	<Property>
+		<Name>Virginia Avenue</Name>
+		<Value>160.0</Value>
+	</Property>
+	<Railroad>
+		<Name>Pennsylvania Railroad</Name>
+	</Railroad>
+	<Property>
+		<Name>St. James Place</Name>
+		<Value>180.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Community Chest</Type>
+	</CardTile>
+	<Property>
+		<Name>Tennessee Avenue</Name>
+		<Value>180.0</Value>
+	</Property>
+	<Property>
+		<Name>New York Avenue</Name>
+		<Value>200.0</Value>
+	</Property>
+	<FreeParking></FreeParking>
+</Tiles>
