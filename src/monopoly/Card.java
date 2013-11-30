@@ -1,5 +1,8 @@
 package monopoly;
 
+import monopoly.tiles.Railroad;
+import monopoly.tiles.Utility;
+
 public class Card {
 	//
 	// Member Variables

@@ -2,6 +2,8 @@ package monopoly;
 
 import java.util.ArrayList;
 
+import monopoly.tiles.*;
+
 public class Monopoly {
 	//
 	// Member Variables

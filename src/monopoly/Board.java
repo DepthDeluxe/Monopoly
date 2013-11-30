@@ -1,5 +1,7 @@
 package monopoly;
 
+import monopoly.tiles.*;
+
 public class Board {
 	//
 	// Member Variables

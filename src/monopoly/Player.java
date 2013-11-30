@@ -2,6 +2,10 @@ package monopoly;
 
 import java.util.LinkedList;
 
+import monopoly.tiles.Property;
+import monopoly.tiles.Railroad;
+import monopoly.tiles.Utility;
+
 public class Player {
 	//
 	// Member Variables
