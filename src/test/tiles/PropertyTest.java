@@ -1,4 +1,4 @@
-package test;
+package test.tiles;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import monopoly.Property;
+import monopoly.tiles.Property;
 import monopoly.Player;
 
 public class PropertyTest {
