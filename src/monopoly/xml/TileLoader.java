@@ -1,5 +1,7 @@
 package monopoly.xml;
 
+import monopoly.tiles.*;
+
 //XML DOM Classes
 import java.io.File;
 import java.io.IOException;
@@ -16,14 +18,15 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 
-import monopoly.Property;
+import monopoly.MonopolyModelState;
+import monopoly.Player;
 
 public class TileLoader {
 	//
 	// Main Functions
 	//
 	
-	public static Property[] loadPropertiesFromFile(String xmlFilename) {
+	public static ITile[] loadFromXML(String xmlFilename) {
 		// open the file
 		File xmlFile = new File(xmlFilename);
 		
@@ -62,7 +65,7 @@ public class TileLoader {
 		// get the property nodes and init the property arrays
 		Element propertiesElement = (Element)document.getFirstChild();
 		NodeList propertyNodes = propertiesElement.getChildNodes();
-		LinkedList<Property> propertyList = new LinkedList<Property>();
+		LinkedList<ITile> propertyList = new LinkedList<ITile>();
 		
 		// iterate through every property in the document, converting
 		for (int n = 0; n < propertyNodes.getLength(); n++) {
@@ -70,8 +73,8 @@ public class TileLoader {
 			
 			// typecast as an element only if it is an element
 			if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Property p = XMLToProperty((Element)currentNode);
-				propertyList.add(p);
+				ITile t = XMLToTile((Element)currentNode);
+				propertyList.add(t);
 			}
 			
 			// otherwise, skip over this one
@@ -82,17 +85,72 @@ public class TileLoader {
 		return properties;
 	}
 	
-	public static Property XMLToProperty(Element propertyNode) {
-		// get the desired information from the XML
-		String name = getChildValue("Name", propertyNode);
-		String valueStr = getChildValue("Value", propertyNode);
+	public static ITile XMLToTile(Element e) {
 		
-		// convert to numbers
-		double value = Double.parseDouble(valueStr);
+		// see what element type this is
+		String elementType = e.getNodeName();
 		
-		// format the object and then return it
-		Property property = new Property(name, value);
-		return property;
+		ITile outTile = null;
+		switch (elementType) {
+		case "Go":
+		case "Jail":
+		case "IncomeTax":
+			// basic board tile cases.  Implement a basic, do nothing, 
+			// return PLAYING landOn() function
+			outTile = new ITile() {
+				@Override
+				public MonopolyModelState landOn(Player p) {
+					return MonopolyModelState.PLAYING;
+				}
+			};
+			break;
+			
+		case "CardTile":
+			String type = getChildValue("Type", e);
+			if (type.equals("Chance")) {
+				outTile = new CardTile(MonopolyModelState.CHANCE);
+			}
+			else if (type.equals("Community Chest")) {
+				outTile = new CardTile(MonopolyModelState.COMMUNITY_CHEST);
+			}
+			break;
+			
+		case "FreeParking":
+			outTile = new FreeParking();
+			break;
+			
+		case "GoToJailTile":
+			outTile = new GoToJailTile();
+			break;
+			
+		case "Property":
+			// get the name
+			String name = getChildValue("Name", e);
+			
+			// get the value
+			String strValue = getChildValue("Value", e);
+			double value = Double.parseDouble(strValue);
+			
+			outTile = new Property(name, value);
+			break;
+			
+		case "Railroad":
+			// get the name
+			name = getChildValue("Name", e);
+			
+			outTile = new Railroad(name);			
+			break;
+			
+		case "Utility":
+			// get the name
+			name = getChildValue("Name", e);
+			
+			outTile = new Utility(name);
+			break;
+			
+		}
+		
+		return outTile;
 	}
 	
 	public static String getChildValue(String nodeName, Element e) {
