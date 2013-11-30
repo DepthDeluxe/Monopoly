@@ -1,4 +1,7 @@
-package monopoly;
+package monopoly.tiles;
+
+import monopoly.MonopolyModelState;
+import monopoly.Player;
 
 enum CardType {
 	CHANCE, COMMUNITY_CHEST;

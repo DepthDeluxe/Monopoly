@@ -1,4 +1,7 @@
-package monopoly;
+package monopoly.tiles;
+
+import monopoly.MonopolyModelState;
+import monopoly.Player;
 
 public class Railroad extends Property {
 	//

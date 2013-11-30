@@ -1,4 +1,8 @@
-package monopoly;
+package monopoly.tiles;
+
+import monopoly.Board;
+import monopoly.Player;
+import monopoly.MonopolyModelState;
 
 public class GoToJailTile implements ITile {
 	//

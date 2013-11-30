@@ -1,4 +1,7 @@
-package monopoly;
+package monopoly.tiles;
+
+import monopoly.Player;
+import monopoly.Dice;
 
 public class Utility extends Property {
 	//
@@ -9,7 +12,7 @@ public class Utility extends Property {
 	// Static Variables
 	//
 	
-	private static final double UTILITY_VALUE = 200;
+	private static final double UTILITY_VALUE = 200.0;
 	
 	//
 	// Constructors

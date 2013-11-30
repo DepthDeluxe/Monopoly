@@ -1,4 +1,7 @@
-package monopoly;
+package monopoly.tiles;
+
+import monopoly.Player;
+import monopoly.MonopolyModelState;
 
 public class Property implements ITile {
 	//
