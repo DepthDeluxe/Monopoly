@@ -61,7 +61,7 @@ public class TileLoaderTest {
 	
 	@Test
 	public void utilityTest() {
-		ITile utilityTile = tiles[14];
+		ITile utilityTile = tiles[12];
 		Utility utility = (Utility)utilityTile;
 		
 		// make sure it has good values

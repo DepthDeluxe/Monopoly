@@ -65,7 +65,7 @@ public class TileLoader {
 		// get the property nodes and init the property arrays
 		Element propertiesElement = (Element)document.getFirstChild();
 		NodeList propertyNodes = propertiesElement.getChildNodes();
-		LinkedList<ITile> propertyList = new LinkedList<ITile>();
+		LinkedList<ITile> tileList = new LinkedList<ITile>();
 		
 		// iterate through every property in the document, converting
 		for (int n = 0; n < propertyNodes.getLength(); n++) {
@@ -74,15 +74,15 @@ public class TileLoader {
 			// typecast as an element only if it is an element
 			if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
 				ITile t = XMLToTile((Element)currentNode);
-				propertyList.add(t);
+				tileList.add(t);
 			}
 			
 			// otherwise, skip over this one
 		}
 		
 		// now convert to an array and return it
-		Property[] properties = propertyList.toArray(new Property[propertyList.size()]);
-		return properties;
+		ITile[] outTiles = tileList.toArray(new ITile[0]);
+		return outTiles;
 	}
 	
 	public static ITile XMLToTile(Element e) {
