@@ -11,9 +11,15 @@ public class FreeParking implements ITile {
 	private double moneyInPot;
 	private double nextPotStart;
 	
+	public static final double POT_START_AMOUNT = 150.0;
+	
 	//
 	// Constructors
 	//
+	
+	public FreeParking() {
+		this(POT_START_AMOUNT);
+	}
 	
 	public FreeParking(double amountToStart) {
 		this.moneyInPot = amountToStart;
