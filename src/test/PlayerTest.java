@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.After;
 
 import monopoly.Player;
-import monopoly.Property;
-import monopoly.Railroad;
+import monopoly.tiles.Property;
+import monopoly.tiles.Railroad;
 
 public class PlayerTest {
 	private Player player;
