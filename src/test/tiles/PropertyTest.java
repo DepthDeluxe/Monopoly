@@ -12,7 +12,7 @@ import monopoly.Player;
 public class PropertyTest {
 
 	Property property;
-	Player player;
+	Player player, otherPlayer;
 	
 	private static final String PROPERTY_NAME = "Test Place";
 	private static final double PROPERTY_VALUE = 225.0;
@@ -22,17 +22,19 @@ public class PropertyTest {
 	private static final double ERROR = 0.01;
 	
 	@Before
-	public void setUp() {
+	public void setUp() {		
 		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
-		player = new Player("Player", START_MONEY + PROPERTY_VALUE);			// after purchase, player will have START_MONEY
+		player = new Player("Player", START_MONEY + PROPERTY_VALUE, null);			// after purchase, player will have START_MONEY
 		
 		// the player owns the property by default
 		player.buyProperty(property);
+
+		otherPlayer = new Player("Other Player", START_MONEY, null);
 	}
 	
 	@Test
 	public void testRent() {
-		Player otherPlayer = new Player("Other Player", START_MONEY);
+		Player otherPlayer = new Player("Other Player", START_MONEY, null);
 		
 		boolean success = property.chargeRent(otherPlayer);
 		
@@ -69,8 +71,6 @@ public class PropertyTest {
 		// mortgage the property and take away the amount earned
 		property.mortgage();
 		player.takeMoney(property.getMortgagedValue());
-		
-		Player otherPlayer = new Player("Other Player", START_MONEY);
 		
 		boolean success = property.chargeRent(otherPlayer);
 		

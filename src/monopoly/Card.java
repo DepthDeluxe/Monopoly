@@ -104,7 +104,7 @@ public class Card {
 				
 				for (int n = startLocation; n != (startLocation-1); n++) {
 					// go back to 0 if board over
-					if (n == Board.SIZE) {
+					if (n == theBoard.getNumTiles()) {
 						n = 0;
 					}
 					
@@ -127,7 +127,7 @@ public class Card {
 				
 				for (int n = startLocation; n != (startLocation-1); n++) {
 					// go back to 0 if board over
-					if (n == Board.SIZE) {
+					if (n == theBoard.getNumTiles()) {
 						n = 0;
 					}
 					
@@ -146,7 +146,7 @@ public class Card {
 			case "jail":
 				
 				startLocation = currentPlayer.getPosition();
-				currentPlayer.moveTo(Board.JAIL);
+				currentPlayer.moveTo(theBoard.getJailLocation());
 				
 				// don't get $200 for passing go...
 				if (startLocation > currentPlayer.getPosition()) {

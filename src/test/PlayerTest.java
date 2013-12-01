@@ -11,7 +11,7 @@ import monopoly.tiles.Property;
 import monopoly.tiles.Railroad;
 
 public class PlayerTest {
-	private Player player;
+	private Player player, otherPlayer;
 	private Property property;
 	private Railroad railroad;
 	
@@ -25,7 +25,8 @@ public class PlayerTest {
 	@Before
 	public void setUp() {
 		// construct everything with specified test values
-		player = new Player("Player", START_MONEY);
+		player = new Player("Player", START_MONEY, null);
+		otherPlayer = new Player("Other Player", 100000, null);
 		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
 		railroad = new Railroad(RAILROAD_NAME);
 	}
@@ -103,7 +104,6 @@ public class PlayerTest {
 		double originalMoney = player.getMoney();
 		
 		// let the other player buy the property
-		Player otherPlayer = new Player("Other Player", 100000);
 		otherPlayer.buyProperty(property);
 		
 		// now main player try to buy

@@ -16,8 +16,8 @@ public class Board {
 	private FreeParking freeParking;
 	private int jailLocation;
 	
-	public static final int SIZE = 40;
-	public static final int JAIL = 20;
+	// default location for jail, for GoToJailTile initialization
+	public static final int DEFAULT_JAIL_LOCATION = 20;
 	
 	//
 	// Constructors
@@ -31,12 +31,31 @@ public class Board {
 		// search for FreeParking tile 
 		freeParking = null;
 		for (ITile t : tiles) {
-			try {
+			// if the tile is of type FREE_PARKING, then save it away
+			if (t.getTileType() == TileType.FREE_PARKING) {
 				freeParking = (FreeParking)t;
 				break;
 			}
-			catch (ClassCastException e) {
-				// don't do anything
+		}
+		
+		// find the jail location
+		jailLocation = 0;
+		for (int n = 0; n < tiles.length; n++) {
+			ITile t = tiles[n];
+			
+			if (t.getTileType() == TileType.JAIL) {
+				jailLocation = n;
+				break;
+			}
+		}
+		
+		// search for GoToJailTile and send this to it
+		for (ITile t : tiles) {
+			if (t.getTileType() == TileType.GO_TO_JAIL) {
+				GoToJailTile gtJailTile = (GoToJailTile)t;
+				gtJailTile.setBoard(this);
+				
+				break;
 			}
 		}
 	}
@@ -80,5 +99,9 @@ public class Board {
 	
 	public FreeParking getFreeParking() {
 		return freeParking;
+	}
+	
+	public int getJailLocation() {
+		return jailLocation;
 	}
 }

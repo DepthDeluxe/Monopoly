@@ -5,15 +5,33 @@ import monopoly.Player;
 import monopoly.MonopolyModelState;
 
 public class GoToJailTile implements ITile {
+	//
+	// Member Variables
+	//
+	
+	private Board theBoard;
+	
 	// the ITile tile type
 	private static final TileType TILE_TYPE = TileType.GO_TO_JAIL;
 	
 	//
-	// Constructor
+	// Constructors
 	//
 	
 	public GoToJailTile() {
-		
+		theBoard = null;
+	}
+	
+	public GoToJailTile(Board theBoard) {
+		this.theBoard = theBoard;
+	}
+	
+	//
+	// Setters
+	//
+	
+	public void setBoard(Board newBoard) {
+		this.theBoard = newBoard;
 	}
 	
 	//
@@ -22,8 +40,12 @@ public class GoToJailTile implements ITile {
 	
 	@Override
 	public MonopolyModelState landOn(Player p) {
-		p.moveTo(Board.JAIL);
-		
+		if (theBoard == null) {
+			p.moveTo(Board.DEFAULT_JAIL_LOCATION);
+		}
+		else {
+			p.moveTo(theBoard.getJailLocation());			
+		}
 		return MonopolyModelState.PLAYING;
 	}
 	
