@@ -42,6 +42,11 @@ public class Player {
 	//
 	
 	public void move(int numProperties) {
+		// don't move if in jail
+		if (inJail) {
+			return;
+		}
+		
 		this.position += numProperties;
 		
 		// go back to the beginning, and collect money for

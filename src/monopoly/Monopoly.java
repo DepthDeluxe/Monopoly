@@ -50,19 +50,13 @@ public class Monopoly {
 		currentPlayer = players.get(curPlayerIndex);
 		int distance = Dice.getFirstValue() + Dice.getSecondValue();
 		
-		if (currentPlayer.isInJail()) {
-			// if player rolled doubles, then he can come out
-			if (Dice.getFirstValue() == Dice.getSecondValue()) {
-				currentPlayer.setInJail(false);	
-				currentPlayer.move(distance);
-			}
-			
-			// otherwise, don't do anything
+		// no longer in jail if they rolled doubles
+		if (Dice.getFirstValue() == Dice.getSecondValue()) {
+			currentPlayer.setInJail(false);
 		}
-		else {
-			// set the new index
-			currentPlayer.move(distance);			
-		}
+		
+		// player will not move if they are in jail
+		currentPlayer.move(distance);
 		
 		// run the landOn
 		ITile tile = board.getPropertyAt(currentPlayer.getPosition());
