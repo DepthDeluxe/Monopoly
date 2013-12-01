@@ -7,9 +7,13 @@ public class Board {
 	// Member Variables
 	//
 	
+	// main components
 	private ITile[] tiles;
 	private CardDeck chanceDeck;
 	private CardDeck communityChestDeck;
+	
+	// special tiles
+	private FreeParking freeParking;
 	
 	// Static Variables
 	public static final int SIZE = 40;
@@ -23,6 +27,18 @@ public class Board {
 		this.tiles = tiles;
 		this.chanceDeck = chanceDeck;
 		this.communityChestDeck = communityChestDeck;
+		
+		// search for FreeParking tile by trying to typecast
+		freeParking = null;
+		for (ITile t : tiles) {
+			try {
+				freeParking = (FreeParking)t;
+				break;
+			}
+			catch (ClassCastException e) {
+				// don't do anything
+			}
+		}
 	}
 	
 	//
@@ -56,5 +72,9 @@ public class Board {
 	
 	public CardDeck getCommunityChestDeck() {
 		return communityChestDeck;
+	}
+	
+	public FreeParking getFreeParking() {
+		return freeParking;
 	}
 }

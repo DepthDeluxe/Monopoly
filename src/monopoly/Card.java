@@ -45,40 +45,59 @@ public class Card {
 				continue;
 			}
 			
+			// interpret the command
 			String command = args[0];
 			switch (command) {
 			case "collect":
+				// get the amount to pay
 				double amount = Double.parseDouble(args[1]);
+				
+				// and give money to the player
 				currentPlayer.giveMoney(amount);
 				break;
+				
 			case "pay":
-				amount = Double.parseDouble(args[1]);
-				currentPlayer.takeMoney(amount);
-				break;
-			case "collectfromall":
+				// get the amount to pay
 				amount = Double.parseDouble(args[1]);
 				
+				// and transfer the money from the player to Free Parking
+				currentPlayer.takeMoney(amount);
+				theBoard.getFreeParking().addToPot(amount);
+				
+				break;
+				
+			case "collectfromall":
+				// get amount to pay
+				amount = Double.parseDouble(args[1]);
+				
+				// give to all players
 				for (Player p : theGame.getPlayers()) {
 					p.takeMoney(amount);
 					currentPlayer.giveMoney(amount);
 				}
 				
 				break;
+				
 			case "paytoall":
+				// get amount to pay
 				amount = Double.parseDouble(args[1]);
 				
+				// give to all players
 				for (Player p : theGame.getPlayers()) {
 					currentPlayer.takeMoney(amount);
 					p.giveMoney(amount);
 				}
 				
 				break;
+				
 			case "move":
+				// get distance to move
 				int distance = Integer.parseInt(args[1]);
 				
 				currentPlayer.move(distance);
 				
 				break;
+				
 			case "utility":
 				// find the nearest utility AHEAD of the player
 				int startLocation = currentPlayer.getPosition();
@@ -101,6 +120,7 @@ public class Card {
 				}
 				
 				break;
+				
 			case "railroad":
 				// find the nearest railroad AHEAD of the player
 				startLocation = currentPlayer.getPosition();
@@ -116,13 +136,13 @@ public class Card {
 						Railroad castedR = (Railroad)theBoard.getTileAt(n);
 						currentPlayer.moveTo(n);
 					}
-					// if it doesn't work, don't do anything
 					catch (ClassCastException e) {
-						
+						// if it doesn't work, don't do anything						
 					}
 				}
 				
 				break;
+				
 			case "jail":
 				
 				startLocation = currentPlayer.getPosition();
@@ -134,6 +154,7 @@ public class Card {
 				}
 				
 				break;
+				
 			}
 			
 		}
