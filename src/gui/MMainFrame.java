@@ -34,7 +34,7 @@ public class MMainFrame extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 		((JComponent) getContentPane()).setBorder(empty);
-		this.setSize(650, 550);
+		this.setSize(800, 700);
 		
 		MBoardPanel board = new MBoardPanel();
 		this.getContentPane().add(board, BorderLayout.CENTER);
@@ -45,6 +45,5 @@ public class MMainFrame extends JFrame
 		this.control = controlT;
 		this.control.setSize(100, 550);
 		
-		this.pack();
 	}
 }
