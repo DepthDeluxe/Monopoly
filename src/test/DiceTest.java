@@ -10,11 +10,13 @@ public class DiceTest {
 
 	@Test
 	public void test() {
+		Dice dice = new Dice();
+		
 		int numTests = 10000;
 		for (int n = 0; n < numTests; n++) {
-			Dice.roll();
-			int firstVal = Dice.getFirstValue();
-			int secondVal = Dice.getSecondValue();
+			dice.roll();
+			int firstVal = dice.getFirstValue();
+			int secondVal = dice.getSecondValue();
 			
 			// make sure they are good values
 			assertTrue(firstVal > 0 && firstVal < 7);

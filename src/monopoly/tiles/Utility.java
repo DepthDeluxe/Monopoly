@@ -28,9 +28,9 @@ public class Utility extends Property {
 	
 	@Override
 	public double getRent() {
-		Dice.roll();
+		Dice dice = new Dice();
 		
-		double diceSum = Dice.getFirstValue() + Dice.getSecondValue();
+		double diceSum = dice.getSum();
 		
 		// if player owns both utilities, the rent is 10 times the dice roll,
 		// if only one, 4 times the dice roll

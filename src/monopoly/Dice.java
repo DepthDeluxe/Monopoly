@@ -7,27 +7,46 @@ public class Dice {
 	// Static Members
 	//
 	
-	private static int firstValue, secondValue;
-	private static final Random rand = new Random();
+	private int firstValue, secondValue;
+	private Random rand;
 	
 	private static final int NUM_FACES = 6;
+	
+	//
+	// Constructors
+	//
+	
+	public Dice() {
+		rand = new Random();
+		
+		// populate firstValue and secondValue
+		roll();
+	}
 	
 	//
 	// Main Functions
 	//
 	
-	public static void roll() {
+	public void roll() {
 		// get random values, add one becuase nextInt is
 		// zero inclusive
 		firstValue = (rand.nextInt(NUM_FACES) + 1);
 		secondValue = (rand.nextInt(NUM_FACES) + 1);
 	}
 	
-	public static int getFirstValue() {
+	//
+	// Getters
+	//
+	
+	public int getFirstValue() {
 		return firstValue;
 	}
 	
-	public static int getSecondValue() {
+	public int getSecondValue() {
 		return secondValue;
+	}
+	
+	public int getSum() {
+		return firstValue + secondValue;
 	}
 }

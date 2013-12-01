@@ -15,6 +15,7 @@ public class Monopoly {
 	private int curPlayerIndex;
 	private Player currentPlayer;
 	
+	private Dice dice;
 	private Board board;
 	
 	private MonopolyModelState modelState;
@@ -28,6 +29,9 @@ public class Monopoly {
 		players = new LinkedList<Player>();
 		curPlayerIndex = 0;
 		
+		// load the dice
+		dice = new Dice();
+		
 		// load the board components from files
 		ITile[] boardTiles = TileLoader.loadFromXML(boardFilename);
 		CardDeck chanceDeck = new CardDeck(CardLoader.loadFromFile(chanceFilename));
@@ -37,6 +41,10 @@ public class Monopoly {
 		board = new Board(boardTiles, chanceDeck, comChestDeck);
 	}
 	
+	//
+	// Main Functions
+	//
+	
 	public boolean nextMove() {
 		// don't do anything if the model currently isn't in a playable state
 		if (modelState != MonopolyModelState.PLAYING) {
@@ -44,14 +52,14 @@ public class Monopoly {
 		}
 		
 		// roll the dice and cycle the player
-		Dice.roll();
+		dice.roll();
 		
 		// get the current player and calculate distance
 		currentPlayer = players.get(curPlayerIndex);
-		int distance = Dice.getFirstValue() + Dice.getSecondValue();
+		int distance = dice.getFirstValue() + dice.getSecondValue();
 		
 		// no longer in jail if they rolled doubles
-		if (Dice.getFirstValue() == Dice.getSecondValue()) {
+		if (dice.getFirstValue() == dice.getSecondValue()) {
 			currentPlayer.setInJail(false);
 		}
 		
@@ -86,6 +94,10 @@ public class Monopoly {
 		
 		return success;
 	}
+	
+	//
+	// Getters
+	//
 	
 	public Player[] getPlayers() {
 		return players.toArray(new Player[0]);
