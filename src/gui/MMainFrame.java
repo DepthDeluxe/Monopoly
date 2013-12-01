@@ -14,6 +14,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 
+import monopoly.tiles.Property;
+
 /**
  * @author ajrk001
  * Class that will represent the main frame of the board. 
@@ -22,6 +24,7 @@ public class MMainFrame extends JFrame
 {
 	private MBoardPanel theBoard;
 	private MControlPanel control;
+	private MPropertiesPanel properties;
 	Border empty = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 	
 	/**
@@ -34,6 +37,7 @@ public class MMainFrame extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 		((JComponent) getContentPane()).setBorder(empty);
+		this.setSize(1000, 700);
 		
 		MBoardPanel board = new MBoardPanel();
 		this.getContentPane().add(board, BorderLayout.CENTER);
@@ -42,8 +46,12 @@ public class MMainFrame extends JFrame
 		MControlPanel controlT = new MControlPanel();
 		this.getContentPane().add(controlT, BorderLayout.WEST);
 		this.control = controlT;
+		this.control.setSize(100, 550);
 		
-		this.pack();
+		Property p = new Property("Testing", 5000.00);
+		MPropertiesPanel propertyPanel = new MPropertiesPanel(p);
+		this.properties = propertyPanel;
+		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
 		
 	}
 }

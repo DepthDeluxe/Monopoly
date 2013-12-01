@@ -26,45 +26,45 @@ import javax.swing.border.LineBorder;
  */
 public class MControlPanel extends JPanel
 {
-	GridLayout layout = new GridLayout(0, 1, 5, 5);
-	Border etchedB;
 	
-	JButton rollDice;
-	JButton newGame;
-	JLabel currMoney;
 	JLabel curPlayer;
 	JLabel myWins;
-	JLabel myLosses;
-
+	JLabel myLoss;
 	
+	Font boldFont = new Font("Tahoma", Font.BOLD, 11);
 	public MControlPanel() 
 	{
-		etchedB = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-		this.setLayout(layout);
-		this.setBorder(etchedB);
+		this.setLayout(new GridLayout(8, 1, 0, 0));
 		
-		JLabel currPlayerLab = createLabel("Next Player");
+		JLabel curPlayerLab = createLabel("Next Player");
 		
 		curPlayer = createLabel("Horsie Dude Guy");
-		Font temp = curPlayer.getFont();
-		curPlayer.setFont(new Font(temp.getName(), Font.BOLD, temp.getSize()));
+		curPlayer.setFont(boldFont);
 		
-		JLabel myWinLab = createLabel("My Win Count");
+		JLabel myWinsLab = createLabel("My Win Count:");
 		
 		myWins = createLabel("0");
-		myWins.setBorder(new LineBorder(Color.BLACK));
+		myWins.setFont(boldFont);
 		
-		JLabel myLossLab = createLabel("My Loss Count");
+		JLabel myLossLab = createLabel("My Loss Count:");
 		
-		myLosses = createLabel("0");
-		myLosses.setBorder(new LineBorder(Color.BLACK));
+		myLoss = createLabel("0");
+		myLoss.setFont(boldFont);
 		
-		this.add(currPlayerLab);
+		JButton btnRollDice = new JButton("Roll Dice!");
+		btnRollDice.setSize(50, 20);
+
+		JButton btnNewGame = new JButton("New Game!");
+		btnNewGame.setSize(50, 20);
+		
+		this.add(curPlayerLab);
 		this.add(curPlayer);
-		this.add(myWinLab);
+		this.add(myWinsLab);
 		this.add(myWins);
 		this.add(myLossLab);
-		this.add(myLosses);
+		this.add(myLoss);
+		this.add(btnRollDice);
+		this.add(btnNewGame);
 	}
 	
 	public JLabel createLabel(String text)
