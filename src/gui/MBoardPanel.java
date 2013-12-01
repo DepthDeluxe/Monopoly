@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
+import java.awt.Component;
 
 /**
  * @author ajrk001
@@ -250,6 +251,23 @@ public class MBoardPanel extends JPanel
 		JLabel lblRedditEdition = new JLabel("Reddit Edition");
 		lblRedditEdition.setBounds(219, 255, 66, 14);
 		add(lblRedditEdition);
+		
+		Box chanceBox = Box.createHorizontalBox();
+		chanceBox.setBorder(new LineBorder(new Color(0, 0, 0)));
+		chanceBox.setBounds(294, 323, 89, 58);
+		add(chanceBox);
+		
+		JLabel lblChance = new JLabel("Chance");
+		chanceBox.add(lblChance);
+		
+		Box ccBox = Box.createHorizontalBox();
+		ccBox.setBorder(new LineBorder(new Color(0, 0, 0)));
+		ccBox.setBounds(117, 106, 89, 58);
+		add(ccBox);
+		
+		JLabel lblNewLabel = new JLabel("Community Chest");
+		lblNewLabel.setAlignmentX(0.5f);
+		ccBox.add(lblNewLabel);
 		
 	}
 	
