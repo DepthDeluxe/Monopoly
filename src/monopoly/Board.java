@@ -14,8 +14,8 @@ public class Board {
 	
 	// special tiles
 	private FreeParking freeParking;
+	private int jailLocation;
 	
-	// Static Variables
 	public static final int SIZE = 40;
 	public static final int JAIL = 20;
 	
@@ -28,7 +28,7 @@ public class Board {
 		this.chanceDeck = chanceDeck;
 		this.communityChestDeck = communityChestDeck;
 		
-		// search for FreeParking tile by trying to typecast
+		// search for FreeParking tile 
 		freeParking = null;
 		for (ITile t : tiles) {
 			try {
@@ -44,6 +44,10 @@ public class Board {
 	//
 	// Getters
 	//
+	
+	public int getNumTiles() {
+		return tiles.length;
+	}
 	
 	public ITile getTileAt(int index) {
 		return tiles[index];

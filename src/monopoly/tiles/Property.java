@@ -16,6 +16,9 @@ public class Property implements ITile {
 	private boolean isMortgaged;
 	private double mortgagedValue;
 	
+	// The ITile tile type
+	private static final TileType TILE_TYPE = TileType.PROPERTY;
+	
 	//
 	// Constructors
 	//
@@ -126,6 +129,7 @@ public class Property implements ITile {
 	// ITile Implementation
 	//
 	
+	@Override
 	public MonopolyModelState landOn(Player p) {
 		// if the property is unowned, put game in BUY_REQUEST state
 		if (owner == null) {
@@ -155,5 +159,10 @@ public class Property implements ITile {
 			// continue playing as usual if transfer worked
 			return MonopolyModelState.PLAYING;
 		}
+	}
+	
+	@Override
+	public TileType getTileType() {
+		return TILE_TYPE;
 	}
 }

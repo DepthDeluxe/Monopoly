@@ -3,16 +3,14 @@ package monopoly.tiles;
 import monopoly.Player;
 import monopoly.Dice;
 
-public class Utility extends Property {
-	//
-	// Member Variables
-	//
-	
+public class Utility extends Property {	
 	//
 	// Static Variables
 	//
 	
 	private static final double UTILITY_VALUE = 200.0;
+
+	private static final TileType TILE_TYPE = TileType.UTILITY;
 	
 	//
 	// Constructors

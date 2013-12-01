@@ -13,6 +13,8 @@ public class FreeParking implements ITile {
 	
 	public static final double POT_START_AMOUNT = 150.0;
 	
+	private static final TileType TILE_TYPE = TileType.FREE_PARKING;
+	
 	//
 	// Constructors
 	//
@@ -48,5 +50,10 @@ public class FreeParking implements ITile {
 		nextPotStart *= 2;
 		
 		return MonopolyModelState.PLAYING;
+	}
+	
+	@Override
+	public TileType getTileType() {
+		return TILE_TYPE;
 	}
 }

@@ -28,4 +28,21 @@ public class CardTile implements ITile {
 		// know that a chance or community chest card must be drawn
 		return cardType;
 	}
+	
+	@Override
+	public TileType getTileType() {
+		// convert from cardType to TileType
+		TileType tileType;
+		if (cardType == MonopolyModelState.CHANCE) {
+			tileType = TileType.CHANCE;
+		}
+		else if (cardType == MonopolyModelState.COMMUNITY_CHEST) {
+			tileType = TileType.COMMUNITY_CHEST;
+		}
+		else {
+			tileType = null;
+		}
+		
+		return tileType;
+	}
 }

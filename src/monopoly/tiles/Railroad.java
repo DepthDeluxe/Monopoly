@@ -3,16 +3,15 @@ package monopoly.tiles;
 import monopoly.MonopolyModelState;
 import monopoly.Player;
 
-public class Railroad extends Property {
-	//
-	// Member Variables
-	//
-	
+public class Railroad extends Property {	
 	//
 	// Static Variables
 	//
 	
 	private static double rrPrice = 200;
+	
+	// The ITile tile type
+	private static final TileType TILE_TYPE = TileType.RAILROAD;
 	
 	//
 	// Constructors
@@ -36,9 +35,12 @@ public class Railroad extends Property {
 		return 25.0 * Math.pow(2, (owner.getNumRailroads()-1));
 	}
 	
-	//
-	// Static Functions
-	//
+	@Override
+	public TileType getTileType() {
+		return TILE_TYPE;
+	}
+	
+	// Getters
 	
 	public double getRailroadPrice() {
 		return rrPrice;

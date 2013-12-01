@@ -92,18 +92,6 @@ public class TileLoader {
 		
 		ITile outTile = null;
 		switch (elementType) {
-		case "Go":
-		case "Jail":
-		case "IncomeTax":
-			// basic board tile cases.  Implement a basic, do nothing, 
-			// return PLAYING landOn() function
-			outTile = new ITile() {
-				@Override
-				public MonopolyModelState landOn(Player p) {
-					return MonopolyModelState.PLAYING;
-				}
-			};
-			break;
 			
 		case "CardTile":
 			String type = getChildValue("Type", e);
@@ -146,6 +134,25 @@ public class TileLoader {
 			name = getChildValue("Name", e);
 			
 			outTile = new Utility(name);
+			break;
+			
+		default:
+			// assign the proper tile type
+			final TileType tileType = TileType.parseType(elementType);
+			
+			// basic board tile cases.  Implement a basic, do nothing, 
+			// return PLAYING landOn() function
+			outTile = new ITile() {
+				@Override
+				public MonopolyModelState landOn(Player p) {
+					return MonopolyModelState.PLAYING;
+				}
+				
+				@Override
+				public TileType getTileType() {
+					return tileType;
+				}
+			};
 			break;
 			
 		}
