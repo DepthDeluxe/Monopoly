@@ -26,14 +26,6 @@ public class Board {
 	}
 	
 	//
-	// Setters
-	//
-	
-	public void setTile(ITile t, int index) {
-		tiles[index] = t;
-	}
-	
-	//
 	// Getters
 	//
 	
@@ -56,5 +48,13 @@ public class Board {
 		}
 		
 		return outProperty;
+	}
+	
+	public CardDeck getChanceDeck() {
+		return chanceDeck;
+	}
+	
+	public CardDeck getCommunityChestDeck() {
+		return communityChestDeck;
 	}
 }
