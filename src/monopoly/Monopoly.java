@@ -1,15 +1,17 @@
 package monopoly;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import monopoly.tiles.*;
+import monopoly.xml.TileLoader;
+import monopoly.xml.CardLoader;
 
 public class Monopoly {
 	//
 	// Member Variables
 	//
 	
-	private ArrayList<Player> players;
+	private LinkedList<Player> players;
 	private int curPlayerIndex;
 	private Player currentPlayer;
 	
@@ -21,29 +23,46 @@ public class Monopoly {
 	// Constructors
 	//
 	
-	public Monopoly() {
+	public Monopoly(String boardFilename, String chanceFilename, String commChestFilename) {
 		// init player stuff
-		players = new ArrayList<Player>();
+		players = new LinkedList<Player>();
 		curPlayerIndex = 0;
 		
-		board = new Board();
+		// load the board components from files
+		ITile[] boardTiles = TileLoader.loadFromXML(boardFilename);
+		CardDeck chanceDeck = new CardDeck(CardLoader.loadFromFile(chanceFilename));
+		CardDeck comChestDeck = new CardDeck(CardLoader.loadFromFile(commChestFilename));
 		
-		// game starts off playing
-		modelState = MonopolyModelState.PLAYING;
+		// load the board
+		board = new Board(boardTiles, chanceDeck, comChestDeck);
 	}
 	
-	public void nextMove() {
+	public boolean nextMove() {
+		// don't do anything if the model currently isn't in a playable state
 		if (modelState != MonopolyModelState.PLAYING) {
-			return;
+			return false;
 		}
 		
-		// roll the dice
+		// roll the dice and cycle the player
 		Dice.roll();
+		
+		// get the current player and calculate distance
+		currentPlayer = players.get(curPlayerIndex);
 		int distance = Dice.getFirstValue() + Dice.getSecondValue();
 		
-		// set the new index
-		currentPlayer = players.get(curPlayerIndex);
-		currentPlayer.move(distance);
+		if (currentPlayer.isInJail()) {
+			// if player rolled doubles, then he can come out
+			if (Dice.getFirstValue() == Dice.getSecondValue()) {
+				currentPlayer.setInJail(false);	
+				currentPlayer.move(distance);
+			}
+			
+			// otherwise, don't do anything
+		}
+		else {
+			// set the new index
+			currentPlayer.move(distance);			
+		}
 		
 		// run the landOn
 		ITile tile = board.getPropertyAt(currentPlayer.getPosition());
@@ -54,6 +73,10 @@ public class Monopoly {
 		if (curPlayerIndex == players.size()) {
 			curPlayerIndex = 0;
 		}
+		
+		// return true if there isn't any other action required by
+		// the controller to continue the game
+		return (modelState == MonopolyModelState.PLAYING);
 	}
 	
 	public boolean answerBuyRequest(boolean buying) {
@@ -71,8 +94,7 @@ public class Monopoly {
 	}
 	
 	public Player[] getPlayers() {
-		Player[] arrayPlayers = new Player[players.size()];
-		return players.toArray(arrayPlayers);
+		return players.toArray(new Player[0]);
 	}
 	
 	public Player getCurrentPlayer() {

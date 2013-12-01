@@ -96,6 +96,10 @@ public class Player {
 		return true;
 	}
 	
+	public void setInJail(boolean inJail) {
+		this.inJail = inJail;
+	}
+	
 	//
 	// Getters
 	//
