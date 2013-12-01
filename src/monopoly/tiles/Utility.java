@@ -39,4 +39,9 @@ public class Utility extends Property {
 			return 4.0 * diceSum;
 		}
 	}
+	
+	@Override
+	public TileType getTileType() {
+		return TILE_TYPE;
+	}
 }
