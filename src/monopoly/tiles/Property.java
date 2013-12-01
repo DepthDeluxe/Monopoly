@@ -141,7 +141,7 @@ public class Property implements ITile {
 			boolean success = p.takeMoney(amountToTransfer);
 			if (!success) {
 				// if not enough money, transfer rest of money from player and give to owner
-				double moneyRemaining = p.getCurrentMoney();
+				double moneyRemaining = p.getMoney();
 				p.takeMoney(moneyRemaining);
 				p.giveMoney(moneyRemaining);
 				

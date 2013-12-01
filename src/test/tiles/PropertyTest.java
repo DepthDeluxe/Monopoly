@@ -24,7 +24,7 @@ public class PropertyTest {
 	@Before
 	public void setUp() {
 		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
-		player = new Player(START_MONEY + PROPERTY_VALUE);			// after purchase, player will have START_MONEY
+		player = new Player("Player", START_MONEY + PROPERTY_VALUE);			// after purchase, player will have START_MONEY
 		
 		// the player owns the property by default
 		player.buyProperty(property);
@@ -32,13 +32,13 @@ public class PropertyTest {
 	
 	@Test
 	public void testRent() {
-		Player otherPlayer = new Player(START_MONEY);
+		Player otherPlayer = new Player("Other Player", START_MONEY);
 		
 		boolean success = property.chargeRent(otherPlayer);
 		
 		assertTrue(success);
-		assertEquals(player.getCurrentMoney(), START_MONEY + property.getRent(), ERROR);
-		assertEquals(otherPlayer.getCurrentMoney(), START_MONEY - property.getRent(), ERROR);
+		assertEquals(player.getMoney(), START_MONEY + property.getRent(), ERROR);
+		assertEquals(otherPlayer.getMoney(), START_MONEY - property.getRent(), ERROR);
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class PropertyTest {
 		
 		// make sure success was thrown, and the player has the mortgage value back
 		assertTrue(success);
-		assertEquals(player.getCurrentMoney(), START_MONEY + property.getMortgagedValue(), ERROR);
+		assertEquals(player.getMoney(), START_MONEY + property.getMortgagedValue(), ERROR);
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class PropertyTest {
 	
 		// make sure fail flag was passed an no money was transferred
 		assertTrue(!success);
-		assertEquals(player.getCurrentMoney(), START_MONEY, ERROR);
+		assertEquals(player.getMoney(), START_MONEY, ERROR);
 	}
 	
 	@Test
@@ -70,14 +70,14 @@ public class PropertyTest {
 		property.mortgage();
 		player.takeMoney(property.getMortgagedValue());
 		
-		Player otherPlayer = new Player(START_MONEY);
+		Player otherPlayer = new Player("Other Player", START_MONEY);
 		
 		boolean success = property.chargeRent(otherPlayer);
 		
 		// make sure fail flag passed, and no money was transferred
 		assertTrue(!success);
-		assertEquals(player.getCurrentMoney(), START_MONEY, ERROR);
-		assertEquals(otherPlayer.getCurrentMoney(), START_MONEY, ERROR);
+		assertEquals(player.getMoney(), START_MONEY, ERROR);
+		assertEquals(otherPlayer.getMoney(), START_MONEY, ERROR);
 	}
 	
 	@After

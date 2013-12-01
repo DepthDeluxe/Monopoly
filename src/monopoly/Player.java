@@ -11,6 +11,7 @@ public class Player {
 	// Member Variables
 	//
 	
+	private String name;
 	private double money;
 
 	private int position;
@@ -28,7 +29,8 @@ public class Player {
 	// Constructors
 	//
 	
-	public Player(double startMoney) {
+	public Player(String name, double startMoney) {
+		this.name = name;
 		this.money = startMoney;
 		
 		position = 0;	
@@ -109,7 +111,11 @@ public class Player {
 	// Getters
 	//
 	
-	public double getCurrentMoney() {
+	public String getName() {
+		return name;
+	}
+	
+	public double getMoney() {
 		return money;
 	}
 	

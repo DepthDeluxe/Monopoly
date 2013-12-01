@@ -25,32 +25,32 @@ public class PlayerTest {
 	@Before
 	public void setUp() {
 		// construct everything with specified test values
-		player = new Player(START_MONEY);
+		player = new Player("Player", START_MONEY);
 		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
 		railroad = new Railroad(RAILROAD_NAME);
 	}
 	
 	@Test
 	public void constructorTest() {
-		assertEquals(player.getCurrentMoney(), START_MONEY, ERROR);
+		assertEquals(player.getMoney(), START_MONEY, ERROR);
 	}
 	
 	@Test
 	public void takeMoney() {
 		double toTake = 320.0;
-		double originalMoney = player.getCurrentMoney();
+		double originalMoney = player.getMoney();
 		
 		boolean success = player.takeMoney(toTake);
 		
 		// make sure the transfer was a success and the proper amount was moved
 		assertTrue(success);
-		assertEquals(originalMoney - toTake, player.getCurrentMoney(), ERROR);
+		assertEquals(originalMoney - toTake, player.getMoney(), ERROR);
 	}
 	
 	@Test
 	public void takeMoneyFail() {
 		// take $1000 more than he has
-		double toTake = player.getCurrentMoney() + 1000;
+		double toTake = player.getMoney() + 1000;
 		
 		boolean success = player.takeMoney(toTake);
 		
@@ -61,24 +61,24 @@ public class PlayerTest {
 	@Test
 	public void giveMoney() {
 		double toGive = 500.0;
-		double originalMoney = player.getCurrentMoney();
+		double originalMoney = player.getMoney();
 		
 		player.giveMoney(toGive);
 		
-		assertEquals(originalMoney + toGive, player.getCurrentMoney(), ERROR);
+		assertEquals(originalMoney + toGive, player.getMoney(), ERROR);
 	}
 	
 	@Test
 	public void buyProperty() {
 		double propPrice = property.getPrice();
-		double originalMoney = player.getCurrentMoney();
+		double originalMoney = player.getMoney();
 		
 		boolean success = player.buyProperty(property);
 		
 		// make sure success flags is true, the property value was subtracted from
 		// player's money, and the property owner is now the player
 		assertTrue(success);
-		assertEquals(originalMoney - propPrice, player.getCurrentMoney(), ERROR);
+		assertEquals(originalMoney - propPrice, player.getMoney(), ERROR);
 		assertTrue(property.getOwner() == player);
 	}
 	
@@ -87,7 +87,7 @@ public class PlayerTest {
 		// make sure there is not enough money left
 		player.takeMoney(START_MONEY - 1);
 		
-		double originalMoney = player.getCurrentMoney();
+		double originalMoney = player.getMoney();
 		
 		boolean success = player.buyProperty(property);
 		
@@ -95,15 +95,15 @@ public class PlayerTest {
 		// own the property
 		assertTrue(!success);
 		assertTrue(!player.owns(property));
-		assertEquals(originalMoney, player.getCurrentMoney(), ERROR);
+		assertEquals(originalMoney, player.getMoney(), ERROR);
 	}
 	
 	@Test
 	public void buyPropertyOwnerFail() {
-		double originalMoney = player.getCurrentMoney();
+		double originalMoney = player.getMoney();
 		
 		// let the other player buy the property
-		Player otherPlayer = new Player(100000);
+		Player otherPlayer = new Player("Other Player", 100000);
 		otherPlayer.buyProperty(property);
 		
 		// now main player try to buy
@@ -113,7 +113,7 @@ public class PlayerTest {
 		assertTrue(!player.owns(property));
 		assertTrue(otherPlayer.owns(property));
 		assertTrue(property.getOwner() == otherPlayer);
-		assertEquals(originalMoney, player.getCurrentMoney(), ERROR);
+		assertEquals(originalMoney, player.getMoney(), ERROR);
 	}
 	
 	@Test
