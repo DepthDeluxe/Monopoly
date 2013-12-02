@@ -70,6 +70,9 @@ public class MBoardPanel extends JPanel
 		property2.setBounds(450, 550, 50, 100);
 		add(property2);
 		
+		JLabel lblCommunityChest_1 = new JLabel("Community Chest");
+		property2.add(lblCommunityChest_1);
+		
 		Box property3 = Box.createVerticalBox();
 		property3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property3.setBounds(400, 550, 50, 100);
@@ -89,6 +92,9 @@ public class MBoardPanel extends JPanel
 		property4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property4.setBounds(350, 550, 50, 100);
 		add(property4);
+		
+		JLabel lblIncomeTax = new JLabel("Income Tax");
+		property4.add(lblIncomeTax);
 		
 		Box property5 = Box.createVerticalBox();
 		property5.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -226,6 +232,9 @@ public class MBoardPanel extends JPanel
 		property16.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property16.setBounds(0, 200, 100, 50);
 		add(property16);
+		
+		JLabel lblCommunityChest = new JLabel("Community chest");
+		property16.add(lblCommunityChest);
 		
 		Box property17 = Box.createHorizontalBox();
 		property17.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -411,6 +420,9 @@ public class MBoardPanel extends JPanel
 		property30.setBounds(550, 200, 100, 50);
 		add(property30);
 		
+		JLabel lblNewLabel_1 = new JLabel("Community Chest");
+		property30.add(lblNewLabel_1);
+		
 		Box property31 = Box.createHorizontalBox();
 		property31.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property31.setBounds(550, 250, 100, 50);
@@ -459,6 +471,9 @@ public class MBoardPanel extends JPanel
 		property35.setBounds(550, 450, 100, 50);
 		add(property35);
 		
+		JLabel lblLuxuryTax = new JLabel("Luxury Tax");
+		property35.add(lblLuxuryTax);
+		
 		Box property36 = Box.createHorizontalBox();
 		property36.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property36.setBounds(550, 500, 100, 50);
@@ -475,12 +490,13 @@ public class MBoardPanel extends JPanel
 		property36.add(prop22);
 		
 		JLabel lblMonopoly = new JLabel("MONOPOLY");
-		lblMonopoly.setFont(new Font("Manteka", Font.BOLD, 34));
-		lblMonopoly.setBounds(241, 275, 191, 52);
+		lblMonopoly.setFont(new Font("Tahoma", Font.BOLD, 34));
+		lblMonopoly.setBounds(239, 275, 193, 52);
 		add(lblMonopoly);
 		
 		JLabel lblRedditEdition = new JLabel("Reddit Edition");
 		lblRedditEdition.setBounds(300, 331, 66, 14);
+		lblRedditEdition.setSize(95, 12);
 		add(lblRedditEdition);
 		
 		Box chanceBox = Box.createHorizontalBox();
