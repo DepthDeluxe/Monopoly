@@ -97,7 +97,7 @@ public class MPropertiesPanel extends JPanel
 		this.name.setText(this.property.getName());
 		this.price.setText(Double.toString(this.property.getPrice()));
 		this.mortgageVal.setText(Double.toString(this.property.getMortgagedValue()));
-		if(this.property.isOwned()) { this.owner.setText("Owned!"); }
+		if(this.property.isOwned()) { this.owner.setText(this.property.getOwner().getName()); }
 		else { this.owner.setText("Not owned"); }
 		this.isMortgaged.setText(Boolean.toString(this.property.isMortgaged()));
 		this.rent.setText(Double.toString(this.property.getRent()));

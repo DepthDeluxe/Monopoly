@@ -14,6 +14,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 
+import monopoly.Player;
 import monopoly.tiles.Property;
 
 /**
@@ -49,6 +50,7 @@ public class MMainFrame extends JFrame
 		this.control.setSize(100, 550);
 		
 		Property p = new Property("Testing", 5000.00);
+		p.setOwner(new Player("nase", 1000, null));
 		MPropertiesPanel propertyPanel = new MPropertiesPanel(p);
 		this.properties = propertyPanel;
 		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
