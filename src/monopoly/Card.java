@@ -31,13 +31,13 @@ public class Card {
 		return cardScript;
 	}
 	
-	public static void runScript(Monopoly theGame, String theScript) {
+	public void runScript(Monopoly theGame) {
 		// get board and current player references
 		Board theBoard = theGame.getBoard();
 		Player currentPlayer = theGame.getCurrentPlayer();
 		
 		// split up the script into lines and iterate through them
-		String[] lines = theScript.split("\n");
+		String[] lines = cardScript.split("\n");
 		for (String line : lines) {
 			// get the arguments
 			String[] args = line.split(" ");
