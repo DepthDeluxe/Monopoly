@@ -84,10 +84,22 @@ public class MPropertiesPanel extends JPanel
 			JLabel temp = createLabel("See your card!");
 			this.add(temp);
 		}
-		else if(type == TileType.PROPERTY)
+		else if(type == TileType.PROPERTY || type == TileType.UTILITY || type == TileType.RAILROAD)
 		{
 			this.setLayout(new GridLayout(13, 1, 0, 0));
 			this.rebuild((Property) this.property);
+		}
+		else if(type == TileType.GO_TO_JAIL || type == TileType.JAIL)
+		{
+			this.setLayout(new GridLayout(1, 1, 0, 0));
+			JLabel temp = createLabel("Jail time!");
+			this.add(temp);
+		}
+		else if(type == TileType.GO || type == TileType.FREE_PARKING)
+		{
+			this.setLayout(new GridLayout(1, 1, 0, 0));
+			JLabel temp = createLabel("Free money!");
+			this.add(temp);
 		}
 	}
 	
