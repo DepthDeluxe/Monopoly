@@ -108,7 +108,11 @@ public class TileLoader {
 			break;
 			
 		case "GoToJailTile":
-			outTile = new GoToJailTile();
+			// get the destination board location
+			String destStr = getChildValue("Destination", e);
+			int destination = Integer.parseInt(destStr);
+					
+			outTile = new GoToJailTile(destination);
 			break;
 			
 		case "Property":

@@ -99,7 +99,9 @@
 		<Name>Marvin Gardins</Name>
 		<Value>280.0</Value>
 	</Property>
-	<GoToJailTile></GoToJailTile>
+	<GoToJailTile>
+		<Destination>10</Destination>
+	</GoToJailTile>
 	<Property>
 		<Name>Pacific Avenue</Name>
 		<Value>300.0</Value>

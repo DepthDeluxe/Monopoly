@@ -16,9 +16,6 @@ public class Board {
 	private FreeParking freeParking;
 	private int jailLocation;
 	
-	// default location for jail, for GoToJailTile initialization
-	public static final int DEFAULT_JAIL_LOCATION = 20;
-	
 	//
 	// Constructors
 	//
@@ -45,16 +42,6 @@ public class Board {
 			
 			if (t.getTileType() == TileType.JAIL) {
 				jailLocation = n;
-				break;
-			}
-		}
-		
-		// search for GoToJailTile and send this to it
-		for (ITile t : tiles) {
-			if (t.getTileType() == TileType.GO_TO_JAIL) {
-				GoToJailTile gtJailTile = (GoToJailTile)t;
-				gtJailTile.setBoard(this);
-				
 				break;
 			}
 		}
