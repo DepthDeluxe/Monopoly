@@ -41,15 +41,15 @@ public class MControlPanel extends JPanel
 		myMoney = createLabel("0");
 		myMoney.setFont(boldFont);
 		
-		JLabel playerTwoMoneyLab = createLabel("Your Money!:");
+		JLabel playerTwoMoneyLab = createLabel("Player Two Money!:");
 		playerTwoMoney = createLabel("0");
 		playerTwoMoney.setFont(boldFont);
 		
-		JLabel playerThreeMoneyLab = createLabel("Your Money!:");
+		JLabel playerThreeMoneyLab = createLabel("Player Three Money!:");
 		playerThreeMoney = createLabel("0");
 		playerThreeMoney.setFont(boldFont);
 		
-		JLabel playerFourMoneyLab = createLabel("Your Money!:");
+		JLabel playerFourMoneyLab = createLabel("Player Four Money!:");
 		playerFourMoney = createLabel("0");
 		playerFourMoney.setFont(boldFont);
 		
@@ -76,5 +76,13 @@ public class MControlPanel extends JPanel
 		JLabel temp = new JLabel(text);
 		temp.setHorizontalAlignment(SwingConstants.CENTER);
 		return temp;
+	}
+	
+	public void setMoneyVals(double[] money)
+	{
+		myMoney.setText(Double.toString(money[0]));
+		playerTwoMoney.setText(Double.toString(money[1]));
+		playerThreeMoney.setText(Double.toString(money[2]));
+		playerFourMoney.setText(Double.toString(money[3]));
 	}
 }

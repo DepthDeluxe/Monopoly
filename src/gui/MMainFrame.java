@@ -48,12 +48,13 @@ public class MMainFrame extends JFrame
 		this.getContentPane().add(controlT, BorderLayout.WEST);
 		this.control = controlT;
 		this.control.setSize(100, 550);
+		double[] arr = {4000.00, 2000.00, 1000.00, 5000.00};
+		this.control.setMoneyVals(arr);
 		
 		Property p = new Property("Testing", 5000.00);
 		p.setOwner(new Player("nase", 1000, null));
 		MPropertiesPanel propertyPanel = new MPropertiesPanel(p);
 		this.properties = propertyPanel;
 		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
-		
 	}
 }
