@@ -66,4 +66,68 @@
 		<Value>200.0</Value>
 	</Property>
 	<FreeParking></FreeParking>
+	<Property>
+		<Name>Kentucky Avenue</Name>
+		<Value>220.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Chance</Type>
+	</CardTile>
+	<Property>
+		<Name>Indiana Avenue</Name>
+		<Value>220.0</Value>
+	</Property>
+	<Property>
+		<Name>Illinois Avenue</Name>
+		<Value>240.0</Value>
+	</Property>
+	<Railroad>
+		<Name>B. & O. Railroad</Name>
+	</Railroad>
+	<Property>
+		<Name>Atlantic Avenue</Name>
+		<Value>260.0</Value>
+	</Property>
+	<Property>
+		<Name>Ventenor Avenue</Name>
+		<Value>260.0</Value>
+	</Property>
+	<Utility>
+		<Name>Water Works</Name>
+	</Utility>
+	<Property>
+		<Name>Marvin Gardins</Name>
+		<Value>280.0</Value>
+	</Property>
+	<GoToJailTile></GoToJailTile>
+	<Property>
+		<Name>Pacific Avenue</Name>
+		<Value>300.0</Value>
+	</Property>
+	<Property>
+		<Name>North Carolina Avenue</Name>
+		<Value>300.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Community Chest</Type>
+	</CardTile>
+	<Property>
+		<Name>Pennsylvania Avenue</Name>
+		<Value>320.0</Value>
+	</Property>
+	<Railroad>
+		<Name>Short Line</Name>
+	</Railroad>
+	<CardTile>
+		<Type>Chance</Type>
+	</CardTile>
+	<Property>
+		<Name>Park Place</Name>
+		<Value>350.0</Value>
+	</Property>
+	<LuxuryTax></LuxuryTax>
+	<Property>
+		<Name>Boardwalk</Name>
+		<Value>400.0</Value>
+	</Property>
 </Tiles>
