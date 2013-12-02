@@ -66,7 +66,7 @@ public class MPropertiesPanel extends JPanel
 		rent = createLabel("");
 		rent.setFont(boldFont);
 		
-		action = new JButton("Action!");
+		action = new JButton("Buy!");
 		action.setSize(50, 30);
 		
 		this.add(nameLabel);
@@ -102,8 +102,8 @@ public class MPropertiesPanel extends JPanel
 		this.isMortgaged.setText(Boolean.toString(this.property.isMortgaged()));
 		this.rent.setText(Double.toString(this.property.getRent()));
 		
-		if(this.property.isOwned()) { action.setText("Pay Rent!"); }
-		else { action.setText("Buy!"); }
+		if(this.property.isOwned()) { action.setEnabled(false); }
+		else { action.setEnabled(true); }
 	}
 	
 	public JLabel createLabel(String text)

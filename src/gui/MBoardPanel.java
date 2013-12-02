@@ -42,7 +42,7 @@ public class MBoardPanel extends JPanel
 		this.positions = new int[40];
 		this.players = new JLabel[4];
 		this.setSize(650, 650);
-		setLayout(null);
+		this.setLayout(null);
 		
 		Box startBox = Box.createVerticalBox();
 		startBox.setBorder(new LineBorder(new Color(0, 0, 0)));
