@@ -35,34 +35,35 @@ public class MBoardPanel extends JPanel
 	
 	JLabel diceOne;
 	JLabel diceTwo;
-	String[] diceLabel;
 	
 	public MBoardPanel()
 	{
 		this.positions = new int[40][2];
 		this.players = new JLabel[4];
-		this.diceLabel = new String[6];
 		this.setConstants();
 		
 		this.setSize(650, 650);
 		this.setLayout(null);
 		
-		this.players[0] = new JLabel("Player1");
-		this.players[1] = new JLabel("Player2");
-		this.players[2] = new JLabel("Player3");
-		this.players[3] = new JLabel("Player4");
-		this.players[0].setLocation(450,500);
+		this.players[0] = new JLabel("1");
+		this.players[1] = new JLabel("2");
+		this.players[2] = new JLabel("3");
+		this.players[3] = new JLabel("4");
+		this.moveCharacter(0, 0);
+		this.moveCharacter(1, 5);
+		this.moveCharacter(2, 18);
+		this.moveCharacter(3, 32);
 		add(this.players[0]);
-		this.moveCharacter(1,0);
-		this.moveCharacter(2,0);
-		this.moveCharacter(3,0);
+		add(this.players[1]);
+		add(this.players[2]);
+		add(this.players[3]);
 		
 		diceOne = new JLabel();
-		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource(diceLabel[0])));
-		diceOne.setLocation(150, 250);
+		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg")));
+		diceOne.setBounds(150, 250, 53, 53);
 		diceTwo = new JLabel();
-		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource(diceLabel[1])));
-		diceTwo.setLocation(150, 350);
+		diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg")));
+		diceTwo.setBounds(150, 310, 53, 53);
 		add(diceOne);
 		add(diceTwo);
 		
@@ -547,8 +548,24 @@ public class MBoardPanel extends JPanel
 	 */
 	public void rollDice(Dice dice)
 	{
-		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource(this.diceLabel[dice.getFirstValue()-1])));
-		diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource(this.diceLabel[dice.getSecondValue()-1])));
+		switch (dice.getFirstValue())
+		{
+			case 1: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg"))); break;
+			case 2: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg"))); break;
+			case 3: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceThree.jpeg"))); break;
+			case 4: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFour.jpeg"))); break;
+			case 5: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFive.jpeg"))); break;
+			case 6: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceSix.jpeg"))); break;
+		}
+		switch (dice.getFirstValue())
+		{
+			case 1: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg"))); break;
+			case 2: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg"))); break;
+			case 3: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceThree.jpeg"))); break;
+			case 4: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFour.jpeg"))); break;
+			case 5: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFive.jpeg"))); break;
+			case 6: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceSix.jpeg"))); break;
+		}
 	}
 	
 	/**
@@ -558,7 +575,7 @@ public class MBoardPanel extends JPanel
 	 */
 	public void moveCharacter(int player, int position)
 	{
-		this.players[player].setLocation(this.positions[position][0], this.positions[position][1]);
+		this.players[player].setBounds(this.positions[position][0], this.positions[position][1], 20,12);
 	}
 	
 	/**
@@ -580,13 +597,6 @@ public class MBoardPanel extends JPanel
 	 */
 	private void setConstants()
 	{
-		this.diceLabel[0] = "/gui/Dice/diceOne.jpeg";
-		this.diceLabel[1] = "/gui/Dice/diceTwo.jpeg";
-		this.diceLabel[2] = "/gui/Dice/diceThree.jpeg";
-		this.diceLabel[3] = "/gui/Dice/diceFour.jpeg";
-		this.diceLabel[4] = "/gui/Dice/diceFive.jpeg";
-		this.diceLabel[5] = "/gui/Dice/diceSix.jpeg";
-		
 		this.positions[0][0] = 600;
 		this.positions[1][0] = 525;
 		this.positions[2][0] = 475;
@@ -630,6 +640,6 @@ public class MBoardPanel extends JPanel
 		this.positions[33][1] = 225;
 		this.positions[32][1] = 175;
 		this.positions[31][1] = 125;
-		for(int x = 31; x < 40; x++) { this.positions[x][0] = 50; }
+		for(int x = 31; x < 40; x++) { this.positions[x][0] = 600; }
 	}
 }
