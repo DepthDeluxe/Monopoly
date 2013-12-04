@@ -29,6 +29,7 @@ import monopoly.Dice;
 public class MBoardPanel extends JPanel
 {
 	private int[][] positions;
+	private int[] playerPos;
 	
 	JLabel board;
 	JLabel[] players;
@@ -40,6 +41,8 @@ public class MBoardPanel extends JPanel
 	{
 		this.positions = new int[40][2];
 		this.players = new JLabel[4];
+		this.playerPos = new int[4];
+		for(int x = 0; x < 4; x++) { this.playerPos[x] = 0; }
 		this.setConstants();
 		
 		this.setSize(650, 650);
@@ -50,9 +53,9 @@ public class MBoardPanel extends JPanel
 		this.players[2] = new JLabel("3");
 		this.players[3] = new JLabel("4");
 		this.moveCharacter(0, 0);
-		this.moveCharacter(1, 5);
-		this.moveCharacter(2, 18);
-		this.moveCharacter(3, 32);
+		this.moveCharacter(1, 0);
+		this.moveCharacter(2, 0);
+		this.moveCharacter(3, 0);
 		add(this.players[0]);
 		add(this.players[1]);
 		add(this.players[2]);
@@ -557,7 +560,7 @@ public class MBoardPanel extends JPanel
 			case 5: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFive.jpeg"))); break;
 			case 6: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceSix.jpeg"))); break;
 		}
-		switch (dice.getFirstValue())
+		switch (dice.getSecondValue())
 		{
 			case 1: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg"))); break;
 			case 2: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg"))); break;
@@ -575,7 +578,27 @@ public class MBoardPanel extends JPanel
 	 */
 	public void moveCharacter(int player, int position)
 	{
-		this.players[player].setBounds(this.positions[position][0], this.positions[position][1], 20,12);
+		int temp = 0;
+		for(int x = 0; x < 4; x++)
+		{
+			if(x != player)
+			{
+				if(this.playerPos[x] == position)
+				{
+					temp += 1;
+				}
+			}
+		}
+		temp *= 10;
+		if(position < 11 || (position > 19 && position < 31))
+		{
+			this.players[player].setBounds(this.positions[position][0], this.positions[position][1] + temp, 20,12);
+		}
+		else
+		{
+			this.players[player].setBounds(this.positions[position][0] + temp, this.positions[position][1], 20,12);
+		}
+		this.playerPos[player] = position;
 	}
 	
 	/**
@@ -608,7 +631,7 @@ public class MBoardPanel extends JPanel
 		this.positions[8][0] = 175;
 		this.positions[9][0] = 125;
 		this.positions[10][0] = 50;
-		for(int x = 0; x < 11; x++) { this.positions[x][1] = 600; }		
+		for(int x = 0; x < 11; x++) { this.positions[x][1] = 575; }		
 		this.positions[11][1] = 525;
 		this.positions[12][1] = 475;
 		this.positions[13][1] = 425;
@@ -619,7 +642,7 @@ public class MBoardPanel extends JPanel
 		this.positions[18][1] = 175;
 		this.positions[19][1] = 125;
 		this.positions[20][1] = 50;
-		for(int x = 11; x < 21; x++) { this.positions[x][0] = 50; }
+		for(int x = 11; x < 21; x++) { this.positions[x][0] = 25; }
 		this.positions[30][0] = 600;
 		this.positions[29][0] = 525;
 		this.positions[28][0] = 475;
@@ -630,7 +653,7 @@ public class MBoardPanel extends JPanel
 		this.positions[23][0] = 225;
 		this.positions[22][0] = 175;
 		this.positions[21][0] = 125;
-		for(int x = 21; x < 31; x++) { this.positions[x][1] = 50; }
+		for(int x = 21; x < 31; x++) { this.positions[x][1] = 25; }
 		this.positions[39][1] = 525;
 		this.positions[38][1] = 475;
 		this.positions[37][1] = 425;
@@ -640,6 +663,6 @@ public class MBoardPanel extends JPanel
 		this.positions[33][1] = 225;
 		this.positions[32][1] = 175;
 		this.positions[31][1] = 125;
-		for(int x = 31; x < 40; x++) { this.positions[x][0] = 600; }
+		for(int x = 31; x < 40; x++) { this.positions[x][0] = 575; }
 	}
 }
