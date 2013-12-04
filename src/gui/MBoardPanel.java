@@ -20,29 +20,51 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 
+import monopoly.Dice;
+
 /**
  * @author ajrk001
  *
  */
 public class MBoardPanel extends JPanel
 {
-	private int[] positions;
+	private int[][] positions;
 	
 	JLabel board;
 	JLabel[] players;
 	
 	JLabel diceOne;
 	JLabel diceTwo;
-	
-	JLabel chanceCard;
-	JLabel communityChestCard;
+	String[] diceLabel;
 	
 	public MBoardPanel()
 	{
-		this.positions = new int[40];
+		this.positions = new int[40][2];
 		this.players = new JLabel[4];
+		this.diceLabel = new String[6];
+		this.setConstants();
+		
 		this.setSize(650, 650);
 		this.setLayout(null);
+		
+		this.players[0] = new JLabel("Player1");
+		this.players[1] = new JLabel("Player2");
+		this.players[2] = new JLabel("Player3");
+		this.players[3] = new JLabel("Player4");
+		this.players[0].setLocation(450,500);
+		add(this.players[0]);
+		this.moveCharacter(1,0);
+		this.moveCharacter(2,0);
+		this.moveCharacter(3,0);
+		
+		diceOne = new JLabel();
+		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource(diceLabel[0])));
+		diceOne.setLocation(150, 250);
+		diceTwo = new JLabel();
+		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource(diceLabel[1])));
+		diceTwo.setLocation(150, 350);
+		add(diceOne);
+		add(diceTwo);
 		
 		Box startBox = Box.createVerticalBox();
 		startBox.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -515,18 +537,18 @@ public class MBoardPanel extends JPanel
 		JLabel lblNewLabel = new JLabel("Community Chest");
 		lblNewLabel.setAlignmentX(0.5f);
 		ccBox.add(lblNewLabel);
-		
 	}
 	
 	/**
 	 * this function will update this panel with the correct image for the dice as assigned by the parameters passed, and will also
-	 * assign a random location on the board to them
+	 * assign a static location on the board to them
 	 * @param one - the value that the first dice should have
 	 * @param two - the value that the second dice should have
 	 */
-	public void rollDice(int one, int two)
+	public void rollDice(Dice dice)
 	{
-		// will set a random location to each dice, and set the image to a the value represented by one and two for each dice
+		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource(this.diceLabel[dice.getFirstValue()-1])));
+		diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource(this.diceLabel[dice.getSecondValue()-1])));
 	}
 	
 	/**
@@ -536,7 +558,7 @@ public class MBoardPanel extends JPanel
 	 */
 	public void moveCharacter(int player, int position)
 	{
-		// will move the player indicated by the 
+		this.players[player].setLocation(this.positions[position][0], this.positions[position][1]);
 	}
 	
 	/**
@@ -544,6 +566,70 @@ public class MBoardPanel extends JPanel
 	 */
 	public void resetBoard()
 	{
+		this.remove(diceOne);
+		this.remove(diceTwo);
+		for(int x = 0; x < 4; x++)
+		{
+			this.remove(players[x]);
+		}
+	}
+	
+	/**
+	 * Very inefficient function that sets some of the constants required for the gui functions that set positions
+	 * and images
+	 */
+	private void setConstants()
+	{
+		this.diceLabel[0] = "/gui/Dice/diceOne.jpeg";
+		this.diceLabel[1] = "/gui/Dice/diceTwo.jpeg";
+		this.diceLabel[2] = "/gui/Dice/diceThree.jpeg";
+		this.diceLabel[3] = "/gui/Dice/diceFour.jpeg";
+		this.diceLabel[4] = "/gui/Dice/diceFive.jpeg";
+		this.diceLabel[5] = "/gui/Dice/diceSix.jpeg";
 		
+		this.positions[0][0] = 600;
+		this.positions[1][0] = 525;
+		this.positions[2][0] = 475;
+		this.positions[3][0] = 425;
+		this.positions[4][0] = 375;
+		this.positions[5][0] = 325;
+		this.positions[6][0] = 275;
+		this.positions[7][0] = 225;
+		this.positions[8][0] = 175;
+		this.positions[9][0] = 125;
+		this.positions[10][0] = 50;
+		for(int x = 0; x < 11; x++) { this.positions[x][1] = 600; }		
+		this.positions[11][1] = 525;
+		this.positions[12][1] = 475;
+		this.positions[13][1] = 425;
+		this.positions[14][1] = 375;
+		this.positions[15][1] = 325;
+		this.positions[16][1] = 275;
+		this.positions[17][1] = 225;
+		this.positions[18][1] = 175;
+		this.positions[19][1] = 125;
+		this.positions[20][1] = 50;
+		for(int x = 11; x < 21; x++) { this.positions[x][0] = 50; }
+		this.positions[30][0] = 600;
+		this.positions[29][0] = 525;
+		this.positions[28][0] = 475;
+		this.positions[27][0] = 425;
+		this.positions[26][0] = 375;
+		this.positions[25][0] = 325;
+		this.positions[24][0] = 275;
+		this.positions[23][0] = 225;
+		this.positions[22][0] = 175;
+		this.positions[21][0] = 125;
+		for(int x = 21; x < 31; x++) { this.positions[x][1] = 50; }
+		this.positions[39][1] = 525;
+		this.positions[38][1] = 475;
+		this.positions[37][1] = 425;
+		this.positions[36][1] = 375;
+		this.positions[35][1] = 325;
+		this.positions[34][1] = 275;
+		this.positions[33][1] = 225;
+		this.positions[32][1] = 175;
+		this.positions[31][1] = 125;
+		for(int x = 31; x < 40; x++) { this.positions[x][0] = 50; }
 	}
 }
