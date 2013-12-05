@@ -1,6 +1,7 @@
 package monopoly;
 
 import monopoly.tiles.Railroad;
+import monopoly.tiles.TileType;
 import monopoly.tiles.Utility;
 
 public class Card {
@@ -99,52 +100,26 @@ public class Card {
 				break;
 				
 			case "utility":
-				// find the nearest utility AHEAD of the player
+				// get the nearest utility location
 				int startLocation = currentPlayer.getPosition();
+				int nearestUtilLocation = getNearest(TileType.UTILITY, startLocation, theBoard);
 				
-				for (int n = startLocation; n != (startLocation-1); n++) {
-					// go back to 0 if board over
-					if (n == theBoard.getNumTiles()) {
-						n = 0;
-					}
-					
-					// try to cast as utility, if it works, then move the player
-					try {
-						Utility castedU = (Utility)theBoard.getTileAt(n);
-						currentPlayer.moveTo(n);
-					}
-					// if it doesn't work, don't do anything
-					catch (ClassCastException e) {
-						
-					}
-				}
+				// and move there
+				currentPlayer.moveTo(nearestUtilLocation);
 				
 				break;
 				
 			case "railroad":
-				// find the nearest railroad AHEAD of the player
+				// get the nearest railroad location
 				startLocation = currentPlayer.getPosition();
+				int nearestRailroadLocation = getNearest(TileType.RAILROAD, startLocation, theBoard);
 				
-				for (int n = startLocation; n != (startLocation-1); n++) {
-					// go back to 0 if board over
-					if (n == theBoard.getNumTiles()) {
-						n = 0;
-					}
-					
-					// try to cast as railroad, if it works, then move the player
-					try {
-						Railroad castedR = (Railroad)theBoard.getTileAt(n);
-						currentPlayer.moveTo(n);
-					}
-					catch (ClassCastException e) {
-						// if it doesn't work, don't do anything						
-					}
-				}
+				// and move there
+				currentPlayer.moveTo(nearestRailroadLocation);
 				
 				break;
 				
 			case "jail":
-				
 				startLocation = currentPlayer.getPosition();
 				currentPlayer.moveTo(theBoard.getJailLocation());
 				
@@ -158,5 +133,30 @@ public class Card {
 			}
 			
 		}
+	}
+	
+	private int getNearest(TileType tileType, int startLocation, Board theBoard) {
+		int nearestLocation = -1;
+		
+		for (int n = startLocation+1; n < theBoard.getNumTiles(); n++) {					
+			// if tile the right type, then move the player to that position
+			if (theBoard.getTileAt(n).getTileType() == TileType.UTILITY) {
+				nearestLocation = n;
+				break;
+			}
+		}
+		
+		// continue the search at the beginning of the board if new utility not found
+		if (nearestLocation == -1) {
+			for (int n = 0; n < startLocation; n++) {
+				// if the property is the utility, then move the player to that position
+				if (theBoard.getTileAt(n).getTileType() == TileType.UTILITY) {
+					nearestLocation = n;
+					break;
+				}
+			}
+		}
+		
+		return nearestLocation;
 	}
 }
