@@ -53,9 +53,13 @@ public class MBoardPanel extends JPanel
 		this.setLayout(null); // set by absolute values
 		
 		this.players[0] = new JLabel("1"); // create images for players
+		this.players[0].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerOne.png")));
 		this.players[1] = new JLabel("2");
+		this.players[1].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerTwo.png")));
 		this.players[2] = new JLabel("3");
+		this.players[2].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerThree.png")));
 		this.players[3] = new JLabel("4");
+		this.players[3].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerFour.jpg")));
 		for(int x = 0; x < 4; x++) 
 		{
 			this.players[x].setSize(10, 10); // set their size 
@@ -129,8 +133,9 @@ public class MBoardPanel extends JPanel
 		property4.setBounds(350, 550, 50, 100);
 		add(property4);
 		
-		JLabel lblIncomeTax = new JLabel("Income Tax");
-		property4.add(lblIncomeTax);
+		JLabel imageTaxOne = new JLabel("");
+		imageTaxOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/taxOne.png")));
+		property4.add(imageTaxOne);
 		
 		Box property5 = Box.createVerticalBox();
 		property5.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -223,6 +228,10 @@ public class MBoardPanel extends JPanel
 		property11.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property11.setBounds(0, 450, 100, 50);
 		add(property11);
+		
+		JLabel imageUtilityOne = new JLabel("");
+		property11.add(imageUtilityOne);
+		imageUtilityOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityGold.png")));
 		
 		Box property12 = Box.createHorizontalBox();
 		property12.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -409,6 +418,10 @@ public class MBoardPanel extends JPanel
 		property25.setBounds(400, 0, 50, 100);
 		add(property25);
 		
+		JLabel imageUtilityTwo = new JLabel("");
+		property25.add(imageUtilityTwo);
+		imageUtilityTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityEnhancment.png")));
+		
 		Box property26 = Box.createVerticalBox();
 		property26.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property26.setBounds(450, 0, 50, 100);
@@ -540,8 +553,9 @@ public class MBoardPanel extends JPanel
 		property35.setBounds(550, 450, 100, 50);
 		add(property35);
 		
-		JLabel lblLuxuryTax = new JLabel("Luxury Tax");
-		property35.add(lblLuxuryTax);
+		JLabel imageTaxTwo = new JLabel("");
+		imageTaxTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/taxTwo.jpg")));
+		property35.add(imageTaxTwo);
 		
 		Box property36 = Box.createHorizontalBox();
 		property36.setBorder(new LineBorder(new Color(0, 0, 0)));
