@@ -57,4 +57,29 @@ public class MMainFrame extends JFrame
 		this.properties = propertyPanel;
 		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
 	}
+
+	/**
+	 * Function to get the main board panel
+	 * @return MBoardPanel instance of the board
+	 */
+	public MBoardPanel getTheBoard() {
+		return theBoard;
+	}
+
+	/**
+	 * Function to get the control panel
+	 * @return MControlPanel instance of the panel
+	 */
+	public MControlPanel getControl() {
+		return control;
+	}
+
+	/**
+	 * Function to get the properties panel
+	 * @return MPropertiesPanel instance of the panel
+	 */
+	public MPropertiesPanel getProperties() {
+		return properties;
+	}
+
 }

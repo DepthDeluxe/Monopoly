@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 
 /**
  * @author ajrk001
- *
+ * A JPanel that will contain properties of a game of monopoly
  */
 public class MControlPanel extends JPanel
 {
@@ -71,6 +71,12 @@ public class MControlPanel extends JPanel
 		this.add(btnNewGame);
 	}
 	
+	/**
+	 * This function will create a new JLabel that has a horizontal alignment set so that
+	 * repeated lines of code are not needed
+	 * @param text - a String representing the text the JLabel should contain
+	 * @return a new JLabel with a central alignment, with the text being the parameter passed
+	 */
 	public JLabel createLabel(String text)
 	{
 		JLabel temp = new JLabel(text);
@@ -78,6 +84,10 @@ public class MControlPanel extends JPanel
 		return temp;
 	}
 	
+	/**
+	 * This function will take in a array that represents each players money, and set the labels as needed.
+	 * @param money - a double array representating four players money
+	 */
 	public void setMoneyVals(double[] money)
 	{
 		myMoney.setText(Double.toString(money[0]));

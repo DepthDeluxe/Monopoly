@@ -62,12 +62,20 @@ public class MPropertiesPanel extends JPanel
 		updateProperty(p);	
 	}
 	
+	/**
+	 * Function that will update what tile the player is on, and then change the panel accordingly using updatePanel()
+	 * @see updatePanel
+	 * @param p - a ITile that represents where the player is
+	 */
 	public void updateProperty(ITile p)
 	{
 		this.property = p;
 		updatePanel();
 	}
 	
+	/** 
+	 * Function that will get the type of tile that the player has landed on, and change the panel accordingly.
+	 */
 	private void updatePanel()
 	{
 		this.removeAll();
@@ -103,6 +111,12 @@ public class MPropertiesPanel extends JPanel
 		}
 	}
 	
+	/**
+	 * This function will create a new JLabel that has a horizontal alignment set so that
+	 * repeated lines of code are not needed
+	 * @param text - a String representing the text the JLabel should contain
+	 * @return a new JLabel with a central alignment, with the text being the parameter passed
+	 */
 	public JLabel createLabel(String text)
 	{
 		JLabel temp = new JLabel(text);
@@ -110,6 +124,10 @@ public class MPropertiesPanel extends JPanel
 		return temp;
 	}
 	
+	/**
+	 * Function that when called, will rebuild the panel to its prefered state - when on a property
+	 * @param p - a Property where the player is
+	 */
 	private void rebuild(Property p)
 	{
 		JLabel nameLabel = createLabel("Name:");
