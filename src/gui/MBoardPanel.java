@@ -20,35 +20,74 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 
+import monopoly.Dice;
+
 /**
  * @author ajrk001
+ *
+ * A class that represents the Board in a monopoly game
  *
  */
 public class MBoardPanel extends JPanel
 {
-	private int[] positions;
+	private int[][] positions; // array that will hold the positions on the board where the labels should be moved to
+	private int[] playerPos; // where each player is on the board
+	JLabel[] players; // array of the jlabels of each player
 	
-	JLabel board;
-	JLabel[] players;
-	
-	JLabel diceOne;
-	JLabel diceTwo;
-	
-	JLabel chanceCard;
-	JLabel communityChestCard;
+	JLabel diceOne; // image of the first dice
+	JLabel diceTwo; // image of second dice
 	
 	public MBoardPanel()
 	{
-		this.positions = new int[40];
+		this.positions = new int[40][2];
 		this.players = new JLabel[4];
-		this.setSize(650, 650);
-		this.setLayout(null);
+		this.playerPos = new int[4];
+		this.setConstants(); // function that just sets the large array this.positions with default vals
 		
-		Box startBox = Box.createVerticalBox();
-		startBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-		startBox.setBackground(Color.BLACK);
+		for(int x = 0; x < 4; x++)
+		{
+			this.playerPos[x] = 3; // needs to be at a different value than default 0 so it can set positions
+		}
+		
+		this.setSize(650, 650); // set size of panel
+		this.setLayout(null); // set by absolute values
+		
+		this.players[0] = new JLabel("1"); // create images for players
+		this.players[0].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerOne.jpg")));
+		this.players[1] = new JLabel("2");
+		this.players[1].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerTwo.png")));
+		this.players[2] = new JLabel("3");
+		this.players[2].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerThree.png")));
+		this.players[3] = new JLabel("4");
+		this.players[3].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerFour.png")));
+		for(int x = 0; x < 4; x++) 
+		{
+			this.players[x].setSize(20, 20); // set their size 
+			this.moveCharacter(x, 0); // move to the beginning of board 
+			this.players[x].setOpaque(true); // make sure they are drawn on top of everything
+		}
+		add(this.players[0]);
+		add(this.players[1]);
+		add(this.players[2]);
+		add(this.players[3]);
+		
+		diceOne = new JLabel(); // creating the dice
+		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg")));
+		diceOne.setBounds(150, 250, 53, 53); // setting default position - just the image will be changed
+		diceTwo = new JLabel();
+		diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg")));
+		diceTwo.setBounds(150, 310, 53, 53);
+		add(diceOne);
+		add(diceTwo);
+		
+		Box startBox = Box.createVerticalBox(); // creating boxes that represent each position
+		startBox.setBorder(new LineBorder(new Color(0, 0, 0))); // needs border
 		startBox.setBounds(550, 550, 100, 100);
 		add(startBox);
+		
+		JLabel goImage = new JLabel(""); // each image will be enclosed within the box
+		goImage.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/goPass.jpg")));
+		startBox.add(goImage);
 		
 		Box property1 = Box.createVerticalBox();
 		property1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -70,6 +109,10 @@ public class MBoardPanel extends JPanel
 		property2.setBounds(450, 550, 50, 100);
 		add(property2);
 		
+		JLabel imageCommOne = new JLabel("");
+		imageCommOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/commChest.jpg")));
+		property2.add(imageCommOne);
+		
 		Box property3 = Box.createVerticalBox();
 		property3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property3.setBounds(400, 550, 50, 100);
@@ -90,10 +133,18 @@ public class MBoardPanel extends JPanel
 		property4.setBounds(350, 550, 50, 100);
 		add(property4);
 		
+		JLabel imageTaxOne = new JLabel("");
+		imageTaxOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/taxOne.png")));
+		property4.add(imageTaxOne);
+		
 		Box property5 = Box.createVerticalBox();
 		property5.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property5.setBounds(300, 550, 50, 100);
 		add(property5);
+		
+		JLabel railroadOne = new JLabel("");
+		railroadOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadOne.jpg")));
+		property5.add(railroadOne);
 		
 		Box property6 = Box.createVerticalBox();
 		property6.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -115,9 +166,10 @@ public class MBoardPanel extends JPanel
 		property7.setBounds(200, 550, 50, 100);
 		add(property7);
 		
-		JLabel lblChance_2 = new JLabel("Chance");
-		lblChance_2.setAlignmentX(0.5f);
-		property7.add(lblChance_2);
+		JLabel imageChanceOne = new JLabel("");
+		imageChanceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/chance.jpg")));
+		imageChanceOne.setAlignmentX(0.5f);
+		property7.add(imageChanceOne);
 		
 		Box property8 = Box.createVerticalBox();
 		property8.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -154,6 +206,10 @@ public class MBoardPanel extends JPanel
 		jailBox.setBounds(0, 550, 100, 100);
 		add(jailBox);
 		
+		JLabel imageJail = new JLabel("");
+		imageJail.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/jail.jpg")));
+		jailBox.add(imageJail);
+		
 		Box property10 = Box.createHorizontalBox();
 		property10.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property10.setBounds(0, 500, 100, 50);
@@ -172,6 +228,10 @@ public class MBoardPanel extends JPanel
 		property11.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property11.setBounds(0, 450, 100, 50);
 		add(property11);
+		
+		JLabel imageUtilityOne = new JLabel("");
+		property11.add(imageUtilityOne);
+		imageUtilityOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityGold.png")));
 		
 		Box property12 = Box.createHorizontalBox();
 		property12.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -207,6 +267,10 @@ public class MBoardPanel extends JPanel
 		property14.setBounds(0, 300, 100, 50);
 		add(property14);
 		
+		JLabel railroadTwo = new JLabel("");
+		railroadTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadTwo.jpg")));
+		property14.add(railroadTwo);
+		
 		Box property15 = Box.createHorizontalBox();
 		property15.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property15.setBounds(0, 250, 100, 50);
@@ -226,6 +290,10 @@ public class MBoardPanel extends JPanel
 		property16.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property16.setBounds(0, 200, 100, 50);
 		add(property16);
+		
+		JLabel imageCommTwo = new JLabel("");
+		imageCommTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/commChest.jpg")));
+		property16.add(imageCommTwo);
 		
 		Box property17 = Box.createHorizontalBox();
 		property17.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -262,6 +330,10 @@ public class MBoardPanel extends JPanel
 		freeParking.setBounds(0, 0, 100, 100);
 		add(freeParking);
 		
+		JLabel imageFreeParking = new JLabel("");
+		imageFreeParking.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/freeParking.png")));
+		freeParking.add(imageFreeParking);
+		
 		Box property19 = Box.createVerticalBox();
 		property19.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property19.setBounds(100, 0, 50, 100);
@@ -282,9 +354,10 @@ public class MBoardPanel extends JPanel
 		property20.setBounds(150, 0, 50, 100);
 		add(property20);
 		
-		JLabel lblChance_3 = new JLabel("Chance");
-		lblChance_3.setAlignmentX(0.5f);
-		property20.add(lblChance_3);
+		JLabel imageChanceTwo = new JLabel("");
+		imageChanceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/chance.jpg")));
+		imageChanceTwo.setAlignmentX(0.5f);
+		property20.add(imageChanceTwo);
 		
 		Box property21 = Box.createVerticalBox();
 		property21.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -321,6 +394,10 @@ public class MBoardPanel extends JPanel
 		property23.setBounds(300, 0, 50, 100);
 		add(property23);
 		
+		JLabel railroadThree = new JLabel("");
+		railroadThree.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadThree.jpg")));
+		property23.add(railroadThree);
+		
 		Box property24 = Box.createVerticalBox();
 		property24.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property24.setBounds(350, 0, 50, 100);
@@ -340,6 +417,10 @@ public class MBoardPanel extends JPanel
 		property25.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property25.setBounds(400, 0, 50, 100);
 		add(property25);
+		
+		JLabel imageUtilityTwo = new JLabel("");
+		property25.add(imageUtilityTwo);
+		imageUtilityTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityEnhancment.png")));
 		
 		Box property26 = Box.createVerticalBox();
 		property26.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -376,6 +457,10 @@ public class MBoardPanel extends JPanel
 		goToJail.setBounds(550, 0, 100, 100);
 		add(goToJail);
 		
+		JLabel imageGoToJail = new JLabel("");
+		imageGoToJail.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/goToJail.jpg")));
+		goToJail.add(imageGoToJail);
+		
 		Box property28 = Box.createHorizontalBox();
 		property28.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property28.setBounds(550, 100, 100, 50);
@@ -411,6 +496,10 @@ public class MBoardPanel extends JPanel
 		property30.setBounds(550, 200, 100, 50);
 		add(property30);
 		
+		JLabel imageCommThree = new JLabel("");
+		imageCommThree.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/commChest.jpg")));
+		property30.add(imageCommThree);
+		
 		Box property31 = Box.createHorizontalBox();
 		property31.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property31.setBounds(550, 250, 100, 50);
@@ -431,13 +520,18 @@ public class MBoardPanel extends JPanel
 		property32.setBounds(550, 300, 100, 50);
 		add(property32);
 		
+		JLabel railroadFour = new JLabel("");
+		railroadFour.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadFour.jpg")));
+		property32.add(railroadFour);
+		
 		Box property33 = Box.createHorizontalBox();
 		property33.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property33.setBounds(550, 350, 100, 50);
 		add(property33);
 		
-		JLabel lblChance_1 = new JLabel("Chance");
-		property33.add(lblChance_1);
+		JLabel imageChanceThree = new JLabel("");
+		imageChanceThree.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/chance.jpg")));
+		property33.add(imageChanceThree);
 		
 		Box property34 = Box.createHorizontalBox();
 		property34.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -459,6 +553,10 @@ public class MBoardPanel extends JPanel
 		property35.setBounds(550, 450, 100, 50);
 		add(property35);
 		
+		JLabel imageTaxTwo = new JLabel("");
+		imageTaxTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/taxTwo.jpg")));
+		property35.add(imageTaxTwo);
+		
 		Box property36 = Box.createHorizontalBox();
 		property36.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property36.setBounds(550, 500, 100, 50);
@@ -475,42 +573,67 @@ public class MBoardPanel extends JPanel
 		property36.add(prop22);
 		
 		JLabel lblMonopoly = new JLabel("MONOPOLY");
-		lblMonopoly.setFont(new Font("Manteka", Font.BOLD, 34));
-		lblMonopoly.setBounds(241, 275, 191, 52);
+		lblMonopoly.setFont(new Font("Tahoma", Font.BOLD, 34));
+		lblMonopoly.setBounds(232, 273, 211, 52);
 		add(lblMonopoly);
 		
 		JLabel lblRedditEdition = new JLabel("Reddit Edition");
 		lblRedditEdition.setBounds(300, 331, 66, 14);
+		lblRedditEdition.setSize(95, 12);
 		add(lblRedditEdition);
 		
 		Box chanceBox = Box.createHorizontalBox();
 		chanceBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-		chanceBox.setBounds(411, 442, 89, 58);
+		chanceBox.setBounds(411, 442, 100, 58);
 		add(chanceBox);
 		
 		JLabel lblChance = new JLabel("Chance");
 		chanceBox.add(lblChance);
 		
+		JLabel mainLabelChance = new JLabel("");
+		mainLabelChance.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/chance.jpg")));
+		chanceBox.add(mainLabelChance);
+		
 		Box ccBox = Box.createHorizontalBox();
 		ccBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-		ccBox.setBounds(150, 150, 89, 58);
+		ccBox.setBounds(150, 150, 156, 58);
 		add(ccBox);
 		
-		JLabel lblNewLabel = new JLabel("Community Chest");
-		lblNewLabel.setAlignmentX(0.5f);
-		ccBox.add(lblNewLabel);
+		JLabel lblCommChst = new JLabel("Community Chest");
+		lblCommChst.setAlignmentX(0.5f);
+		ccBox.add(lblCommChst);
 		
+		JLabel mainLabelCommChest = new JLabel("");
+		mainLabelCommChest.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/commChest.jpg")));
+		ccBox.add(mainLabelCommChest);
 	}
 	
 	/**
 	 * this function will update this panel with the correct image for the dice as assigned by the parameters passed, and will also
-	 * assign a random location on the board to them
+	 * assign a static location on the board to them
 	 * @param one - the value that the first dice should have
 	 * @param two - the value that the second dice should have
 	 */
-	public void rollDice(int one, int two)
+	public void rollDice(Dice dice)
 	{
-		// will set a random location to each dice, and set the image to a the value represented by one and two for each dice
+		switch (dice.getFirstValue()) // will reset the image using switch to set the file path
+		{
+			case 1: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg"))); break;
+			case 2: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg"))); break;
+			case 3: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceThree.jpeg"))); break;
+			case 4: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFour.jpeg"))); break;
+			case 5: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFive.jpeg"))); break;
+			case 6: diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceSix.jpeg"))); break;
+		}
+		switch (dice.getSecondValue())
+		{
+			case 1: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg"))); break;
+			case 2: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceTwo.jpeg"))); break;
+			case 3: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceThree.jpeg"))); break;
+			case 4: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFour.jpeg"))); break;
+			case 5: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceFive.jpeg"))); break;
+			case 6: diceTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceSix.jpeg"))); break;
+		}
 	}
 	
 	/**
@@ -520,7 +643,28 @@ public class MBoardPanel extends JPanel
 	 */
 	public void moveCharacter(int player, int position)
 	{
-		// will move the player indicated by the 
+		int temp = 0;
+		for(int x = 0; x < 4; x++)
+		{
+			if(x != player)
+			{
+				if(this.playerPos[x] == position)
+				{
+					temp += 1;
+				}
+			}
+		}
+
+		temp *= 21;
+		if(position < 11 || (position > 19 && position < 31))
+		{
+			this.players[player].setBounds(this.positions[position][0], this.positions[position][1] + temp, 20, 20);
+		}
+		else
+		{
+			this.players[player].setBounds(this.positions[position][0] + temp, this.positions[position][1], 20, 20);
+		}
+		this.playerPos[player] = position;
 	}
 	
 	/**
@@ -528,6 +672,61 @@ public class MBoardPanel extends JPanel
 	 */
 	public void resetBoard()
 	{
-		
+		for(int x = 0; x < 4; x++)
+		{
+			this.moveCharacter(x, 0);
+		}
+	}
+	
+	/**
+	 * Very inefficient function that sets some of the constants required for the gui functions that set positions
+	 * and images
+	 */
+	private void setConstants()
+	{
+		this.positions[0][0] = 600;
+		this.positions[1][0] = 525;
+		this.positions[2][0] = 475;
+		this.positions[3][0] = 425;
+		this.positions[4][0] = 375;
+		this.positions[5][0] = 325;
+		this.positions[6][0] = 275;
+		this.positions[7][0] = 225;
+		this.positions[8][0] = 175;
+		this.positions[9][0] = 125;
+		this.positions[10][0] = 50;
+		for(int x = 0; x < 11; x++) { this.positions[x][1] = 560; }		
+		this.positions[11][1] = 525;
+		this.positions[12][1] = 475;
+		this.positions[13][1] = 425;
+		this.positions[14][1] = 375;
+		this.positions[15][1] = 325;
+		this.positions[16][1] = 275;
+		this.positions[17][1] = 225;
+		this.positions[18][1] = 175;
+		this.positions[19][1] = 125;
+		this.positions[20][1] = 50;
+		for(int x = 11; x < 21; x++) { this.positions[x][0] = 10; }
+		this.positions[30][0] = 600;
+		this.positions[29][0] = 525;
+		this.positions[28][0] = 475;
+		this.positions[27][0] = 425;
+		this.positions[26][0] = 375;
+		this.positions[25][0] = 325;
+		this.positions[24][0] = 275;
+		this.positions[23][0] = 225;
+		this.positions[22][0] = 175;
+		this.positions[21][0] = 125;
+		for(int x = 21; x < 31; x++) { this.positions[x][1] = 10; }
+		this.positions[39][1] = 525;
+		this.positions[38][1] = 475;
+		this.positions[37][1] = 425;
+		this.positions[36][1] = 375;
+		this.positions[35][1] = 325;
+		this.positions[34][1] = 275;
+		this.positions[33][1] = 225;
+		this.positions[32][1] = 175;
+		this.positions[31][1] = 125;
+		for(int x = 31; x < 40; x++) { this.positions[x][0] = 560; }
 	}
 }
