@@ -34,11 +34,21 @@ public class Monopoly {
 		
 		// load the board components from files
 		ITile[] boardTiles = TileLoader.loadFromXML(boardFilename);
-		CardDeck chanceDeck = new CardDeck(CardLoader.loadFromFile(chanceFilename));
-		CardDeck comChestDeck = new CardDeck(CardLoader.loadFromFile(commChestFilename));
+		
+		// only load the chance deck if the file was specified
+		CardDeck chanceDeck = null;
+		if (chanceFilename != null) {
+			chanceDeck = new CardDeck(CardLoader.loadFromFile(chanceFilename));
+		}
+		
+		// only load the com chance deck if the file was specified
+		CardDeck commChestDeck = null;
+		if (commChestFilename != null) {
+			commChestDeck = new CardDeck(CardLoader.loadFromFile(commChestFilename));
+		}
 		
 		// load the board
-		board = new Board(boardTiles, chanceDeck, comChestDeck);
+		board = new Board(boardTiles, chanceDeck, commChestDeck);
 	}
 	
 	//
@@ -93,6 +103,16 @@ public class Monopoly {
 		}
 		
 		return success;
+	}
+	
+	public void addPlayer(Player p) {
+		// add the player to the list of current players
+		players.add(p);
+		
+		// if this is the first player, they are the current player
+		if (players.size() == 1) {
+			currentPlayer = p;
+		}
 	}
 	
 	//
