@@ -9,11 +9,15 @@
 package controller;
 
 import monopoly.*;
+import monopoly.tiles.Property;
+import monopoly.tiles.TileType;
 
 import gui.MMainFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JTextArea;
 
 /**
  * @author ajrk001
@@ -72,6 +76,17 @@ public class MController
 	//
 	
 	public void loadViewFromModel() {
-		
+		JTextArea[] props = theView.getTheBoard().getPropertyLabels(); // get all the property labels
+		Board theBoard = theGame.getBoard(); // get the board itself
+		int x = 0; // need two seperate incrementers to go trhough the props array
+		for(int y = 0; y < theBoard.getNumTiles(); y++) // parse through the board and tiles 
+		{
+			Property prop = theBoard.getPropertyAt(y); // gets property or null if not property
+			if(prop != null && prop.getTileType() == TileType.PROPERTY) // check if not null, and double check not a railroad or utility
+			{
+				props[x].setText(prop.getName()); // set text to name
+				x++; // incrememnt props incrementer
+			}
+		}
 	}
 }
