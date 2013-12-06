@@ -68,7 +68,7 @@ public class RollDiceAction implements ActionListener {
 	 */
 	private void updatePropertyPanel()
 	{
-		Player cur = theGame.getCurrentPlayer(); // get the current player
+		Player cur = theGame.getPlayers()[theGame.getCurrentPlayerIndex()-1]; // get the current player
 		int pos = cur.getPosition(); // get their position
 		ITile prop = theBoardModel.getTileAt(pos); // get the tile
 		theMainFrame.getProperties().updateProperty(prop); // update panel
@@ -90,6 +90,7 @@ public class RollDiceAction implements ActionListener {
 		Player currentPlayer = theGame.getPlayers()[theGame.getCurrentPlayerIndex()-1];
 		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex()-1, currentPlayer.getPosition());
 		
+		updatePropertyPanel();
 		
 		// run the right function depending on the state of the model
 		MonopolyModelState state = theGame.getModelState();
