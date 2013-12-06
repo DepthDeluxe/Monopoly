@@ -51,9 +51,7 @@ public class MMainFrame extends JFrame
 		double[] arr = {4000.00, 2000.00, 1000.00, 5000.00};
 		this.control.setMoneyVals(arr);
 		
-		Property p = new Property("Testing", 5000.00);
-		p.setOwner(new Player("nase", 1000, null));
-		MPropertiesPanel propertyPanel = new MPropertiesPanel(p);
+		MPropertiesPanel propertyPanel = new MPropertiesPanel();
 		this.properties = propertyPanel;
 		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
 	}
