@@ -67,7 +67,9 @@ public class RollDiceAction implements ActionListener {
 		// run the right function depending on the state of the model
 		switch(theGame.getModelState()) {
 		case BUY_REQUEST:
-			handleBuyRequest();
+			boolean userResponse = handleBuyRequest();
+			
+			theGame.handleBuyRequest(userResponse);
 			break;
 			
 		case CHANCE:
