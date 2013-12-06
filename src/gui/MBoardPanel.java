@@ -95,7 +95,7 @@ public class MBoardPanel extends JPanel
 		add(property1);
 		
 		JLabel colorBox1 = new JLabel("");
-		colorBox1.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/purple.jpg")));
+		colorBox1.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/purple.jpg")));
 		property1.add(colorBox1);
 		
 		JTextArea prop1 = new JTextArea();
@@ -119,7 +119,7 @@ public class MBoardPanel extends JPanel
 		add(property3);
 		
 		JLabel colorBox2 = new JLabel("");
-		colorBox2.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/purple.jpg")));
+		colorBox2.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/purple.jpg")));
 		property3.add(colorBox2);
 		
 		JTextArea prop2 = new JTextArea();
@@ -152,7 +152,7 @@ public class MBoardPanel extends JPanel
 		add(property6);
 		
 		JLabel colorBox3 = new JLabel("");
-		colorBox3.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/blue.jpg")));
+		colorBox3.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/blue.jpg")));
 		property6.add(colorBox3);
 		
 		JTextArea prop3 = new JTextArea();
@@ -177,7 +177,7 @@ public class MBoardPanel extends JPanel
 		add(property8);
 		
 		JLabel colorBox4 = new JLabel("");
-		colorBox4.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/blue.jpg")));
+		colorBox4.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/blue.jpg")));
 		property8.add(colorBox4);
 		
 		JTextArea prop4 = new JTextArea();
@@ -192,7 +192,7 @@ public class MBoardPanel extends JPanel
 		add(property9);
 		
 		JLabel colorBox5 = new JLabel("");
-		colorBox5.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/blue.jpg")));
+		colorBox5.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/blue.jpg")));
 		property9.add(colorBox5);
 		
 		JTextArea prop5 = new JTextArea();
@@ -221,7 +221,7 @@ public class MBoardPanel extends JPanel
 		property10.add(prop6);
 		
 		JLabel colorBox6 = new JLabel("");
-		colorBox6.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/magenta.jpg")));
+		colorBox6.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/magenta.jpg")));
 		property10.add(colorBox6);
 		
 		Box property11 = Box.createHorizontalBox();
@@ -245,7 +245,7 @@ public class MBoardPanel extends JPanel
 		property12.add(prop7);
 		
 		JLabel colorBox7 = new JLabel("");
-		colorBox7.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/magenta.jpg")));
+		colorBox7.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/magenta.jpg")));
 		property12.add(colorBox7);
 		
 		Box property13 = Box.createHorizontalBox();
@@ -259,7 +259,7 @@ public class MBoardPanel extends JPanel
 		property13.add(prop8);
 		
 		JLabel colorBox8 = new JLabel("");
-		colorBox8.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/magenta.jpg")));
+		colorBox8.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/magenta.jpg")));
 		property13.add(colorBox8);
 		
 		Box property14 = Box.createHorizontalBox();
@@ -283,7 +283,7 @@ public class MBoardPanel extends JPanel
 		property15.add(prop9);
 		
 		JLabel colorBox9 = new JLabel("");
-		colorBox9.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/orange.jpg")));
+		colorBox9.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/orange.jpg")));
 		property15.add(colorBox9);
 		
 		Box property16 = Box.createHorizontalBox();
@@ -307,7 +307,7 @@ public class MBoardPanel extends JPanel
 		property17.add(prop10);
 		
 		JLabel colorBox10 = new JLabel("");
-		colorBox10.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/orange.jpg")));
+		colorBox10.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/orange.jpg")));
 		property17.add(colorBox10);
 		
 		Box property18 = Box.createHorizontalBox();
@@ -322,7 +322,7 @@ public class MBoardPanel extends JPanel
 		property18.add(prop11);
 		
 		JLabel colorBox11 = new JLabel("");
-		colorBox11.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/orange.jpg")));
+		colorBox11.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/orange.jpg")));
 		property18.add(colorBox11);
 		
 		Box freeParking = Box.createHorizontalBox();
@@ -346,7 +346,7 @@ public class MBoardPanel extends JPanel
 		property19.add(prop12);
 		
 		JLabel colorBox12 = new JLabel("");
-		colorBox12.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/red.jpg")));
+		colorBox12.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/red.jpg")));
 		property19.add(colorBox12);
 		
 		Box property20 = Box.createVerticalBox();
@@ -371,7 +371,7 @@ public class MBoardPanel extends JPanel
 		prop13.setText("Property");
 		
 		JLabel colorBox13 = new JLabel("");
-		colorBox13.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/red.jpg")));
+		colorBox13.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/red.jpg")));
 		colorBox13.setSize(50, 30);
 		property21.add(colorBox13);
 		
@@ -387,7 +387,7 @@ public class MBoardPanel extends JPanel
 		property22.add(prop14);
 		
 		JLabel colorBox14 = new JLabel("");
-		colorBox14.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/red.jpg")));
+		colorBox14.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/red.jpg")));
 		property22.add(colorBox14);
 		
 		Box property23 = Box.createVerticalBox();
@@ -411,7 +411,7 @@ public class MBoardPanel extends JPanel
 		property24.add(prop15);
 		
 		JLabel colorBox15 = new JLabel("");
-		colorBox15.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/yellow.jpg")));
+		colorBox15.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
 		property24.add(colorBox15);
 		
 		Box property25 = Box.createVerticalBox();
@@ -435,7 +435,7 @@ public class MBoardPanel extends JPanel
 		property26.add(prop16);
 		
 		JLabel colorBox16 = new JLabel("");
-		colorBox16.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/yellow.jpg")));
+		colorBox16.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
 		property26.add(colorBox16);
 		
 		Box property27 = Box.createVerticalBox();
@@ -450,7 +450,7 @@ public class MBoardPanel extends JPanel
 		property27.add(prop17);
 		
 		JLabel colorBox17 = new JLabel("");
-		colorBox17.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/yellow.jpg")));
+		colorBox17.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
 		property27.add(colorBox17);
 		
 		Box goToJail = Box.createHorizontalBox();
@@ -468,7 +468,7 @@ public class MBoardPanel extends JPanel
 		add(property28);
 		
 		JLabel colorBox18 = new JLabel("");
-		colorBox18.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/green.jpg")));
+		colorBox18.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/green.jpg")));
 		property28.add(colorBox18);
 		
 		JTextArea prop18 = new JTextArea();
@@ -483,7 +483,7 @@ public class MBoardPanel extends JPanel
 		add(property29);
 		
 		JLabel colorBox19 = new JLabel("");
-		colorBox19.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/green.jpg")));
+		colorBox19.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/green.jpg")));
 		property29.add(colorBox19);
 		
 		JTextArea prop19 = new JTextArea();
@@ -507,7 +507,7 @@ public class MBoardPanel extends JPanel
 		add(property31);
 		
 		JLabel colorBox20 = new JLabel("");
-		colorBox20.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/green.jpg")));
+		colorBox20.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/green.jpg")));
 		property31.add(colorBox20);
 		
 		JTextArea prop20 = new JTextArea();
@@ -540,7 +540,7 @@ public class MBoardPanel extends JPanel
 		add(property34);
 		
 		JLabel colorBox21 = new JLabel("");
-		colorBox21.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/darkBlue.jpg")));
+		colorBox21.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/darkBlue.jpg")));
 		property34.add(colorBox21);
 		
 		JTextArea prop21 = new JTextArea();
@@ -564,7 +564,7 @@ public class MBoardPanel extends JPanel
 		add(property36);
 		
 		JLabel colorBox22 = new JLabel("");
-		colorBox22.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/darkBlue.jpg")));
+		colorBox22.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/darkBlue.jpg")));
 		property36.add(colorBox22);
 		
 		JTextArea prop22 = new JTextArea();
