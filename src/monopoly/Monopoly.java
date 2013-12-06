@@ -79,18 +79,21 @@ public class Monopoly {
 		currentPlayer.move(distance);
 		
 		// run the landOn
-		ITile tile = board.getPropertyAt(currentPlayer.getPosition());
+		ITile tile = board.getTileAt(currentPlayer.getPosition());
 		modelState = tile.landOn(currentPlayer);
 		
+		// return true if there isn't any other action required by
+		// the controller to continue the game
+		return (modelState == MonopolyModelState.PLAYING);
+	}
+	
+	public void incrementPlayer()
+	{
 		// increment the current player
 		curPlayerIndex++;
 		if (curPlayerIndex == players.size()) {
 			curPlayerIndex = 0;
 		}
-		
-		// return true if there isn't any other action required by
-		// the controller to continue the game
-		return (modelState == MonopolyModelState.PLAYING);
 	}
 	
 	public boolean handleBuyRequest(boolean buying) {
@@ -143,5 +146,10 @@ public class Monopoly {
 	
 	public MonopolyModelState getModelState() {
 		return modelState;
+	}
+	
+	public void setModelState(MonopolyModelState state)
+	{
+		modelState = state;
 	}
 }

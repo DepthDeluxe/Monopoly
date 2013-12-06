@@ -31,6 +31,7 @@ public class Railroad extends Property {
 		Player owner = getOwner();
 		int rrCount = 0;
 		
+		if(getOwner() == null) { return 50; } 
 		// price is $25 times 2 raised to the number of railroads owned
 		return 25.0 * Math.pow(2, (owner.getNumRailroads()-1));
 	}
