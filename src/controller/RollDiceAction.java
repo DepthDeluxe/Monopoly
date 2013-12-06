@@ -48,13 +48,30 @@ public class RollDiceAction implements ActionListener {
 		
 	}
 	
+	/**
+	 * Updates the control panel with the new amounts of money
+	 */
+	private void updateControlPanel()
+	{
+		Player[] players = theGame.getPlayers(); // get all the players
+		double[] money = new double[4]; 
+		for(int x = 0; x < 4; x++)
+		{
+			money[x] = players[x].getMoney(); // get their money
+		}
+		theMainFrame.getControl().setMoneyVals(money); // pass to the function
+	}
 	
+	/**
+	 * updates the property panel to the current position on 
+	 * the board
+	 */
 	private void updatePropertyPanel()
 	{
-		Player cur = theGame.getCurrentPlayer();
-		int pos = cur.getPosition();
-		ITile prop = theBoardModel.getTileAt(pos);
-		theMainFrame.getProperties().updateProperty(prop);
+		Player cur = theGame.getCurrentPlayer(); // get the current player
+		int pos = cur.getPosition(); // get their position
+		ITile prop = theBoardModel.getTileAt(pos); // get the tile
+		theMainFrame.getProperties().updateProperty(prop); // update panel
 	}
 	//
 	// ActionListener Implementation
