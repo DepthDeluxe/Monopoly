@@ -34,9 +34,12 @@ public class MPropertiesPanel extends JPanel
 	
 	private ITile property;
 	
-	public MPropertiesPanel(ITile p)
+	public MPropertiesPanel()
 	{
-		this.setLayout(new GridLayout(13, 1, 0, 0));
+		this.setLayout(new GridLayout(1, 1, 0, 0));
+		
+		JLabel temp = createLabel("Start the game!");
+		add(temp);
 		
 		name = createLabel("");
 		name.setFont(boldFont);
@@ -58,8 +61,6 @@ public class MPropertiesPanel extends JPanel
 		
 		action = new JButton("Buy!");
 		action.setSize(50, 30);
-		
-		updateProperty(p);	
 	}
 	
 	/**
@@ -100,13 +101,13 @@ public class MPropertiesPanel extends JPanel
 		else if(type == TileType.GO_TO_JAIL || type == TileType.JAIL)
 		{
 			this.setLayout(new GridLayout(1, 1, 0, 0));
-			JLabel temp = createLabel("Jail time!");
+			JLabel temp = createLabel("Lost your internet!");
 			this.add(temp);
 		}
 		else if(type == TileType.GO || type == TileType.FREE_PARKING)
 		{
 			this.setLayout(new GridLayout(1, 1, 0, 0));
-			JLabel temp = createLabel("Free money!");
+			JLabel temp = createLabel("More time!");
 			this.add(temp);
 		}
 	}

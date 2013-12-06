@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import monopoly.*;
+import monopoly.tiles.ITile;
 import gui.MMainFrame;
 import gui.MBoardPanel;
 
@@ -47,6 +48,14 @@ public class RollDiceAction implements ActionListener {
 		
 	}
 	
+	
+	private void updatePropertyPanel()
+	{
+		Player cur = theGame.getCurrentPlayer();
+		int pos = cur.getPosition();
+		ITile prop = theBoardModel.getTileAt(pos);
+		theMainFrame.getProperties().updateProperty(prop);
+	}
 	//
 	// ActionListener Implementation
 	//
