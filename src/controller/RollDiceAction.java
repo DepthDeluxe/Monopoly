@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import monopoly.*;
 import monopoly.tiles.ITile;
 import gui.MMainFrame;
+import gui.MBoardPanel;
 
 public class RollDiceAction implements ActionListener {
 	
@@ -16,6 +17,7 @@ public class RollDiceAction implements ActionListener {
 	MMainFrame	theMainFrame;
 	Monopoly	theGame;
 	
+	MBoardPanel	theBoardView;
 	Board		theBoardModel;
 	
 	//
@@ -26,11 +28,15 @@ public class RollDiceAction implements ActionListener {
 		this.theMainFrame = theMainFrame;
 		this.theGame = theGame;
 		
-		// save the board
+		// save the board components
+		theBoardView = theMainFrame.getTheBoard();
 		theBoardModel = theGame.getBoard();
 	}
 	
-	private void handleBuyRequest(boolean isBuying) {
+	/** Handles a buy request graphically
+	 * @return TRUE if the user wants to buy
+	 */
+	private boolean handleBuyRequest() {
 		
 	}
 	
@@ -58,5 +64,27 @@ public class RollDiceAction implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// run the next move on the model
 		theGame.nextMove();
+		
+		// update the dice
+		Dice d = theGame.getDice();
+		theBoardView.rollDice(d);
+		
+		// run the right function depending on the state of the model
+		switch(theGame.getModelState()) {
+		case BUY_REQUEST:
+			handleBuyRequest();
+			break;
+			
+		case CHANCE:
+			handleChance();
+			break;
+			
+		case COMMUNITY_CHEST:
+			handleCommChest();
+		
+		// PLAYING state
+		default:
+			break;
+		}
 	}
 }
