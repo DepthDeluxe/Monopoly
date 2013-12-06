@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Tiles count="40">
+	<Go></Go>
+	<Property>
+		<Name>Trees</Name>
+		<value>6.0</value>
+	</Property>
+	<CardTile>
+		<Type>Reddit Gold</Type>
+	</CardTile>
+	<Property>
+		<Name>Animals Being Jerks</Name>
+		<Value>6.0</Value>
+	</Property>
+	<IncomeTax></IncomeTax>
+	<Railroad>
+		<Name>Bill Nye</Name>
+	</Railroad>
+	<Property>
+		<Name>Books</Name>
+		<Value>10.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Secret Santa</Type>
+	</CardTile>
+	<Property>
+		<Name>Movies</Name>
+		<Value>10.0</Value>
+	</Property>
+	<Property>
+		<Name>Music</Name>
+		<Value>12.0</Value>
+	</Property>
+	<Jail></Jail>
+	<Property>
+		<Name>Explain Like I'm 5</Name>
+		<Value>14.0</Value>
+	</Property>
+	<Utility>
+		<Name>Reddit Enhancement Suite</Name>
+	</Utility>
+	<Property>
+		<Name>Mildly Interesting</Name>
+		<Value>14.0</Value>
+	</Property>
+	<Property>
+		<Name>Woah Dude</Name>
+		<Value>16.0</Value>
+	</Property>
+	<Railroad>
+		<Name>Niel deGrasse Tyson</Name>
+	</Railroad>
+	<Property>
+		<Name>Gifs</Name>
+		<Value>18.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Reddit Gold</Type>
+	</CardTile>
+	<Property>
+		<Name>Advice Animals</Name>
+		<Value>18.0</Value>
+	</Property>
+	<Property>
+		<Name>Aww</Name>
+		<Value>20.0</Value>
+	</Property>
+	<FreeParking></FreeParking>
+	<Property>
+		<Name>Today I Learned</Name>
+		<Value>22.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Secret Santa</Type>
+	</CardTile>
+	<Property>
+		<Name>WTF</Name>
+		<Value>22.0</Value>
+	</Property>
+	<Property>
+		<Name>Videos</Name>
+		<Value>24.0</Value>
+	</Property>
+	<Railroad>
+		<Name>Snoo</Name>
+	</Railroad>
+	<Property>
+		<Name>World News</Name>
+		<Value>26.0</Value>
+	</Property>
+	<Property>
+		<Name>Ask Reddit</Name>
+		<Value>26.0</Value>
+	</Property>
+	<Utility>
+		<Name>Reddit Iphone App</Name>
+	</Utility>
+	<Property>
+		<Name>IamA</Name>
+		<Value>28.0</Value>
+	</Property>
+	<GoToJailTile>
+		<Destination>10</Destination>
+	</GoToJailTile>
+	<Property>
+		<Name>Gaming</Name>
+		<Value>30.0</Value>
+	</Property>
+	<Property>
+		<Name>Pics</Name>
+		<Value>30.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Reddit Gold</Type>
+	</CardTile>
+	<Property>
+		<Name>Funny</Name>
+		<Value>32.0</Value>
+	</Property>
+	<Railroad>
+		<Name>All Hail Gaben</Name>
+	</Railroad>
+	<CardTile>
+		<Type>Secret Santa</Type>
+	</CardTile>
+	<Property>
+		<Name>PC Gaming</Name>
+		<Value>35.0</Value>
+	</Property>
+	<LuxuryTax></LuxuryTax>
+	<Property>
+		<Name>PC Master Race</Name>
+		<Value>40.0</Value>
+	</Property>
+</Tiles>
