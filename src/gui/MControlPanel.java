@@ -27,21 +27,21 @@ import javax.swing.border.LineBorder;
 public class MControlPanel extends JPanel
 {
 	
-	JLabel myMoney;
-	JLabel playerTwoMoney;
-	JLabel playerThreeMoney;
-	JLabel playerFourMoney;
+	JLabel[] moneyLabels;
+	JLabel[] nameLabels;
 	
 	Font boldFont = new Font("Tahoma", Font.BOLD, 11);
 	public MControlPanel() 
 	{
+		this.moneyLabels = new JLabel[4];
+		this.nameLabels = new JLabel[4];
 		this.setLayout(new GridLayout(10, 1, 0, 0));		
 		
-		JLabel myMoneyLab = createLabel("Your Money!:");
+		nameLabels[0] = createLabel("Your Money!:");
 		myMoney = createLabel("0");
 		myMoney.setFont(boldFont);
 		
-		JLabel playerTwoMoneyLab = createLabel("Player Two Money!:");
+		playerTwoMoneyLab = createLabel("Player Two Money!:");
 		playerTwoMoney = createLabel("0");
 		playerTwoMoney.setFont(boldFont);
 		
@@ -55,9 +55,9 @@ public class MControlPanel extends JPanel
 		
 		JButton btnRollDice = new JButton("Roll Dice!");
 		btnRollDice.setSize(50, 20);
-
-		JButton btnNewGame = new JButton("New Game!");
-		btnNewGame.setSize(50, 20);
+		
+		JButton btnMortgage = new JButton("Mortgage!");
+		btnMortgage.setSize(50, 20);
 		
 		this.add(myMoneyLab);
 		this.add(myMoney);
@@ -68,7 +68,7 @@ public class MControlPanel extends JPanel
 		this.add(playerFourMoneyLab);
 		this.add(playerFourMoney);
 		this.add(btnRollDice);
-		this.add(btnNewGame);
+		this.add(btnMortgage);
 	}
 	
 	/**

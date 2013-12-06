@@ -17,10 +17,13 @@ import gui.MMainFrame;
 public class MController 
 {
 	private MMainFrame theView;
-	private Board theBoard;
+	private Monopoly theGame;
 	
-	public MController(MMainFrame frame)
+	public MController(MMainFrame frame, Monopoly mon)
 	{
 		this.theView = frame;
+		this.theGame = mon;
 	}
+	
+	
 }
