@@ -21,22 +21,39 @@ import java.awt.event.ActionListener;
  */
 public class MController 
 {
+	//
+	// Member Variables
+	//
+	
 	private MMainFrame theView;
 	private Monopoly theGame;
+	
+	//
+	// Constructors
+	//
 	
 	public MController(MMainFrame theView, Monopoly theGame)
 	{
 		this.theView = theView;
 		this.theGame = theGame;
+		
+		setRollDiceFunction();
+		setMortgageFunction();
+		
+		loadViewFromModel();
 	}
 	
-	public void setRollDiceFunction() {
+	//
+	// Main Functions
+	//
+	
+	private void setRollDiceFunction() {
 		RollDiceAction actionListener = new RollDiceAction(theView, theGame);
 		
 		theView.getControl().setRollDiceAction(actionListener);
 	}
 	
-	public void setMortgageFunction() {
+	private void setMortgageFunction() {
 		ActionListener actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,5 +62,13 @@ public class MController
 		};
 		
 		theView.getControl().setMortgageAction(actionListener);
+	}
+	
+	//
+	// Private Functions
+	//
+	
+	public void loadViewFromModel() {
+		
 	}
 }

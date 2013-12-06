@@ -14,8 +14,11 @@ import gui.MSettingsMenu;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import monopoly.Monopoly;
 
 /**
  * @author ajrk001
@@ -23,9 +26,20 @@ import javax.swing.JOptionPane;
  */
 public class ViewController 
 {
+	//
+	// Member Variables 
+	//
+	
+	// View
 	MMainMenu menu;
 	MSettingsMenu settings;
 	MMainFrame game;
+	
+	// Model
+	Monopoly theGame;
+	
+	// Controller
+	MController theController;
 	
 	public ViewController()
 	{
@@ -66,6 +80,12 @@ public class ViewController
 				game = frame;
 				frame.setVisible(true);
 				menu.setVisible(false);
+				
+				// create the model
+				theGame = new Monopoly("Original-Tiles.xml", null, null);
+				
+				// create the controller
+				theController = new MController(frame, theGame);
 			}
 		});
 		
