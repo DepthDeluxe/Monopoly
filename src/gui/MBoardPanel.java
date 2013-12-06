@@ -372,6 +372,7 @@ public class MBoardPanel extends JPanel
 		
 		JLabel colorBox13 = new JLabel("");
 		colorBox13.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/red.jpg")));
+		colorBox13.setSize(50, 30);
 		property21.add(colorBox13);
 		
 		Box property22 = Box.createVerticalBox();
@@ -596,7 +597,7 @@ public class MBoardPanel extends JPanel
 		
 		Box ccBox = Box.createHorizontalBox();
 		ccBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-		ccBox.setBounds(150, 150, 156, 58);
+		ccBox.setBounds(150, 150, 165, 58);
 		add(ccBox);
 		
 		JLabel lblCommChst = new JLabel("Community Chest");
