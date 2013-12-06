@@ -10,6 +10,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -29,6 +30,9 @@ public class MControlPanel extends JPanel
 	
 	JLabel[] moneyLabels;
 	JLabel[] nameLabels;
+	
+	JButton btnRollDice;
+	JButton btnMortgage;
 	
 	Font boldFont = new Font("Tahoma", Font.BOLD, 11);
 	public MControlPanel() 
@@ -53,10 +57,10 @@ public class MControlPanel extends JPanel
 		moneyLabels[3] = createLabel("0");
 		moneyLabels[3].setFont(boldFont);
 		
-		JButton btnRollDice = new JButton("Roll Dice!");
+		btnRollDice = new JButton("Roll Dice!");
 		btnRollDice.setSize(50, 20);
 		
-		JButton btnMortgage = new JButton("Mortgage!");
+		btnMortgage = new JButton("Mortgage!");
 		btnMortgage.setSize(50, 20);
 		
 		for(int x = 0; x < 4; x++)
@@ -104,5 +108,13 @@ public class MControlPanel extends JPanel
 		{
 			nameLabels[x].setText(names + " money!");
 		}
+	}
+	
+	public void setRollDiceAction(ActionListener al) {
+		btnRollDice.addActionListener(al);
+	}
+	
+	public void setMortgageAction(ActionListener al) {
+		btnMortgage.addActionListener(al);
 	}
 }
