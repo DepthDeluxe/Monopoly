@@ -2,134 +2,134 @@
 <Tiles count="40">
 	<Go></Go>
 	<Property>
-		<Name>Mediterranean Avenue</Name>
-		<Value>60.0</Value>
+		<Name>Trees</Name>
+		<value>6.0</value>
 	</Property>
 	<CardTile>
-		<Type>Community Chest</Type>
+		<Type>Reddit Gold</Type>
 	</CardTile>
 	<Property>
-		<Name>Baltic Ave</Name>
-		<Value>60.0</Value>
+		<Name>Animals Being Jerks</Name>
+		<Value>6.0</Value>
 	</Property>
 	<IncomeTax></IncomeTax>
 	<Railroad>
-		<Name>Reading Railroad</Name>
+		<Name>Bill Nye</Name>
 	</Railroad>
 	<Property>
-		<Name>Oriental Avenue</Name>
-		<Value>100.0</Value>
+		<Name>Books</Name>
+		<Value>10.0</Value>
 	</Property>
 	<CardTile>
-		<Type>Chance</Type>
+		<Type>Secret Santa</Type>
 	</CardTile>
 	<Property>
-		<Name>Vermont Avenue</Name>
-		<Value>100.0</Value>
+		<Name>Movies</Name>
+		<Value>10.0</Value>
 	</Property>
 	<Property>
-		<Name>Connecticut Avenue</Name>
-		<Value>120.0</Value>
+		<Name>Music</Name>
+		<Value>12.0</Value>
 	</Property>
 	<Jail></Jail>
 	<Property>
-		<Name>St. Charles Place</Name>
-		<Value>140.0</Value>
+		<Name>Explain Like I'm 5</Name>
+		<Value>14.0</Value>
 	</Property>
 	<Utility>
-		<Name>Electric Company</Name>
+		<Name>Reddit Enhancement Suite</Name>
 	</Utility>
 	<Property>
-		<Name>States Avenue</Name>
-		<Value>140.0</Value>
+		<Name>Mildly Interesting</Name>
+		<Value>14.0</Value>
 	</Property>
 	<Property>
-		<Name>Virginia Avenue</Name>
-		<Value>160.0</Value>
+		<Name>Woah Dude</Name>
+		<Value>16.0</Value>
 	</Property>
 	<Railroad>
-		<Name>Pennsylvania Railroad</Name>
+		<Name>Niel deGrasse Tyson</Name>
 	</Railroad>
 	<Property>
-		<Name>St. James Place</Name>
-		<Value>180.0</Value>
+		<Name>Gifs</Name>
+		<Value>18.0</Value>
 	</Property>
 	<CardTile>
-		<Type>Community Chest</Type>
+		<Type>Reddit Gold</Type>
 	</CardTile>
 	<Property>
-		<Name>Tennessee Avenue</Name>
-		<Value>180.0</Value>
+		<Name>Advice Animals</Name>
+		<Value>18.0</Value>
 	</Property>
 	<Property>
-		<Name>New York Avenue</Name>
-		<Value>200.0</Value>
+		<Name>Aww</Name>
+		<Value>20.0</Value>
 	</Property>
 	<FreeParking></FreeParking>
 	<Property>
-		<Name>Kentucky Avenue</Name>
-		<Value>220.0</Value>
+		<Name>Today I Learned</Name>
+		<Value>22.0</Value>
 	</Property>
 	<CardTile>
-		<Type>Chance</Type>
+		<Type>Secret Santa</Type>
 	</CardTile>
 	<Property>
-		<Name>Indiana Avenue</Name>
-		<Value>220.0</Value>
+		<Name>WTF</Name>
+		<Value>22.0</Value>
 	</Property>
 	<Property>
-		<Name>Illinois Avenue</Name>
-		<Value>240.0</Value>
+		<Name>Videos</Name>
+		<Value>24.0</Value>
 	</Property>
 	<Railroad>
-		<Name>B. &amp; O. Railroad</Name>
+		<Name>Snoo</Name>
 	</Railroad>
 	<Property>
-		<Name>Atlantic Avenue</Name>
-		<Value>260.0</Value>
+		<Name>World News</Name>
+		<Value>26.0</Value>
 	</Property>
 	<Property>
-		<Name>Ventenor Avenue</Name>
-		<Value>260.0</Value>
+		<Name>Ask Reddit</Name>
+		<Value>26.0</Value>
 	</Property>
 	<Utility>
-		<Name>Water Works</Name>
+		<Name>Reddit Iphone App</Name>
 	</Utility>
 	<Property>
-		<Name>Marvin Gardins</Name>
-		<Value>280.0</Value>
+		<Name>IamA</Name>
+		<Value>28.0</Value>
 	</Property>
 	<GoToJailTile>
 		<Destination>10</Destination>
 	</GoToJailTile>
 	<Property>
-		<Name>Pacific Avenue</Name>
-		<Value>300.0</Value>
+		<Name>Gaming</Name>
+		<Value>30.0</Value>
 	</Property>
 	<Property>
-		<Name>North Carolina Avenue</Name>
-		<Value>300.0</Value>
+		<Name>Pics</Name>
+		<Value>30.0</Value>
 	</Property>
 	<CardTile>
-		<Type>Community Chest</Type>
+		<Type>Reddit Gold</Type>
 	</CardTile>
 	<Property>
-		<Name>Pennsylvania Avenue</Name>
-		<Value>320.0</Value>
+		<Name>Funny</Name>
+		<Value>32.0</Value>
 	</Property>
 	<Railroad>
-		<Name>Short Line</Name>
+		<Name>All Hail Gaben</Name>
 	</Railroad>
 	<CardTile>
-		<Type>Chance</Type>
+		<Type>Secret Santa</Type>
 	</CardTile>
 	<Property>
-		<Name>Park Place</Name>
-		<Value>350.0</Value>
+		<Name>PC Gaming</Name>
+		<Value>35.0</Value>
 	</Property>
 	<LuxuryTax></LuxuryTax>
 	<Property>
-		<Name>Boardwalk</Name>
-		<Value>400.0</Value>
+		<Name>PC Master Race</Name>
+		<Value>40.0</Value>
 	</Property>
 </Tiles>

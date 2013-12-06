@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Tiles count="40">
+	<Go></Go>
+	<Property>
+		<Name>Mediterranean Avenue</Name>
+		<Value>60.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Community Chest</Type>
+	</CardTile>
+	<Property>
+		<Name>Baltic Ave</Name>
+		<Value>60.0</Value>
+	</Property>
+	<IncomeTax></IncomeTax>
+	<Railroad>
+		<Name>Reading Railroad</Name>
+	</Railroad>
+	<Property>
+		<Name>Oriental Avenue</Name>
+		<Value>100.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Chance</Type>
+	</CardTile>
+	<Property>
+		<Name>Vermont Avenue</Name>
+		<Value>100.0</Value>
+	</Property>
+	<Property>
+		<Name>Connecticut Avenue</Name>
+		<Value>120.0</Value>
+	</Property>
+	<Jail></Jail>
+	<Property>
+		<Name>St. Charles Place</Name>
+		<Value>140.0</Value>
+	</Property>
+	<Utility>
+		<Name>Electric Company</Name>
+	</Utility>
+	<Property>
+		<Name>States Avenue</Name>
+		<Value>140.0</Value>
+	</Property>
+	<Property>
+		<Name>Virginia Avenue</Name>
+		<Value>160.0</Value>
+	</Property>
+	<Railroad>
+		<Name>Pennsylvania Railroad</Name>
+	</Railroad>
+	<Property>
+		<Name>St. James Place</Name>
+		<Value>180.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Community Chest</Type>
+	</CardTile>
+	<Property>
+		<Name>Tennessee Avenue</Name>
+		<Value>180.0</Value>
+	</Property>
+	<Property>
+		<Name>New York Avenue</Name>
+		<Value>200.0</Value>
+	</Property>
+	<FreeParking></FreeParking>
+	<Property>
+		<Name>Kentucky Avenue</Name>
+		<Value>220.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Chance</Type>
+	</CardTile>
+	<Property>
+		<Name>Indiana Avenue</Name>
+		<Value>220.0</Value>
+	</Property>
+	<Property>
+		<Name>Illinois Avenue</Name>
+		<Value>240.0</Value>
+	</Property>
+	<Railroad>
+		<Name>B. &amp; O. Railroad</Name>
+	</Railroad>
+	<Property>
+		<Name>Atlantic Avenue</Name>
+		<Value>260.0</Value>
+	</Property>
+	<Property>
+		<Name>Ventenor Avenue</Name>
+		<Value>260.0</Value>
+	</Property>
+	<Utility>
+		<Name>Water Works</Name>
+	</Utility>
+	<Property>
+		<Name>Marvin Gardins</Name>
+		<Value>280.0</Value>
+	</Property>
+	<GoToJailTile>
+		<Destination>10</Destination>
+	</GoToJailTile>
+	<Property>
+		<Name>Pacific Avenue</Name>
+		<Value>300.0</Value>
+	</Property>
+	<Property>
+		<Name>North Carolina Avenue</Name>
+		<Value>300.0</Value>
+	</Property>
+	<CardTile>
+		<Type>Community Chest</Type>
+	</CardTile>
+	<Property>
+		<Name>Pennsylvania Avenue</Name>
+		<Value>320.0</Value>
+	</Property>
+	<Railroad>
+		<Name>Short Line</Name>
+	</Railroad>
+	<CardTile>
+		<Type>Chance</Type>
+	</CardTile>
+	<Property>
+		<Name>Park Place</Name>
+		<Value>350.0</Value>
+	</Property>
+	<LuxuryTax></LuxuryTax>
+	<Property>
+		<Name>Boardwalk</Name>
+		<Value>400.0</Value>
+	</Property>
+</Tiles>
