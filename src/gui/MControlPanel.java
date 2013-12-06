@@ -38,20 +38,20 @@ public class MControlPanel extends JPanel
 		this.setLayout(new GridLayout(10, 1, 0, 0));		
 		
 		nameLabels[0] = createLabel("Your Money!:");
-		myMoney = createLabel("0");
-		myMoney.setFont(boldFont);
+		moneyLabels[0] = createLabel("0");
+		moneyLabels[0].setFont(boldFont);
 		
-		playerTwoMoneyLab = createLabel("Player Two Money!:");
-		playerTwoMoney = createLabel("0");
-		playerTwoMoney.setFont(boldFont);
+		nameLabels[1] = createLabel("Player Two Money!:");
+		moneyLabels[1] = createLabel("0");
+		moneyLabels[1].setFont(boldFont);
 		
-		JLabel playerThreeMoneyLab = createLabel("Player Three Money!:");
-		playerThreeMoney = createLabel("0");
-		playerThreeMoney.setFont(boldFont);
+		nameLabels[2] = createLabel("Player Three Money!:");
+		moneyLabels[2] = createLabel("0");
+		moneyLabels[2].setFont(boldFont);
 		
-		JLabel playerFourMoneyLab = createLabel("Player Four Money!:");
-		playerFourMoney = createLabel("0");
-		playerFourMoney.setFont(boldFont);
+		nameLabels[3] = createLabel("Player Four Money!:");
+		moneyLabels[3] = createLabel("0");
+		moneyLabels[3].setFont(boldFont);
 		
 		JButton btnRollDice = new JButton("Roll Dice!");
 		btnRollDice.setSize(50, 20);
@@ -59,14 +59,11 @@ public class MControlPanel extends JPanel
 		JButton btnMortgage = new JButton("Mortgage!");
 		btnMortgage.setSize(50, 20);
 		
-		this.add(myMoneyLab);
-		this.add(myMoney);
-		this.add(playerTwoMoneyLab);
-		this.add(playerTwoMoney);
-		this.add(playerThreeMoneyLab);
-		this.add(playerThreeMoney);
-		this.add(playerFourMoneyLab);
-		this.add(playerFourMoney);
+		for(int x = 0; x < 4; x++)
+		{
+			this.add(nameLabels[x]);
+			this.add(moneyLabels[x]);
+		}
 		this.add(btnRollDice);
 		this.add(btnMortgage);
 	}
@@ -90,9 +87,22 @@ public class MControlPanel extends JPanel
 	 */
 	public void setMoneyVals(double[] money)
 	{
-		myMoney.setText(Double.toString(money[0]));
-		playerTwoMoney.setText(Double.toString(money[1]));
-		playerThreeMoney.setText(Double.toString(money[2]));
-		playerFourMoney.setText(Double.toString(money[3]));
+		for(int x = 0; x < 4; x++)
+		{
+			moneyLabels[x].setText(Double.toString(money[x]));
+		}
+	}
+	
+	/**
+	 * This function will take in a array that represents four players name,
+	 * and set the labels as needed 
+	 * @param names - names represented as string in array form
+	 */
+	public void setNames(String[] names)
+	{
+		for(int x = 0; x < 4; x++)
+		{
+			nameLabels[x].setText(names + " money!");
+		}
 	}
 }

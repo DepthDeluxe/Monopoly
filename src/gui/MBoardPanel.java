@@ -268,8 +268,8 @@ public class MBoardPanel extends JPanel
 		add(property14);
 		
 		JLabel railroadTwo = new JLabel("");
-		railroadTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadTwo.jpg")));
 		property14.add(railroadTwo);
+		railroadTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadFour.jpg")));
 		
 		Box property15 = Box.createHorizontalBox();
 		property15.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -522,8 +522,8 @@ public class MBoardPanel extends JPanel
 		add(property32);
 		
 		JLabel railroadFour = new JLabel("");
-		railroadFour.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadFour.jpg")));
 		property32.add(railroadFour);
+		railroadFour.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/railroadTwo.jpg")));
 		
 		Box property33 = Box.createHorizontalBox();
 		property33.setBorder(new LineBorder(new Color(0, 0, 0)));
