@@ -9,6 +9,11 @@
 package monopoly;
 
 import gui.MMainFrame;
+import gui.MBoardPanel;
+import monopoly.Monopoly;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author ajrk001
@@ -19,11 +24,31 @@ public class MController
 	private MMainFrame theView;
 	private Monopoly theGame;
 	
-	public MController(MMainFrame frame, Monopoly mon)
+	public MController(MMainFrame theView, Monopoly theGame)
 	{
-		this.theView = frame;
-		this.theGame = mon;
+		this.theView = theView;
+		this.theGame = theGame;
 	}
 	
+	public void setRollDiceFunction() {
+		ActionListener actionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+		
+		theView.getControl().setRollDiceAction(actionListener);
+	}
 	
+	public void setMortgageFunction() {
+		ActionListener actionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+		
+		theView.getControl().setMortgageAction(actionListener);
+	}
 }
