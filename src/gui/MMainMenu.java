@@ -33,7 +33,7 @@ public class MMainMenu extends JFrame
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Reddit Monopoly!");
-		this.setLocationRelativeTo(null);
+		this.setLocation(100, 100);
 		this.setSize(400, 350);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		

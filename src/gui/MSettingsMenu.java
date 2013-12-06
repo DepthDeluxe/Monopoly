@@ -32,7 +32,7 @@ public class MSettingsMenu extends JFrame
 	public MSettingsMenu(int hours) 
 	{
 		this.setTitle("Settings");
-		this.setLocationRelativeTo(null);
+		this.setLocation(100, 100);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel optionPanel = new JPanel();

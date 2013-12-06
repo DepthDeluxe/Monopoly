@@ -72,6 +72,7 @@ public class MPropertiesPanel extends JPanel
 	{
 		this.property = p;
 		updatePanel();
+		this.revalidate();
 	}
 	
 	/** 
@@ -166,6 +167,7 @@ public class MPropertiesPanel extends JPanel
 		this.add(rentLbl);
 		this.add(rent);
 		this.add(action);
+		this.revalidate();
 	}
 }
 

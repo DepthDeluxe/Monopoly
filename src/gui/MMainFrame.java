@@ -35,10 +35,10 @@ public class MMainFrame extends JFrame
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Monopoly");
-		this.setLocationRelativeTo(null);
+		this.setLocation(100, 100);
 		this.setLayout(new BorderLayout());
 		((JComponent) getContentPane()).setBorder(empty);
-		this.setSize(1000, 700);
+		this.setSize(900, 700);
 		
 		MBoardPanel board = new MBoardPanel();
 		this.getContentPane().add(board, BorderLayout.CENTER);
