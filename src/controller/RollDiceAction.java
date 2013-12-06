@@ -87,11 +87,13 @@ public class RollDiceAction implements ActionListener {
 		theBoardView.rollDice(d);
 		
 		// update the current player position
-		Player currentPlayer = theGame.getCurrentPlayer();
-		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
+		Player currentPlayer = theGame.getPlayers()[theGame.getCurrentPlayerIndex()-1];
+		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex()-1, currentPlayer.getPosition());
+		
 		
 		// run the right function depending on the state of the model
-		switch(theGame.getModelState()) {
+		MonopolyModelState state = theGame.getModelState();
+		switch(state) {
 		case BUY_REQUEST:
 			boolean userResponse = handleBuyRequest();
 			
@@ -110,5 +112,6 @@ public class RollDiceAction implements ActionListener {
 		default:
 			break;
 		}
+		state = MonopolyModelState.PLAYING;
 	}
 }

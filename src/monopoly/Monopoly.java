@@ -49,6 +49,8 @@ public class Monopoly {
 		
 		// load the board
 		board = new Board(boardTiles, chanceDeck, commChestDeck);
+		
+		modelState = modelState.PLAYING;
 	}
 	
 	//

@@ -36,7 +36,10 @@ public class MController
 	{
 		this.theView = theView;
 		this.theGame = theGame;
-		
+		this.theGame.addPlayer(new Player("Player 1", 150, theGame.getBoard()));
+		this.theGame.addPlayer(new Player("Player 2", 150, theGame.getBoard()));
+		this.theGame.addPlayer(new Player("Player 3", 150, theGame.getBoard()));
+		this.theGame.addPlayer(new Player("Player 4", 150, theGame.getBoard()));
 		setRollDiceFunction();
 		setMortgageFunction();
 		
