@@ -6,11 +6,11 @@
  * Created: Dec 5, 2013, 8:00:47 PM
  */
 
-package monopoly;
+package controller;
+
+import monopoly.*;
 
 import gui.MMainFrame;
-import gui.MBoardPanel;
-import monopoly.Monopoly;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
