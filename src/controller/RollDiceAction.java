@@ -37,7 +37,7 @@ public class RollDiceAction implements ActionListener {
 	 * @return TRUE if the user wants to buy
 	 */
 	private boolean handleBuyRequest() {
-		
+		return false;
 	}
 	
 	private void handleChance() {
@@ -69,10 +69,16 @@ public class RollDiceAction implements ActionListener {
 		Dice d = theGame.getDice();
 		theBoardView.rollDice(d);
 		
+		// update the current player position
+		Player currentPlayer = theGame.getCurrentPlayer();
+		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
+		
 		// run the right function depending on the state of the model
 		switch(theGame.getModelState()) {
 		case BUY_REQUEST:
-			handleBuyRequest();
+			boolean userResponse = handleBuyRequest();
+			
+			theGame.handleBuyRequest(userResponse);
 			break;
 			
 		case CHANCE:
@@ -81,6 +87,7 @@ public class RollDiceAction implements ActionListener {
 			
 		case COMMUNITY_CHEST:
 			handleCommChest();
+			break;
 		
 		// PLAYING state
 		default:
