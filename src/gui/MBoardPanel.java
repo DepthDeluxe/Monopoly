@@ -20,6 +20,7 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 
+import monopoly.Board;
 import monopoly.Dice;
 
 /**
@@ -33,7 +34,7 @@ public class MBoardPanel extends JPanel
 	private int[][] positions; // array that will hold the positions on the board where the labels should be moved to
 	private int[] playerPos; // where each player is on the board
 	JLabel[] players; // array of the jlabels of each player
-	
+	JTextArea[] properties;
 	JLabel diceOne; // image of the first dice
 	JLabel diceTwo; // image of second dice
 	
@@ -42,6 +43,8 @@ public class MBoardPanel extends JPanel
 		this.positions = new int[40][2];
 		this.players = new JLabel[4];
 		this.playerPos = new int[4];
+		this.properties = new JTextArea[22];
+		
 		this.setConstants(); // function that just sets the large array this.positions with default vals
 		
 		for(int x = 0; x < 4; x++)
@@ -98,11 +101,11 @@ public class MBoardPanel extends JPanel
 		colorBox1.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/purple.jpg")));
 		property1.add(colorBox1);
 		
-		JTextArea prop1 = new JTextArea();
-		prop1.setEditable(false);
-		prop1.setLineWrap(true);
-		prop1.setText("Property");
-		property1.add(prop1);
+		properties[0] = new JTextArea();
+		properties[0].setEditable(false);
+		properties[0].setLineWrap(true);
+		properties[0].setText("Property");
+		property1.add(properties[0]);
 		
 		Box property2 = Box.createVerticalBox();
 		property2.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -122,11 +125,11 @@ public class MBoardPanel extends JPanel
 		colorBox2.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/purple.jpg")));
 		property3.add(colorBox2);
 		
-		JTextArea prop2 = new JTextArea();
-		prop2.setEditable(false);
-		prop2.setLineWrap(true);
-		prop2.setText("Property");
-		property3.add(prop2);
+		properties[1] = new JTextArea();
+		properties[1].setEditable(false);
+		properties[1].setLineWrap(true);
+		properties[1].setText("Property");
+		property3.add(properties[1]);
 		
 		Box property4 = Box.createVerticalBox();
 		property4.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -155,11 +158,11 @@ public class MBoardPanel extends JPanel
 		colorBox3.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/blue.jpg")));
 		property6.add(colorBox3);
 		
-		JTextArea prop3 = new JTextArea();
-		prop3.setEditable(false);
-		prop3.setLineWrap(true);
-		prop3.setText("Property");
-		property6.add(prop3);
+		properties[2] = new JTextArea();
+		properties[2].setEditable(false);
+		properties[2].setLineWrap(true);
+		properties[2].setText("Property");
+		property6.add(properties[2]);
 		
 		Box property7 = Box.createVerticalBox();
 		property7.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -180,11 +183,11 @@ public class MBoardPanel extends JPanel
 		colorBox4.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/blue.jpg")));
 		property8.add(colorBox4);
 		
-		JTextArea prop4 = new JTextArea();
-		prop4.setEditable(false);
-		prop4.setLineWrap(true);
-		prop4.setText("Property");
-		property8.add(prop4);
+		properties[3] = new JTextArea();
+		properties[3].setEditable(false);
+		properties[3].setLineWrap(true);
+		properties[3].setText("Property");
+		property8.add(properties[3]);
 		
 		Box property9 = Box.createVerticalBox();
 		property9.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -195,11 +198,11 @@ public class MBoardPanel extends JPanel
 		colorBox5.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/blue.jpg")));
 		property9.add(colorBox5);
 		
-		JTextArea prop5 = new JTextArea();
-		prop5.setEditable(false);
-		prop5.setLineWrap(true);
-		prop5.setText("Property");
-		property9.add(prop5);
+		properties[4] = new JTextArea();
+		properties[4].setEditable(false);
+		properties[4].setLineWrap(true);
+		properties[4].setText("Property");
+		property9.add(properties[4]);
 		
 		Box jailBox = Box.createVerticalBox();
 		jailBox.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -215,10 +218,11 @@ public class MBoardPanel extends JPanel
 		property10.setBounds(0, 500, 100, 50);
 		add(property10);
 		
-		JTextArea prop6 = new JTextArea();
-		prop6.setEditable(false);
-		prop6.setText("Property");
-		property10.add(prop6);
+		properties[5] = new JTextArea();
+		properties[5].setEditable(false);
+		properties[5].setLineWrap(true);
+		properties[5].setText("Property");
+		property10.add(properties[5]);
 		
 		JLabel colorBox6 = new JLabel("");
 		colorBox6.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/magenta.jpg")));
@@ -238,11 +242,11 @@ public class MBoardPanel extends JPanel
 		property12.setBounds(0, 400, 100, 50);
 		add(property12);
 		
-		JTextArea prop7 = new JTextArea();
-		prop7.setEditable(false);
-		prop7.setLineWrap(true);
-		prop7.setText("Property");
-		property12.add(prop7);
+		properties[6] = new JTextArea();
+		properties[6].setEditable(false);
+		properties[6].setLineWrap(true);
+		properties[6].setText("Property");
+		property12.add(properties[6]);
 		
 		JLabel colorBox7 = new JLabel("");
 		colorBox7.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/magenta.jpg")));
@@ -253,10 +257,11 @@ public class MBoardPanel extends JPanel
 		property13.setBounds(0, 350, 100, 50);
 		add(property13);
 		
-		JTextArea prop8 = new JTextArea();
-		prop8.setEditable(false);
-		prop8.setText("Property");
-		property13.add(prop8);
+		properties[7] = new JTextArea();
+		properties[7].setEditable(false);
+		properties[7].setLineWrap(true);
+		properties[7].setText("Property");
+		property13.add(properties[7]);
 		
 		JLabel colorBox8 = new JLabel("");
 		colorBox8.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/magenta.jpg")));
@@ -276,11 +281,11 @@ public class MBoardPanel extends JPanel
 		property15.setBounds(0, 250, 100, 50);
 		add(property15);
 		
-		JTextArea prop9 = new JTextArea();
-		prop9.setEditable(false);
-		prop9.setLineWrap(true);
-		prop9.setText("Property");
-		property15.add(prop9);
+		properties[8] = new JTextArea();
+		properties[8].setEditable(false);
+		properties[8].setLineWrap(true);
+		properties[8].setText("Property");
+		property15.add(properties[8]);
 		
 		JLabel colorBox9 = new JLabel("");
 		colorBox9.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/orange.jpg")));
@@ -300,11 +305,11 @@ public class MBoardPanel extends JPanel
 		property17.setBounds(0, 150, 100, 50);
 		add(property17);
 		
-		JTextArea prop10 = new JTextArea();
-		prop10.setEditable(false);
-		prop10.setLineWrap(true);
-		prop10.setText("Property");
-		property17.add(prop10);
+		properties[9] = new JTextArea();
+		properties[9].setEditable(false);
+		properties[9].setLineWrap(true);
+		properties[9].setText("Property");
+		property17.add(properties[9]);
 		
 		JLabel colorBox10 = new JLabel("");
 		colorBox10.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/orange.jpg")));
@@ -315,11 +320,11 @@ public class MBoardPanel extends JPanel
 		property18.setBounds(0, 100, 100, 50);
 		add(property18);
 		
-		JTextArea prop11 = new JTextArea();
-		prop11.setEditable(false);
-		prop11.setLineWrap(true);
-		prop11.setText("Property");
-		property18.add(prop11);
+		properties[10] = new JTextArea();
+		properties[10].setEditable(false);
+		properties[10].setLineWrap(true);
+		properties[10].setText("Property");
+		property18.add(properties[10]);
 		
 		JLabel colorBox11 = new JLabel("");
 		colorBox11.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/orange.jpg")));
@@ -339,11 +344,11 @@ public class MBoardPanel extends JPanel
 		property19.setBounds(100, 0, 50, 100);
 		add(property19);
 		
-		JTextArea prop12 = new JTextArea();
-		prop12.setEditable(false);
-		prop12.setLineWrap(true);
-		prop12.setText("Property");
-		property19.add(prop12);
+		properties[11] = new JTextArea();
+		properties[11].setEditable(false);
+		properties[11].setLineWrap(true);
+		properties[11].setText("Property");
+		property19.add(properties[11]);
 		
 		JLabel colorBox12 = new JLabel("");
 		colorBox12.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/red.jpg")));
@@ -364,11 +369,11 @@ public class MBoardPanel extends JPanel
 		property21.setBounds(200, 0, 50, 100);
 		add(property21);
 		
-		JTextArea prop13 = new JTextArea();
-		prop13.setEditable(false);
-		property21.add(prop13);
-		prop13.setLineWrap(true);
-		prop13.setText("Property");
+		properties[12] = new JTextArea();
+		properties[12].setEditable(false);
+		property21.add(properties[12]);
+		properties[12].setLineWrap(true);
+		properties[12].setText("Property");
 		
 		JLabel colorBox13 = new JLabel("");
 		colorBox13.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/red.jpg")));
@@ -380,11 +385,11 @@ public class MBoardPanel extends JPanel
 		property22.setBounds(250, 0, 50, 100);
 		add(property22);
 		
-		JTextArea prop14 = new JTextArea();
-		prop14.setEditable(false);
-		prop14.setLineWrap(true);
-		prop14.setText("Property");
-		property22.add(prop14);
+		properties[13] = new JTextArea();
+		properties[13].setEditable(false);
+		properties[13].setLineWrap(true);
+		properties[13].setText("Property");
+		property22.add(properties[13]);
 		
 		JLabel colorBox14 = new JLabel("");
 		colorBox14.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/red.jpg")));
@@ -404,11 +409,11 @@ public class MBoardPanel extends JPanel
 		property24.setBounds(350, 0, 50, 100);
 		add(property24);
 		
-		JTextArea prop15 = new JTextArea();
-		prop15.setEditable(false);
-		prop15.setLineWrap(true);
-		prop15.setText("Property");
-		property24.add(prop15);
+		properties[14] = new JTextArea();
+		properties[14].setEditable(false);
+		properties[14].setLineWrap(true);
+		properties[14].setText("Property");
+		property24.add(properties[14]);
 		
 		JLabel colorBox15 = new JLabel("");
 		colorBox15.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
@@ -428,11 +433,11 @@ public class MBoardPanel extends JPanel
 		property26.setBounds(450, 0, 50, 100);
 		add(property26);
 		
-		JTextArea prop16 = new JTextArea();
-		prop16.setEditable(false);
-		prop16.setLineWrap(true);
-		prop16.setText("Property");
-		property26.add(prop16);
+		properties[15] = new JTextArea();
+		properties[15].setEditable(false);
+		properties[15].setLineWrap(true);
+		properties[15].setText("Property");
+		property26.add(properties[15]);
 		
 		JLabel colorBox16 = new JLabel("");
 		colorBox16.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
@@ -443,11 +448,11 @@ public class MBoardPanel extends JPanel
 		property27.setBounds(500, 0, 50, 100);
 		add(property27);
 		
-		JTextArea prop17 = new JTextArea();
-		prop17.setEditable(false);
-		prop17.setLineWrap(true);
-		prop17.setText("Property");
-		property27.add(prop17);
+		properties[16] = new JTextArea();
+		properties[16].setEditable(false);
+		properties[16].setLineWrap(true);
+		properties[16].setText("Property");
+		property27.add(properties[16]);
 		
 		JLabel colorBox17 = new JLabel("");
 		colorBox17.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
@@ -471,11 +476,11 @@ public class MBoardPanel extends JPanel
 		colorBox18.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/green.jpg")));
 		property28.add(colorBox18);
 		
-		JTextArea prop18 = new JTextArea();
-		prop18.setEditable(false);
-		prop18.setLineWrap(true);
-		prop18.setText("Property");
-		property28.add(prop18);
+		properties[17] = new JTextArea();
+		properties[17].setEditable(false);
+		properties[17].setLineWrap(true);
+		properties[17].setText("Property");
+		property28.add(properties[17]);
 		
 		Box property29 = Box.createHorizontalBox();
 		property29.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -486,11 +491,11 @@ public class MBoardPanel extends JPanel
 		colorBox19.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/green.jpg")));
 		property29.add(colorBox19);
 		
-		JTextArea prop19 = new JTextArea();
-		prop19.setEditable(false);
-		prop19.setLineWrap(true);
-		prop19.setText("Property");
-		property29.add(prop19);
+		properties[18] = new JTextArea();
+		properties[18].setEditable(false);
+		properties[18].setLineWrap(true);
+		properties[18].setText("Property");
+		property29.add(properties[18]);
 		
 		Box property30 = Box.createHorizontalBox();
 		property30.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -510,11 +515,11 @@ public class MBoardPanel extends JPanel
 		colorBox20.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/green.jpg")));
 		property31.add(colorBox20);
 		
-		JTextArea prop20 = new JTextArea();
-		prop20.setEditable(false);
-		prop20.setLineWrap(true);
-		prop20.setText("Property");
-		property31.add(prop20);
+		properties[19] = new JTextArea();
+		properties[19].setEditable(false);
+		properties[19].setLineWrap(true);
+		properties[19].setText("Property");
+		property31.add(properties[19]);
 		
 		Box property32 = Box.createHorizontalBox();
 		property32.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -543,11 +548,11 @@ public class MBoardPanel extends JPanel
 		colorBox21.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/darkBlue.jpg")));
 		property34.add(colorBox21);
 		
-		JTextArea prop21 = new JTextArea();
-		prop21.setEditable(false);
-		prop21.setLineWrap(true);
-		prop21.setText("Property");
-		property34.add(prop21);
+		properties[20] = new JTextArea();
+		properties[20].setEditable(false);
+		properties[20].setLineWrap(true);
+		properties[20].setText("Property");
+		property34.add(properties[20]);
 		
 		Box property35 = Box.createHorizontalBox();
 		property35.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -567,11 +572,11 @@ public class MBoardPanel extends JPanel
 		colorBox22.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/darkBlue.jpg")));
 		property36.add(colorBox22);
 		
-		JTextArea prop22 = new JTextArea();
-		prop22.setEditable(false);
-		prop22.setLineWrap(true);
-		prop22.setText("Property");
-		property36.add(prop22);
+		properties[21] = new JTextArea();
+		properties[21].setEditable(false);
+		properties[21].setLineWrap(true);
+		properties[21].setText("Property");
+		property36.add(properties[21]);
 		
 		JLabel lblMonopoly = new JLabel("MONOPOLY");
 		lblMonopoly.setFont(new Font("Tahoma", Font.BOLD, 34));
@@ -607,6 +612,16 @@ public class MBoardPanel extends JPanel
 		JLabel mainLabelCommChest = new JLabel("");
 		mainLabelCommChest.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/commChest.jpg")));
 		ccBox.add(mainLabelCommChest);
+	}
+	
+	
+	public void setPropertyNames(Board theBoard)
+	{
+		int x = 0;
+		for(int y = 0; y < 40; y++)
+		{
+			
+		}
 	}
 	
 	/**
@@ -677,6 +692,11 @@ public class MBoardPanel extends JPanel
 		{
 			this.moveCharacter(x, 0);
 		}
+	}
+	
+	public JTextArea[] getPropertyLabels()
+	{
+		return this.properties;
 	}
 	
 	/**
