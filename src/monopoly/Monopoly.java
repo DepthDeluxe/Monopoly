@@ -91,7 +91,7 @@ public class Monopoly {
 		return (modelState == MonopolyModelState.PLAYING);
 	}
 	
-	public boolean answerBuyRequest(boolean buying) {
+	public boolean handleBuyRequest(boolean buying) {
 		if (modelState != MonopolyModelState.BUY_REQUEST) {
 			return false;
 		}
@@ -121,6 +121,10 @@ public class Monopoly {
 	
 	public Player[] getPlayers() {
 		return players.toArray(new Player[0]);
+	}
+	
+	public int getCurrentPlayerIndex() {
+		return curPlayerIndex;
 	}
 	
 	public Player getCurrentPlayer() {
