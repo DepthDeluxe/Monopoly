@@ -131,6 +131,10 @@ public class Monopoly {
 		return currentPlayer;
 	}
 	
+	public Dice getDice() {
+		return dice;
+	}
+	
 	public Board getBoard() {
 		return board;
 	}

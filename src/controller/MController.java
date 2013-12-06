@@ -31,7 +31,7 @@ public class MController
 	}
 	
 	public void setRollDiceFunction() {
-		RollDiceAction actionListener = new RollDiceAction();
+		RollDiceAction actionListener = new RollDiceAction(theView, theGame);
 		
 		theView.getControl().setRollDiceAction(actionListener);
 	}
