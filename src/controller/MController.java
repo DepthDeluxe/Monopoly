@@ -31,12 +31,7 @@ public class MController
 	}
 	
 	public void setRollDiceFunction() {
-		ActionListener actionListener = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		};
+		RollDiceAction actionListener = new RollDiceAction();
 		
 		theView.getControl().setRollDiceAction(actionListener);
 	}
