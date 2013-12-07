@@ -20,6 +20,7 @@ public class PlayerTest {
 	private static final int START_MONEY = 3200;
 	private static final String PROPERTY_NAME = "Test Property";
 	private static final double PROPERTY_VALUE = 350.0;
+	private static final double PROPERTY_RENT = 35.0;
 	private static final String RAILROAD_NAME = "Test Railroad";
 	
 	private static final double ERROR = 0.01;
@@ -29,8 +30,8 @@ public class PlayerTest {
 		// construct everything with specified test values
 		player = new Player("Player", START_MONEY, BOARD_SIZE);
 		otherPlayer = new Player("Other Player", 100000, BOARD_SIZE);
-		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
-		railroad = new Railroad(RAILROAD_NAME);
+		property = new Property(PROPERTY_NAME, PROPERTY_VALUE, PROPERTY_RENT, 0, 0);
+		railroad = new Railroad(RAILROAD_NAME, PROPERTY_VALUE, PROPERTY_RENT, 0);
 	}
 	
 	@Test

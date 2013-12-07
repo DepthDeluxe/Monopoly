@@ -21,6 +21,10 @@ import org.xml.sax.SAXException;
 import monopoly.MonopolyModelState;
 import monopoly.Player;
 
+class InvalidXMLException extends RuntimeException {
+	public InvalidXMLException() { super("The XML is an invalid format!"); }
+}
+
 public class TileLoader {
 	//
 	// Main Functions
@@ -71,6 +75,11 @@ public class TileLoader {
 		for (int n = 0; n < propertyNodes.getLength(); n++) {
 			Node currentNode = propertyNodes.item(n);
 			
+			System.out.println(n);
+			if(n == 5) {
+				System.out.println("erorr");
+			}
+			
 			// typecast as an element only if it is an element
 			if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
 				ITile t = XMLToTile((Element)currentNode);
@@ -101,6 +110,10 @@ public class TileLoader {
 			else if (type.equals("Community Chest")) {
 				outTile = new CardTile(MonopolyModelState.COMMUNITY_CHEST);
 			}
+			else {
+				throw new InvalidXMLException();
+			}
+			
 			break;
 			
 		case "FreeParking":
@@ -123,21 +136,53 @@ public class TileLoader {
 			String strValue = getChildValue("Value", e);
 			double value = Double.parseDouble(strValue);
 			
-			outTile = new Property(name, value);
+			// get the rent
+			String strRent = getChildValue("Rent", e);
+			double rent = Double.parseDouble(strRent);
+			
+			// get mortgage value
+			String strMortgage = getChildValue("Mortgage", e);
+			double mortgageValue = Double.parseDouble(strMortgage);
+			
+			// get the group number
+			String strGroup = getChildValue("Group", e);
+			int group = Integer.parseInt(strGroup);
+			
+			outTile = new Property(name, value, rent, mortgageValue, group);
 			break;
 			
 		case "Railroad":
 			// get the name
 			name = getChildValue("Name", e);
 			
-			outTile = new Railroad(name);			
+			// get the value
+			strValue = getChildValue("Value", e);
+			value = Double.parseDouble(strValue);
+			
+			// get the base rent for railroad
+			String strRentBase = getChildValue("Rent", e);
+			double rentBase = Double.parseDouble(strRentBase);
+			
+			// get mortgage value
+			strMortgage = getChildValue("Mortgage", e);
+			mortgageValue = Double.parseDouble(strMortgage);
+			
+			outTile = new Railroad(name, value, rentBase, mortgageValue);
 			break;
 			
 		case "Utility":
 			// get the name
 			name = getChildValue("Name", e);
 			
-			outTile = new Utility(name);
+			// get the value
+			strValue = getChildValue("Value", e);
+			value = Double.parseDouble(strValue);
+			
+			// get mortgage value
+			strMortgage = getChildValue("Mortgage", e);
+			mortgageValue = Double.parseDouble(strMortgage);
+			
+			outTile = new Utility(name, value, mortgageValue);
 			break;
 			
 		default:
@@ -164,7 +209,7 @@ public class TileLoader {
 		return outTile;
 	}
 	
-	public static String getChildValue(String nodeName, Element e) {
+	public static String getChildValue(String nodeName, Element e) {		
 		return e.getElementsByTagName(nodeName).item(0).getFirstChild().getNodeValue();
 	}
 }

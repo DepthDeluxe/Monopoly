@@ -1,5 +1,7 @@
 package monopoly;
 
+import java.util.ArrayList;
+
 import monopoly.tiles.*;
 
 public class Board {
@@ -74,6 +76,28 @@ public class Board {
 		}
 		
 		return outProperty;
+	}
+	
+	public Property[] getPropertiesInGroup(int group) {
+		ArrayList<Property> pInGroup = new ArrayList<Property>();
+		
+		for (ITile t : tiles) {
+			// filter out non-properties
+			if (t.getTileType() != TileType.PROPERTY) {
+				break;
+			}
+			
+			// typecast to a property
+			Property p = (Property)t;
+			
+			// if the groups match, add it
+			if (group == p.getGroup()) {
+				pInGroup.add(p);
+			}
+		}
+		
+		// return the properties
+		return pInGroup.toArray(new Property[0]);
 	}
 	
 	public CardDeck getChanceDeck() {

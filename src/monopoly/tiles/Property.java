@@ -9,8 +9,10 @@ public class Property implements ITile {
 	//
 	
 	private String name;
-	
 	private double price;
+	private double rent;
+	private int group;
+	
 	private Player owner;
 	
 	private boolean isMortgaged;
@@ -23,10 +25,12 @@ public class Property implements ITile {
 	// Constructors
 	//
 	
-	public Property(String name, double price) {
+	public Property(String name, double price, double rent, double mortgagedValue, int group) {
 		this.name = name;
 		this.price = price;
-		this.mortgagedValue = 0.5 * price;
+		this.rent = rent;
+		this.mortgagedValue = mortgagedValue;
+		this.group = group;
 		
 		this.owner = null;
 		
@@ -99,13 +103,30 @@ public class Property implements ITile {
 		return price;
 	}
 	
+	public int getGroup() {
+		return group;
+	}
+	
 	public double getRent() {
-		// rent is nothing when the house is mortgaged
-		if (isMortgaged) {
-			return 0;
+		// if there is no owner, rent price is simple
+		if (owner == null) {
+			return rent;
 		}
-		else {
-			return price / 10;
+		
+		// find number of properties that owner has in each group
+		int numPropertiesInGroup = owner.getNumPropertiesInGroup(group);
+		
+		// charge different rent based on the number of properties owned in that group
+		switch (numPropertiesInGroup) {
+		case 1:
+			return rent;
+		
+		case 2:
+			return 2 * rent;
+			
+		// 3 or more properties in same group
+		default:
+			return 4 * rent;
 		}
 	}
 	

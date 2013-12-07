@@ -129,6 +129,21 @@ public class Player {
 		return properties.contains(p);
 	}
 	
+	public int getNumPropertiesInGroup(int group) {
+		// start off at zero
+		int numInGroup = 0;
+		
+		// go through all owned properties, incrementing if that
+		// owned property is a member of the specified group
+		for (Property p: properties) {
+			if (group == p.getGroup()) {
+				numInGroup++;
+			}
+		}
+		
+		return numInGroup;
+	}
+	
 	public int getNumRailroads() {
 		// iterate through the properties, seeing which ones you
 		// can typecast to Railroad.  If it can't, it will throw

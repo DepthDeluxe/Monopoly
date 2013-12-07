@@ -8,16 +8,16 @@ public class Utility extends Property {
 	// Static Variables
 	//
 	
-	private static final double UTILITY_VALUE = 200.0;
-
 	private static final TileType TILE_TYPE = TileType.UTILITY;
+	
+	public static final int GROUP = -2;
 	
 	//
 	// Constructors
 	//
 	
-	public Utility(String name) {
-		super(name, UTILITY_VALUE);
+	public Utility(String name, double price, double mortgageValue) {
+		super(name, price, 0, mortgageValue, GROUP);
 	}
 	
 	//
