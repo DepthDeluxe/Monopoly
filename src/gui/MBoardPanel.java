@@ -11,12 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Box;
 import java.awt.Color;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
-import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 
@@ -39,6 +35,7 @@ public class MBoardPanel extends JPanel
 	JLabel diceTwo; // image of second dice
 	int numPlayers;
 	
+	private final String[] filePathPlayer = {"gui/Images/playerOne.png", "gui/Images/playerTwo.png", "gui/Images/playerThree.png", "gui/Images/playerFour.png"};
 	public MBoardPanel(int playersNo)
 	{
 		this.numPlayers = playersNo;
@@ -60,9 +57,7 @@ public class MBoardPanel extends JPanel
 		for(int x = 0; x < numPlayers; x++)
 		{
 			this.players[x] = new JLabel(); // new label
-			String filePath = "gui/Images/player" + Integer.toString(x+1) + ".png"; // get filepath
-			System.out.println(filePath);
-			this.players[x].setIcon(new ImageIcon(filePath)); // set the image
+			this.players[x].setIcon(new ImageIcon(MBoardPanel.class.getResource(filePathPlayer[x]))); // set the image
 			this.players[x].setSize(20, 20); // set their size 
 			this.moveCharacter(x, 0); // move to the beginning of board 
 			this.players[x].setOpaque(true); // make sure they are drawn on top of everything
