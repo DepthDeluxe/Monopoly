@@ -1,0 +1,78 @@
+<?xml verstion="1.0" encoding="UTF-8" ?>
+<Cards>
+	<Card>
+		<Description> Submit your first link! You can sleep easy again. Collect 10 hours. </Description>
+		<Script> collect 10 </Script>
+	</Card>
+
+	<Card>
+		<Description> You made it to the front page! Collect 5 hours from ever player. </Description>
+		<Script> collectfromall 5 </Script>
+	</Card>
+
+	<Card>
+		<Description> You just got banned from your favorite subreddit! Gain 10 hours of sleep. </Description>
+		<Script> collect 10 </Script>
+	</Card>
+
+	<Card>
+		<Description> You've gone too deep and discovered /r/SpaceDicks... Lose 40 hours of sleep. </Description>
+		<Script> pay 40 </Script>
+	</Card>
+
+	<Card>
+		<Description> Discover a reddit add on! Move to the nearest add on space. If unowned you may buy it. If owned, pay the owner four times the amount shown on dice (or ten times if both are owned by the same player). </Description>
+		<Script> utility </Script>
+	</Card>
+
+	<Card>
+		<Description> You found an awesome new subreddit! Lose 5 hours of sleep! </Description>
+		<Script> pay 5 </Script>
+	</Card>
+
+	<Card>
+		<Description> You forgot your password! You have nothing to do but go to bed. Gain 10 hours of sleep! </Description>
+		<Script> collect 10 </Script>
+	</Card>
+
+	<Card>
+		<Description> Meet your favorite reddit god! Advance to the nearest person space. If unowned you may buy them. If owned, pay the owner the amount due. </Description>
+		<Script> railroad </Script>
+	</Card>
+
+	<Card>
+		<Description> Drink a 5 hour energy! Collect 5 hours. </Description>
+		<Script> collect 5 </Script>
+	</Card>
+
+	<Card>
+		<Description> You just bought a brand new espresso machine! Collect 15 hours of sleep. </Description>
+		<Script> collect 15 </Script>
+	</Card>
+
+	<Card>
+		<Description> Get into a heated argument in the comments! Lose 4 hours. </Description>
+		<Script> pay 4 </Script>
+	</Card>
+
+	<Card>
+		<Description> Family vacation with no internet! Gain 15 hours of sleep. </Description>
+		<Script> collect 15 </Script>
+	</Card>
+
+	<Card>
+		<Description> Caffeine pills! Gain 20 hours! </Description>
+		<Script> collect 20 </Script>
+	</Card>
+
+	<Card>
+		<Description> Daylight savings time ends! Gain 1 hour! </Description>
+		<Script> collect 1 </Script>
+	</Card>
+
+	<Card>
+		<Description> Daylight savings time begins! Lose 1 hour! </Description>
+		<Script> pay 1 </Script>
+	</Card>
+
+</Cards>
