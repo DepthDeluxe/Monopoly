@@ -9,7 +9,7 @@
 		<Group>0</Group>
 	</Property>
 	<CardTile>
-		<Type>Reddit Gold</Type>
+		<Type>Community Chest</Type>
 	</CardTile>
 	<Property>
 		<Name>Animals Being Jerks</Name>
@@ -33,7 +33,7 @@
 		<Group>1</Group>
 	</Property>
 	<CardTile>
-		<Type>Secret Santa</Type>
+		<Type>Chance</Type>
 	</CardTile>
 	<Property>
 		<Name>Movies</Name>
@@ -59,6 +59,7 @@
 	</Property>
 	<Utility>
 		<Name>Reddit Enhancement Suite</Name>
+		<Value>15.0</Value>
 		<Mortgage>7.5</Mortgage>
 	</Utility>
 	<Property>
@@ -89,7 +90,7 @@
 		<Group>3</Group>
 	</Property>
 	<CardTile>
-		<Type>Reddit Gold</Type>
+		<Type>Community Chest</Type>
 	</CardTile>
 	<Property>
 		<Name>Advice Animals</Name>
@@ -114,7 +115,7 @@
 		<Group>4</Group>
 	</Property>
 	<CardTile>
-		<Type>Secret Santa</Type>
+		<Type>Chance</Type>
 	</CardTile>
 	<Property>
 		<Name>WTF</Name>
@@ -152,6 +153,7 @@
 	</Property>
 	<Utility>
 		<Name>Reddit Iphone App</Name>
+		<Value>15.0</Value>
 		<Mortgage>7.5</Mortgage>
 	</Utility>
 	<Property>
@@ -179,7 +181,7 @@
 		<Group>6</Group>
 	</Property>
 	<CardTile>
-		<Type>Reddit Gold</Type>
+		<Type>Community Chest</Type>
 	</CardTile>
 	<Property>
 		<Name>Funny</Name>
@@ -195,7 +197,7 @@
 		<Mortgage>10.0</Mortgage>
 	</Railroad>
 	<CardTile>
-		<Type>Secret Santa</Type>
+		<Type>Chance</Type>
 	</CardTile>
 	<Property>
 		<Name>PC Gaming</Name>
