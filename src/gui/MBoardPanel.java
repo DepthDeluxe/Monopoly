@@ -35,7 +35,7 @@ public class MBoardPanel extends JPanel
 	JLabel diceTwo; // image of second dice
 	int numPlayers;
 	
-	private final String[] filePathPlayer = {"gui/Images/playerOne.png", "gui/Images/playerTwo.png", "gui/Images/playerThree.png", "gui/Images/playerFour.png"};
+	private final String[] filePathPlayer = {"Images/playerOne.jpg", "Images/playerTwo.jpg", "Images/playerThree.jpg", "Images/playerFour.jpg"};
 	public MBoardPanel(int playersNo)
 	{
 		this.numPlayers = playersNo;
