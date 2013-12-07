@@ -4,6 +4,9 @@
 	<Property>
 		<Name>Trees</Name>
 		<Value>6.0</Value>
+		<Rent>1.0</Rent>
+		<Mortgage>3.0</Mortgage>
+		<Group>0</Group>
 	</Property>
 	<CardTile>
 		<Type>Reddit Gold</Type>
@@ -11,14 +14,22 @@
 	<Property>
 		<Name>Animals Being Jerks</Name>
 		<Value>6.0</Value>
+		<Rent>2.0</Rent>
+		<Mortgage>3.0</Mortgage>
+		<Group>0</Group>
 	</Property>
 	<IncomeTax></IncomeTax>
 	<Railroad>
 		<Name>Bill Nye</Name>
+		<Rent>10.0</Rent>
+		<Mortgage>10.0</Mortgage>
 	</Railroad>
 	<Property>
 		<Name>Books</Name>
 		<Value>10.0</Value>
+		<Rent>3.0</Rent>
+		<Mortgage>5.0</Mortgage>
+		<Group>1</Group>
 	</Property>
 	<CardTile>
 		<Type>Secret Santa</Type>
@@ -26,33 +37,54 @@
 	<Property>
 		<Name>Movies</Name>
 		<Value>10.0</Value>
+		<Rent>3.0</Rent>
+		<Mortgage>5.0</Mortgage>
+		<Group>1</Group>
 	</Property>
 	<Property>
 		<Name>Music</Name>
 		<Value>12.0</Value>
+		<Rent>6.0</Rent>
+		<Mortgage>4.0</Mortgage>
+		<Group>1</Group>
 	</Property>
 	<Jail></Jail>
 	<Property>
 		<Name>Explain Like I'm 5</Name>
 		<Value>14.0</Value>
+		<Rent>5.0</Rent>
+		<Mortgage>7.0</Mortgage>
+		<Group>2</Group>
 	</Property>
 	<Utility>
 		<Name>Reddit Enhancement Suite</Name>
+		<Mortgage>7.5</Mortgage>
 	</Utility>
 	<Property>
 		<Name>Mildly Interesting</Name>
 		<Value>14.0</Value>
+		<Rent>5.0</Rent>
+		<Mortgage>7.0</Mortgage>
+		<Group>2</Group>
 	</Property>
 	<Property>
 		<Name>Woah Dude</Name>
 		<Value>16.0</Value>
+		<Rent>6.0</Rent>
+		<Mortgage>8.0</Mortgage>
+		<Group>2</Group>
 	</Property>
 	<Railroad>
 		<Name>Niel deGrasse Tyson</Name>
+		<Rent>10.0</Rent>
+		<Mortgage>10.0</Mortgage>
 	</Railroad>
 	<Property>
 		<Name>Gifs</Name>
 		<Value>18.0</Value>
+		<Rent>7.0</Rent>
+		<Mortgage>9.0</Mortgage>
+		<Group>3</Group>
 	</Property>
 	<CardTile>
 		<Type>Reddit Gold</Type>
@@ -60,15 +92,24 @@
 	<Property>
 		<Name>Advice Animals</Name>
 		<Value>18.0</Value>
+		<Rent>7.0</Rent>
+		<Mortgage>9.0</Mortgage>
+		<Group>3</Group>
 	</Property>
 	<Property>
 		<Name>Aww</Name>
 		<Value>20.0</Value>
+		<Rent>8.0</Rent>
+		<Mortgage>10.0</Mortgage>
+		<Group>3</Group>
 	</Property>
 	<FreeParking></FreeParking>
 	<Property>
 		<Name>Today I Learned</Name>
 		<Value>22.0</Value>
+		<Rent>9.0</Rent>
+		<Mortgage>11.0</Mortgage>
+		<Group>4</Group>
 	</Property>
 	<CardTile>
 		<Type>Secret Santa</Type>
@@ -76,28 +117,46 @@
 	<Property>
 		<Name>WTF</Name>
 		<Value>22.0</Value>
+		<Rent>9.0</Rent>
+		<Mortgage>11.0</Mortgage>
+		<Group>4</Group>
 	</Property>
 	<Property>
 		<Name>Videos</Name>
 		<Value>24.0</Value>
+		<Rent>10.0</Rent>
+		<Mortgage>12.0</Mortgage>
+		<Group>4</Group>
 	</Property>
 	<Railroad>
 		<Name>Snoo</Name>
+		<Rent>10.0</Rent>
+		<Mortgage>10.0</Mortgage>
 	</Railroad>
 	<Property>
 		<Name>World News</Name>
 		<Value>26.0</Value>
+		<Rent>11.0</Rent>
+		<Mortgage>13.0</Mortgage>
+		<Group>5</Group>
 	</Property>
 	<Property>
 		<Name>Ask Reddit</Name>
 		<Value>26.0</Value>
+		<Rent>11.0</Rent>
+		<Mortgage>13.0</Mortgage>
+		<Group>5</Group>
 	</Property>
 	<Utility>
 		<Name>Reddit Iphone App</Name>
+		<Mortgage>7.5</Mortgage>
 	</Utility>
 	<Property>
 		<Name>IamA</Name>
 		<Value>28.0</Value>
+		<Rent>12.0</Rent>
+		<Mortgage>14.0</Mortgage>
+		<Group>5</Group>
 	</Property>
 	<GoToJailTile>
 		<Destination>10</Destination>
@@ -105,10 +164,16 @@
 	<Property>
 		<Name>Gaming</Name>
 		<Value>30.0</Value>
+		<Rent>13.0</Rent>
+		<Mortgage>15.0</Mortgage>
+		<Group>6</Group>
 	</Property>
 	<Property>
 		<Name>Pics</Name>
 		<Value>30.0</Value>
+		<Rent>13.0</Rent>
+		<Mortgage>15.0</Mortgage>
+		<Group>6</Group>
 	</Property>
 	<CardTile>
 		<Type>Reddit Gold</Type>
@@ -116,9 +181,14 @@
 	<Property>
 		<Name>Funny</Name>
 		<Value>32.0</Value>
+		<Rent>15.0</Rent>
+		<Mortgage>16.0</Mortgage>
+		<Group>6</Group>
 	</Property>
 	<Railroad>
 		<Name>All Hail Gaben</Name>
+		<Rent>10.0</Rent>
+		<Mortgage>10.0</Mortgage>
 	</Railroad>
 	<CardTile>
 		<Type>Secret Santa</Type>
@@ -126,10 +196,16 @@
 	<Property>
 		<Name>PC Gaming</Name>
 		<Value>35.0</Value>
+		<Rent>17.5</Rent>
+		<Mortgage>17.5</Mortgage>
+		<Group>7</Group>
 	</Property>
 	<LuxuryTax></LuxuryTax>
 	<Property>
 		<Name>PC Master Race</Name>
 		<Value>40.0</Value>
+		<Rent>20.0</Rent>
+		<Mortgage>20.0</Mortgage>
+		<Group>7</Group>
 	</Property>
 </Tiles>
