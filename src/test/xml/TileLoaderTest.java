@@ -21,7 +21,7 @@ public class TileLoaderTest {
 	
 	@Before
 	public void setUp() {
-		tiles = TileLoader.loadFromXML("Tiles.xml");
+		tiles = TileLoader.loadFromXML("Original-Tiles.xml");
 	}
 	
 	//
