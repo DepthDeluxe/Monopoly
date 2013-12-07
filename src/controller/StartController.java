@@ -11,17 +11,9 @@ import gui.MMainFrame;
 import gui.MMainMenu;
 import gui.MSettingsMenu;
 
-import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import monopoly.Monopoly;
@@ -30,7 +22,7 @@ import monopoly.Monopoly;
  * @author ajrk001
  *
  */
-public class ViewController 
+public class StartController 
 {
 	//
 	// Member Variables 
@@ -52,7 +44,7 @@ public class ViewController
 	int numPlayers;
 	String[] playerNames;
 	
-	public ViewController()
+	public StartController()
 	{
 		numHours = 150;
 		numPlayers = 4;
