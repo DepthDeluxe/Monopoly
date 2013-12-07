@@ -6,6 +6,10 @@ import monopoly.tiles.*;
 import monopoly.xml.TileLoader;
 import monopoly.xml.CardLoader;
 
+class NoPlayersException extends RuntimeException {
+	public NoPlayersException() { super("There are not enough players added to the game!"); }	
+}
+
 public class Monopoly {
 	//
 	// Member Variables
@@ -58,6 +62,10 @@ public class Monopoly {
 	//
 	
 	public boolean nextMove() {
+		if (players.size() > 2) {
+			throw new NoPlayersException();
+		}
+		
 		// don't do anything if the model currently isn't in a playable state
 		if (modelState != MonopolyModelState.PLAYING) {
 			return false;
