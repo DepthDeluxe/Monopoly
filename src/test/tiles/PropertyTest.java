@@ -16,6 +16,7 @@ public class PropertyTest {
 	
 	private static final String PROPERTY_NAME = "Test Place";
 	private static final double PROPERTY_VALUE = 225.0;
+	private static final int BOARD_SIZE = 40;
 	
 	private static final double START_MONEY = 10000.0;
 	
@@ -24,17 +25,17 @@ public class PropertyTest {
 	@Before
 	public void setUp() {		
 		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
-		player = new Player("Player", START_MONEY + PROPERTY_VALUE, null);			// after purchase, player will have START_MONEY
+		player = new Player("Player", START_MONEY + PROPERTY_VALUE, BOARD_SIZE);			// after purchase, player will have START_MONEY
 		
 		// the player owns the property by default
 		player.buyProperty(property);
 
-		otherPlayer = new Player("Other Player", START_MONEY, null);
+		otherPlayer = new Player("Other Player", START_MONEY, BOARD_SIZE);
 	}
 	
 	@Test
 	public void testRent() {
-		Player otherPlayer = new Player("Other Player", START_MONEY, null);
+		Player otherPlayer = new Player("Other Player", START_MONEY, BOARD_SIZE);
 		
 		boolean success = property.chargeRent(otherPlayer);
 		
