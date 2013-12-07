@@ -51,14 +51,14 @@ public class CardTest {
 		theBoard = theGame.getBoard();
 		
 		// init main player
-		thePlayer = new Player("Herman", START_AMOUNT, theBoard);
+		thePlayer = new Player("Herman", START_AMOUNT, theBoard.getNumTiles());
 		theGame.addPlayer(thePlayer);
 		
 		// set up other players
 		otherPlayers = new Player[OTHER_PLAYER_COUNT];
 		for(int n = 0; n < OTHER_PLAYER_COUNT; n++) {
 			// init the player
-			otherPlayers[n] = new Player("dummy", START_AMOUNT, theBoard);
+			otherPlayers[n] = new Player("dummy", START_AMOUNT, theBoard.getNumTiles());
 			
 			// add to the game
 			theGame.addPlayer(otherPlayers[n]);

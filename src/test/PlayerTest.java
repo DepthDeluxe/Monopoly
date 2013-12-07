@@ -15,6 +15,8 @@ public class PlayerTest {
 	private Property property;
 	private Railroad railroad;
 	
+	private static final int BOARD_SIZE = 40;
+	
 	private static final int START_MONEY = 3200;
 	private static final String PROPERTY_NAME = "Test Property";
 	private static final double PROPERTY_VALUE = 350.0;
@@ -25,8 +27,8 @@ public class PlayerTest {
 	@Before
 	public void setUp() {
 		// construct everything with specified test values
-		player = new Player("Player", START_MONEY, null);
-		otherPlayer = new Player("Other Player", 100000, null);
+		player = new Player("Player", START_MONEY, BOARD_SIZE);
+		otherPlayer = new Player("Other Player", 100000, BOARD_SIZE);
 		property = new Property(PROPERTY_NAME, PROPERTY_VALUE);
 		railroad = new Railroad(RAILROAD_NAME);
 	}

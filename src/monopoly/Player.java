@@ -16,8 +16,8 @@ public class Player {
 
 	private int position;
 	private boolean inJail;
-	
-	private Board theBoard;
+
+	private int boardSize;
 	private LinkedList<Property> properties;
 	
 	//
@@ -30,10 +30,10 @@ public class Player {
 	// Constructors
 	//
 	
-	public Player(String name, double startMoney, Board theBoard) {
+	public Player(String name, double startMoney, int boardSize) {
 		this.name = name;
 		this.money = startMoney;
-		this.theBoard = theBoard;
+		this.boardSize = boardSize;
 		
 		position = 0;	
 		inJail = false;
@@ -45,7 +45,7 @@ public class Player {
 	// Main Functions
 	//
 	
-	public void move(int numProperties) {
+	public void move(int numProperties) {		
 		// don't move if in jail
 		if (inJail) {
 			return;
@@ -55,8 +55,8 @@ public class Player {
 		
 		// go back to the beginning, and collect money for
 		// passing go
-		if (this.position > theBoard.getNumTiles()) {
-			this.position -= theBoard.getNumTiles();
+		if (this.position > boardSize) {
+			this.position -= boardSize;
 			
 			giveMoney(GO_MONEY);
 		}
