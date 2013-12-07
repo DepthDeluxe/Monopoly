@@ -33,7 +33,7 @@ public class MMainFrame extends JFrame
 	/**
 	 * Constructor for the main frame, will initalize the frame and set attributes
 	 */
-	public MMainFrame()
+	public MMainFrame(int numPlayers)
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Monopoly");
@@ -46,7 +46,7 @@ public class MMainFrame extends JFrame
 		menuBar = tempBar;
 		this.setJMenuBar(menuBar);
 		
-		MBoardPanel board = new MBoardPanel();
+		MBoardPanel board = new MBoardPanel(numPlayers);
 		this.getContentPane().add(board, BorderLayout.CENTER);
 		this.theBoard = board;
 		

@@ -37,17 +37,19 @@ public class MBoardPanel extends JPanel
 	JTextArea[] properties;
 	JLabel diceOne; // image of the first dice
 	JLabel diceTwo; // image of second dice
+	int numPlayers;
 	
-	public MBoardPanel()
+	public MBoardPanel(int playersNo)
 	{
+		this.numPlayers = playersNo;
 		this.positions = new int[40][2];
-		this.players = new JLabel[4];
-		this.playerPos = new int[4];
+		this.players = new JLabel[numPlayers];
+		this.playerPos = new int[numPlayers];
 		this.properties = new JTextArea[22];
 		
 		this.setConstants(); // function that just sets the large array this.positions with default vals
 		
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < numPlayers; x++)
 		{
 			this.playerPos[x] = 3; // needs to be at a different value than default 0 so it can set positions
 		}
@@ -55,24 +57,17 @@ public class MBoardPanel extends JPanel
 		this.setSize(650, 650); // set size of panel
 		this.setLayout(null); // set by absolute values
 		
-		this.players[0] = new JLabel("1"); // create images for players
-		this.players[0].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerOne.jpg")));
-		this.players[1] = new JLabel("2");
-		this.players[1].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerTwo.png")));
-		this.players[2] = new JLabel("3");
-		this.players[2].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerThree.png")));
-		this.players[3] = new JLabel("4");
-		this.players[3].setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/playerFour.png")));
-		for(int x = 0; x < 4; x++) 
+		for(int x = 0; x < numPlayers; x++)
 		{
+			this.players[x] = new JLabel(); // new label
+			String filePath = "gui/Images/player" + Integer.toString(x+1) + ".png"; // get filepath
+			System.out.println(filePath);
+			this.players[x].setIcon(new ImageIcon(filePath)); // set the image
 			this.players[x].setSize(20, 20); // set their size 
 			this.moveCharacter(x, 0); // move to the beginning of board 
 			this.players[x].setOpaque(true); // make sure they are drawn on top of everything
+			this.add(this.players[x]);
 		}
-		add(this.players[0]);
-		add(this.players[1]);
-		add(this.players[2]);
-		add(this.players[3]);
 		
 		diceOne = new JLabel(); // creating the dice
 		diceOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Dice/diceOne.jpeg")));
@@ -660,7 +655,7 @@ public class MBoardPanel extends JPanel
 	public void moveCharacter(int player, int position)
 	{
 		int temp = 0;
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < numPlayers; x++)
 		{
 			if(x != player)
 			{
@@ -688,7 +683,7 @@ public class MBoardPanel extends JPanel
 	 */
 	public void resetBoard()
 	{
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < numPlayers; x++)
 		{
 			this.moveCharacter(x, 0);
 		}

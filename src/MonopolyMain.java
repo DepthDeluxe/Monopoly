@@ -1,13 +1,13 @@
 
 import java.awt.EventQueue;
 
-import controller.ViewController;
+import controller.StartController;
 
 
 public class MonopolyMain 
 {
 	public static void main(String[] args)
 	{
-		ViewController view = new ViewController();
+		StartController view = new StartController();
 	}
 }

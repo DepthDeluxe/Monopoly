@@ -67,7 +67,7 @@ public class StartController
 		menu.getBtnNewGame().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2)
 			{
-				MMainFrame frame = new MMainFrame();
+				MMainFrame frame = new MMainFrame(numPlayers);
 				game = frame;
 				frame.setVisible(true);
 				menu.setVisible(false);
@@ -76,7 +76,7 @@ public class StartController
 				theGame = new Monopoly("Original-Tiles.xml", null, null);
 				
 				// create the controller
-				theController = new MController(frame, theGame);
+				theController = new MController(frame, theGame, numHours, numPlayers, playerNames);
 			}
 		});
 		

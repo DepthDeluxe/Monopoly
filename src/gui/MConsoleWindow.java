@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 public class MConsoleWindow extends JPanel
 {
 	JTextArea consoleWindow; // the window that has to be updated
+	private final String endLine = "\n";
 	
 	public MConsoleWindow()
 	{
@@ -38,7 +39,6 @@ public class MConsoleWindow extends JPanel
 	 */
 	public void printLine(String line)
 	{
-		String text = consoleWindow.getText();
-		text += line + "\n";
+		consoleWindow.append(line + endLine);
 	}
 }

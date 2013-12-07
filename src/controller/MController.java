@@ -32,18 +32,25 @@ public class MController
 	private MMainFrame theView;
 	private Monopoly theGame;
 	
+	private int numHours;
+	private int numPlayers;
+	private String[] playerNames;
+	
 	//
 	// Constructors
 	//
 	
-	public MController(MMainFrame theView, Monopoly theGame)
+	public MController(MMainFrame theView, Monopoly theGame, int hours, int players, String[] names)
 	{
 		this.theView = theView;
 		this.theGame = theGame;
-		this.theGame.addPlayer(new Player("Player 1", 150, theGame.getBoard()));
-		this.theGame.addPlayer(new Player("Player 2", 150, theGame.getBoard()));
-		this.theGame.addPlayer(new Player("Player 3", 150, theGame.getBoard()));
-		this.theGame.addPlayer(new Player("Player 4", 150, theGame.getBoard()));
+		this.numHours = hours;
+		this.numPlayers = players;
+		playerNames = names;
+		for(int x = 0; x < numPlayers; x++)
+		{
+			this.theGame.addPlayer(new Player(playerNames[x], numHours, theGame.getBoard()));
+		}
 		setRollDiceFunction();
 		setMortgageFunction();
 		

@@ -26,7 +26,7 @@ public class MMenuBar extends JMenuBar
 		fileMenu = new JMenu("File"); // create the main menu holder
 		this.add(fileMenu);
 		
-		fileOptions = new JMenuItem[3]; // array of options for file
+		fileOptions = new JMenuItem[4]; // array of options for file
 		
 		fileOptions[0] = new JMenuItem("New Game");
 		fileMenu.add(fileOptions[0]);
@@ -36,6 +36,10 @@ public class MMenuBar extends JMenuBar
 		fileOptions[2] = new JMenuItem("Load Game");
 		fileMenu.add(fileOptions[1]);
 		fileMenu.add(fileOptions[2]);
+		fileMenu.addSeparator();
+		
+		fileOptions[3] = new JMenuItem("Exit");
+		fileMenu.add(fileOptions[3]);
 		
 		gameMenu = new JMenu("Game Options");
 		this.add(gameMenu);
