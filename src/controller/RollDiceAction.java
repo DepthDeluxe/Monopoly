@@ -96,24 +96,32 @@ public class RollDiceAction implements ActionListener {
 		MonopolyModelState state = theGame.getModelState();
 		switch(state) {
 		case BUY_REQUEST:
+			// get the user request
 			boolean userResponse = handleBuyRequest();
 			
+			// update the model
 			theGame.handleBuyRequest(userResponse);
 			break;
 			
 		case CHANCE:
+			// handle the situation graphically
 			handleChance();
+			
+			// update the model
+			theGame.handleChancePull();
 			break;
 			
 		case COMMUNITY_CHEST:
+			// handle the situation graphically
 			handleCommChest();
+			
+			// update the model
+			theGame.handleCommChestPull();
 			break;
 		
 		// PLAYING state
 		default:
 			break;
 		}
-		theGame.setModelState(MonopolyModelState.PLAYING);
-		theGame.incrementPlayer();
 	}
 }

@@ -62,7 +62,7 @@ public class Monopoly {
 	//
 	
 	public boolean nextMove() {
-		if (players.size() > 2) {
+		if (players.size() < 2) {
 			throw new NoPlayersException();
 		}
 		
@@ -91,16 +91,15 @@ public class Monopoly {
 		modelState = tile.landOn(currentPlayer);
 		
 		// return true if there isn't any other action required by
-		// the controller to continue the game
-		return (modelState == MonopolyModelState.PLAYING);
-	}
-	
-	public void incrementPlayer()
-	{
-		// increment the current player
-		curPlayerIndex++;
-		if (curPlayerIndex == players.size()) {
-			curPlayerIndex = 0;
+		// the controller to continue the game and increment the player
+		// because there is no response needed from the controller
+		if (modelState == MonopolyModelState.PLAYING) {
+			incrementPlayer();
+			
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
@@ -115,7 +114,39 @@ public class Monopoly {
 			success = currentPlayer.buyProperty(propertyToBuy);
 		}
 		
+		// reset the model state and increment the player
+		modelState = MonopolyModelState.PLAYING;
+		incrementPlayer();
+		
 		return success;
+	}
+	
+	public boolean handleChancePull() {
+		// get the pulled card
+		Card pulledCard = board.getChanceDeck().getTopCard();
+		
+		// run the script on the card
+		pulledCard.runScript(this);
+		
+		// reset the model state
+		modelState = MonopolyModelState.PLAYING;
+		incrementPlayer();
+		
+		return true;
+	}
+	
+	public boolean handleCommChestPull() {
+		// get the pulled card
+		Card pulledCard = board.getCommunityChestDeck().getTopCard();
+		
+		// run the script on the card
+		pulledCard.runScript(this);
+		
+		// reset the model state
+		modelState = MonopolyModelState.PLAYING;
+		incrementPlayer();
+		
+		return true;
 	}
 	
 	public void addPlayer(Player p) {
@@ -156,8 +187,15 @@ public class Monopoly {
 		return modelState;
 	}
 	
-	public void setModelState(MonopolyModelState state)
-	{
-		modelState = state;
+	//
+	// Private Functions
+	//
+	
+	private void incrementPlayer() {
+		// increment the current player
+		curPlayerIndex++;
+		if (curPlayerIndex == players.size()) {
+			curPlayerIndex = 0;
+		}
 	}
 }
