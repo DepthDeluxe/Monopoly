@@ -1,17 +1,24 @@
 package monopoly;
 
 public class CardDeck {
-	Card[] cards;
-	int curCardIndex;
+	private Card[] cards;
+	
+	private Card topCard;
+	private int  curCardIndex;
 	
 	public CardDeck(Card[] cards) {
 		this.cards = cards;
 		
+		topCard = cards[0];
 		curCardIndex = 0;
 	}
 	
+	public Card getTopCard() {
+		return topCard;
+	}
+	
 	public Card nextCard() {
-		Card currentCard = cards[curCardIndex];
+		topCard = cards[curCardIndex];
 		
 		// increment the card counter.  If it reached the end,
 		// reset to zero
@@ -20,6 +27,6 @@ public class CardDeck {
 			curCardIndex = 0;
 		}
 		
-		return currentCard;
+		return topCard;
 	}
 }
