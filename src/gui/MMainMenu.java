@@ -22,23 +22,19 @@ import javax.swing.JPanel;
  */
 public class MMainMenu extends JFrame
 {
-	private int hours;
-	private int players;
 	
 	private JButton btnNewGame;
 	private JButton btnLoadGame;
 	private JButton btnSettings;
 	
-	public MMainMenu(int hour, int player) 
+	public MMainMenu() 
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Reddit Monopoly!");
 		this.setLocation(100, 100);
 		this.setSize(400, 350);
+		this.setResizable(false);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		hours = hour;
-		players = player;
 		
 		JLabel monopolyImage = new JLabel("");
 		monopolyImage.setIcon(new ImageIcon(MMainMenu.class.getResource("/gui/Images/mainMenu.jpg")));
@@ -54,54 +50,8 @@ public class MMainMenu extends JFrame
 		btnPanel.add(btnLoadGame);
 		btnSettings = new JButton("Settings");
 		btnPanel.add(btnSettings);
-		
-		final MMainMenu menuTwo = this;
-		btnSettings.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e0)
-			{
-				MSettingsMenu menu = new MSettingsMenu(hours);
-				menu.setVisible(true);
-				menuTwo.dispose();
-			}
-		});
-		
-		/*btnNewGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e2)
-			{
-				MonopolyRunGame game = new MonopolyRunGame(hours, players);
-				this.dispose();
-			}
-		});*/
 	}
-
-	/**
-	 * @return the hours
-	 */
-	public int getHours() {
-		return hours;
-	}
-
-	/**
-	 * @param hours the hours to set
-	 */
-	public void setHours(int hours) {
-		this.hours = hours;
-	}
-
-	/**
-	 * @return the players
-	 */
-	public int getPlayers() {
-		return players;
-	}
-
-	/**
-	 * @param players the players to set
-	 */
-	public void setPlayers(int players) {
-		this.players = players;
-	}
-
+	
 	/**
 	 * @return the btnNewGame
 	 */
