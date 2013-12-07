@@ -46,4 +46,14 @@ public enum TileType {
 			return null;
 		}
 	}
+	
+	public static boolean isAPropertyDerivative(TileType t) {
+		if (t == TileType.PROPERTY ||
+				t == TileType.RAILROAD ||
+				t == TileType.UTILITY) {
+			return true;
+		}
+		
+		return false;
+	}
 }
