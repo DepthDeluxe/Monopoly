@@ -1,8 +1,6 @@
 package monopoly;
 
-import monopoly.tiles.Railroad;
 import monopoly.tiles.TileType;
-import monopoly.tiles.Utility;
 
 public class Card {
 	//
@@ -17,6 +15,7 @@ public class Card {
 	//
 	
 	public Card(String description, String cardScript) {
+		this.description = description;
 		this.cardScript = cardScript;
 	}
 	
