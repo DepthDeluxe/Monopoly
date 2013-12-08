@@ -73,7 +73,7 @@ public class StartController
 				menu.setVisible(false);
 				
 				// create the model
-				theGame = new Monopoly("Original-Tiles.xml", null, null);
+				theGame = new Monopoly("Tiles.xml", null, null);
 				
 				// create the controller
 				theController = new MController(frame, theGame, numHours, numPlayers, playerNames);
