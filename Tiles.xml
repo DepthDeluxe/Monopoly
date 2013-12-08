@@ -18,7 +18,10 @@
 		<Mortgage>3.0</Mortgage>
 		<Group>0</Group>
 	</Property>
-	<IncomeTax></IncomeTax>
+	<Tax>
+		<Rate>10</Rate>
+		<Minimum>20</Minimum>
+	</Tax>
 	<Railroad>
 		<Name>Bill Nye</Name>
 		<Value>20.0</Value>
@@ -206,7 +209,10 @@
 		<Mortgage>17.5</Mortgage>
 		<Group>7</Group>
 	</Property>
-	<LuxuryTax></LuxuryTax>
+	<Tax>
+		<Rate>0</Rate>
+		<Minimum>7.5</Minimum>
+	</Tax>
 	<Property>
 		<Name>PC Master Race</Name>
 		<Value>40.0</Value>

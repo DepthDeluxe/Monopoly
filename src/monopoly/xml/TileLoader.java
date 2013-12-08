@@ -178,6 +178,19 @@ public class TileLoader {
 			outTile = new Utility(name, value, mortgageValue);
 			break;
 			
+		case "Tax":
+			// get the rate
+			String rateStr = getChildValue("Rate", e);
+			double rate = Double.parseDouble(rateStr);
+			
+			// get the minimum
+			String taxMinStr = getChildValue("Minimum", e);
+			double taxMin = Double.parseDouble(taxMinStr);
+			
+			// construct the tax tile
+			outTile = new TaxTile(rate, taxMin);
+			break;
+			
 		default:
 			// assign the proper tile type
 			final TileType tileType = TileType.parseType(elementType);
