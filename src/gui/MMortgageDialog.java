@@ -30,6 +30,7 @@ public class MMortgageDialog extends JDialog implements ActionListener
 	LinkedList<Property> playProp;
 	int numProps;
 	JCheckBox[] boxes;
+	int[] indexes;
 	JButton confirm;
 	
 	Player player;
@@ -43,15 +44,22 @@ public class MMortgageDialog extends JDialog implements ActionListener
 		player = play;
 		
 		playProp = player.getProperties(); // get properties owned by player
-		numProps = playProp.size(); // get number
+		numProps = playProp.size() - player.getMortgagedProperties(); // get number
 		boxes = new JCheckBox[numProps]; // get the right number of checkboxes
+		indexes = new int[numProps];
 		
 		this.setLayout(new GridLayout(numProps + 1, 1, 0, 0)); // set layout to +1 size for button
 		
-		for(int x = 0; x < numProps; x++)
+		int y = 0;
+		for(int x = 0; x < playProp.size(); x++)
 		{
-			boxes[x] = new JCheckBox(propToString(playProp.get(x)));
-			this.add(boxes[x]);
+			if(!playProp.get(x).isMortgaged())
+			{
+				boxes[x] = new JCheckBox(propToString(playProp.get(x)));
+				indexes[y] = x;
+				this.add(boxes[y]);
+				y++;
+			}
 		}
 		
 		confirm = new JButton("Mortgage Selected Values");
@@ -74,7 +82,7 @@ public class MMortgageDialog extends JDialog implements ActionListener
 		{
 			if(boxes[x].isSelected())
 			{
-				playProp.get(x).mortgage();
+				playProp.get(indexes[x]).mortgage();
 				
 			}
 		}

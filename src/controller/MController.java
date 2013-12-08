@@ -62,10 +62,6 @@ public class MController
 		
 		loadViewFromModel();
 		setMenuBarFunction();
-		
-		theGame.getPlayers()[0].buyProperty(theGame.getBoard().getPropertyAt(1));
-		theGame.getPlayers()[0].buyProperty(theGame.getBoard().getPropertyAt(3));
-		theView.getControl().setPlayerMoneyVal(0, theGame.getPlayers()[0].getMoney());
 	}
 	
 	//
