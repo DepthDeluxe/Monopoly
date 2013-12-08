@@ -23,6 +23,9 @@ public class RollDiceAction implements ActionListener {
 	MBoardPanel	theBoardView;
 	Board		theBoardModel;
 	
+	private static String MAIN_TEXT = "Roll Dice!";
+	private static String PASS_TEXT = "Pass";
+	
 	//
 	// Constructors
 	//
@@ -72,6 +75,56 @@ public class RollDiceAction implements ActionListener {
 		ITile prop = theBoardModel.getTileAt(pos);
 		theMainFrame.getProperties().updateProperty(prop);
 	}
+	
+	/**
+	 * Changes the "roll dice" button's ActionListener to handle
+	 * this basic case (basically don't roll dice, change text
+	 * back to roll dice, and then set back the original ActionListener	
+	 */
+	public void enablePassButton() {
+		// get the original button
+		JButton theButton = theMainFrame.getControl().getBtnRollDice();
+		
+		// save reference to this class again
+		final ActionListener oldListener = this;
+		
+		// create the new action which manages the button when
+		// a player has the opportuniy to buy a property
+		ActionListener passListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// let the back-end know that the user doesn't want to buy the
+				// property
+				theGame.handleBuyRequest(false);
+				
+				// get the button
+				JButton theButton = (JButton)e.getSource();
+				
+				// remove action listeners
+				for (ActionListener al : theButton.getActionListeners()) {
+					theButton.removeActionListener(al);
+				}
+				
+				// add the original action listener back
+				theButton.addActionListener(oldListener);
+
+				// set the button text back to the start
+				theButton.setText(MAIN_TEXT);
+			}
+		};
+		
+		// remove all action listeners
+		for (ActionListener al : theButton.getActionListeners()) {
+			theButton.removeActionListener(al);
+		}
+
+		// add the anonymous action listener
+		theButton.addActionListener(passListener);
+		
+		// set the text
+		theButton.setText(PASS_TEXT);
+	}
+	
 	//
 	// ActionListener Implementation
 	//
@@ -79,53 +132,45 @@ public class RollDiceAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// run the next move on the model
-		String action = theMainFrame.getControl().getBtnRollDice().getText();
-		if(action.equals("Roll Dice!"))
-		{
-			theGame.nextMove();
+		theGame.nextMove();
+		
+		// update the dice
+		Dice d = theGame.getDice();
+		theBoardView.rollDice(d);
+		
+		// update the current player position
+		Player currentPlayer = theGame.getCurrentPlayer();
+		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
+		
+		updatePropertyPanel();
+		
+		// run the right function depending on the state of the model
+		MonopolyModelState state = theGame.getModelState();
+		switch(state) {
+		case BUY_REQUEST:
+			// turns this button into pass mode
+			enablePassButton();
+			break;
 			
-			// update the dice
-			Dice d = theGame.getDice();
-			theBoardView.rollDice(d);
+		case CHANCE:
+			// handle the situation graphically
+			handleChance();
 			
-			// update the current player position
-			Player currentPlayer = theGame.getCurrentPlayer();
-			theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
+			// update the model
+			theGame.handleChancePull();
+			break;
 			
-			updatePropertyPanel();
+		case COMMUNITY_CHEST:
+			// handle the situation graphically
+			handleCommChest();
 			
-			// run the right function depending on the state of the model
-			MonopolyModelState state = theGame.getModelState();
-			switch(state) {
-			case BUY_REQUEST:
-				theMainFrame.getControl().getBtnRollDice().setText("Pass");
-				break;
-				
-			case CHANCE:
-				// handle the situation graphically
-				handleChance();
-				
-				// update the model
-				theGame.handleChancePull();
-				break;
-				
-			case COMMUNITY_CHEST:
-				// handle the situation graphically
-				handleCommChest();
-				
-				// update the model
-				theGame.handleCommChestPull();
-				break;
-			
-			// PLAYING state
-			default:
-				break;
-			}
-		}
-		else
-		{
-			theGame.handleBuyRequest(false);
-			theMainFrame.getControl().getBtnRollDice().setText("Roll Dice!");
+			// update the model
+			theGame.handleCommChestPull();
+			break;
+		
+		// PLAYING state
+		default:
+			break;
 		}
 	}
 }
