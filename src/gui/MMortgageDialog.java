@@ -12,20 +12,24 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import monopoly.Player;
 import monopoly.tiles.Property;
 
-public class MMortgagePanel extends JDialog
+public class MMortgageDialog extends JDialog
 {
 	LinkedList<Property> playProp;
 	int numProps;
 	JCheckBox[] boxes;
 	JButton confirm;
 	
-	public MMortgagePanel(MMainFrame frame, Player play)
+	public MMortgageDialog(MMainFrame frame, Player play)
 	{
 		super(frame, true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		playProp = play.getProperties(); // get properties owned by player
 		numProps = playProp.size(); // get number
 		boxes = new JCheckBox[numProps]; // get the right number of checkboxes
@@ -40,6 +44,8 @@ public class MMortgagePanel extends JDialog
 		
 		confirm = new JButton("Mortgage Selected Values");
 		this.add(confirm);
+		//this.add(scrollPane);
+		this.pack();
 	}
 	
 	private String propToString(Property x)

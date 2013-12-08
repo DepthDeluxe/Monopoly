@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 
 import monopoly.Player;
 import gui.MMainFrame;
-import gui.MMortgagePanel;
+import gui.MMortgageDialog;
 
 
 /**
@@ -42,8 +42,8 @@ public class MortgageListener implements ActionListener
 			return;
 		}
 		
-		MMortgagePanel panel = new MMortgagePanel(frame, play);
-		
-
+		MMortgageDialog panel = new MMortgageDialog(frame, play);
+		panel.setLocationRelativeTo(frame);
+		panel.setVisible(true);
 	}
 }
