@@ -61,10 +61,7 @@ public class TileLoader {
 		catch (IOException e) {
 			e.printStackTrace();
 			return null;
-		}
-		
-		Node firstChildNode = document.getFirstChild();
-		
+		}		
 		
 		// get the property nodes and init the property arrays
 		Element propertiesElement = (Element)document.getFirstChild();
