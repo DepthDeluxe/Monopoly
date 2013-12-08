@@ -36,6 +36,10 @@ public class FreeParking implements ITile {
 		moneyInPot += amount;
 	}
 	
+	public double getMoneyInPot() {
+		return moneyInPot;
+	}
+	
 	//
 	// ITile implementation
 	//
