@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Cards>
 	<Card>
-		<Description> Your internet broke! Move to the broken internet space. Do not pass go. Do not collect 24 hours. </Description>
-		<Script> jail </Script>
+		<Description>Your internet broke! Move to the broken internet space. Do not pass go. Do not collect 24 hours.</Description>
+		<Script>jail</Script>
 	</Card>
 
 	<Card>
-		<Description> You just bought a brand new Tempur-Pedic mattress! Gain 8 hours of sleep. </Description>
-		<Script> collect 8 </Script>
+		<Description>You just bought a brand new Tempur-Pedic mattress! Gain 8 hours of sleep.</Description>
+		<Script>collect 8</Script>
 	</Card>
 
 	<Card>
-		<Description> You're favorite celebrity is doing an AMA! Lost 5 hours of sleep. </Description>
-		<Script> pay 5 </Script>
+		<Description>You're favorite celebrity is doing an AMA! Lost 5 hours of sleep.</Description>
+		<Script>pay 5</Script>
 	</Card>
 
 	<Card>
-		<Description> It's the weekend! Gain 10 hours of sleep. </Description>
-		<Script> collect 10 </Script>
+		<Description>It's the weekend! Gain 10 hours of sleep.</Description>
+		<Script>collect 10</Script>
 	</Card>
 
 	<Card>
-		<Description> You stay up all night after submitting a link to see how it does! Lose 8 hours of sleep. </Description>
-		<Script> pay 8 </Script>
+		<Description>You stay up all night after submitting a link to see how it does! Lose 8 hours of sleep.</Description>
+		<Script>pay 8</Script>
 	</Card>
 
 	<Card>
-		<Description> Advance to the nearest person space. If unowned, you may buy them. If owned, pay the owner the appropriate rent. </Description>
-		<Script> railroad </Script>
+		<Description>Advance to the nearest person space. If unowned, you may buy them. If owned, pay the owner the appropriate rent.</Description>
+		<Script>railroad</Script>
 	</Card>
 
 	<Card>
-		<Description> You got banned from your favorite subreddit! Gain 10 hours of sleep. </Description>
-		<Script> collect 10 </Script>
+		<Description>You got banned from your favorite subreddit! Gain 10 hours of sleep.</Description>
+		<Script>collect 10</Script>
 	</Card>
 
 	<Card>
-		<Description> You submitted a link that was awful, and lose 8 hours of sleep. </Description>
-		<Script> pay 8 </Script>
+		<Description>You submitted a link that was awful, and lose 8 hours of sleep.</Description>
+		<Script>pay 8</Script>
 	</Card>
 
 	<Card>
-		<Description> You spend the night sifting through new posts. Lose 5 hours. </Description>
-		<Script> pay 5 </Script>
+		<Description>You spend the night sifting through new posts. Lose 5 hours.</Description>
+		<Script>pay 5</Script>
 	</Card>
 
 	<Card>
-		<Description> You just discovered /r/bestofnetflix. You stay up all night watching movies, lose 15 hours of sleep. </Description>
-		<Script> pay 15 </Script>
+		<Description>You just discovered /r/bestofnetflix. You stay up all night watching movies, lose 15 hours of sleep.</Description>
+		<Script>pay 15</Script>
 	</Card>
 
 	<Card>
-		<Description> Become a moderator of a subreddit! Lose 10 hours of sleep. </Description>
-		<Script> pay 10 </Script>
+		<Description>Become a moderator of a subreddit! Lose 10 hours of sleep.</Description>
+		<Script>pay 10</Script>
 	</Card>
 
 	<Card>
-		<Description> Lunesta! Gain 5 hours of sleep. </Description>
-		<Script> collect 5 </Script>
+		<Description>Lunesta! Gain 5 hours of sleep.</Description>
+		<Script>collect 5</Script>
 	</Card>
 
 	<Card>
-		<Description> Get caught redditing at work and fired! Collect 12 hours of sleep! </Description>
-		<Script> collect 12 </Script>
+		<Description>Get caught redditing at work and fired! Collect 12 hours of sleep!</Description>
+		<Script>collect 12</Script>
 	</Card>
 
 	<Card>
-		<Description> There doesn't seem to be anything here. </Description>
-		<Script> collect 0</Script>
+		<Description>There doesn't seem to be anything here.</Description>
+		<Script>collect 0</Script>
 	</Card>
 
 
 	<Card>
-		<Description> Power outage! Gain 12 hours of sleep. </Description>
-		<Script> collect 12 </Script>
+		<Description>Power outage! Gain 12 hours of sleep.</Description>
+		<Script>collect 12</Script>
 	</Card>
 </Cards>
