@@ -52,12 +52,10 @@ public class MMainFrame extends JFrame
 		this.getContentPane().add(board, BorderLayout.CENTER); // in the center
 		this.theBoard = board;
 		
-		MControlPanel controlT = new MControlPanel();
+		MControlPanel controlT = new MControlPanel(numPlayers);
 		this.getContentPane().add(controlT, BorderLayout.WEST);
 		this.control = controlT;
 		this.control.setSize(100, 450);
-		double[] arr = {150.00, 150.00, 150.00, 150.00};
-		this.control.setMoneyVals(arr);
 		
 		MPropertiesPanel propertyPanel = new MPropertiesPanel();
 		this.properties = propertyPanel;
