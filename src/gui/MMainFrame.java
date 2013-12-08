@@ -27,6 +27,7 @@ public class MMainFrame extends JFrame
 {
 	private JLayeredPane mainPane;
 	private JPanel gamePanel;
+	private JPanel tempPane;
 	private MBoardPanel theBoard;
 	private MControlPanel control;
 	private MPropertiesPanel properties;
@@ -43,7 +44,7 @@ public class MMainFrame extends JFrame
 		this.setTitle("Monopoly"); // set fram title
 		this.setLocation(100, 100); // set location
 		this.setResizable(false); // not resizable to keep components in good shape
-		this.setSize(900, 900); // set size of this window
+		this.setSize(900, 700); // set size of this window
 		
 		this.mainPane = new JLayeredPane(); // new layered pane
 		this.mainPane.setBorder(empty); // empty border
@@ -70,13 +71,15 @@ public class MMainFrame extends JFrame
 		this.properties = propertyPanel;
 		this.gamePanel.add(propertyPanel, BorderLayout.EAST);
 		
-		MConsoleWindow console = new MConsoleWindow();
+		/*MConsoleWindow console = new MConsoleWindow();
 		this.consoleWindow = console;
-		this.gamePanel.add(console, BorderLayout.SOUTH);
+		this.gamePanel.add(console, BorderLayout.SOUTH);*/
 		
-		this.gamePanel.setBounds(0, 0, 900, 900);
+		this.gamePanel.setBounds(0, 0, 900, 700);
 		this.mainPane.add(gamePanel, 0);
 	}
+	
+	
 
 	/**
 	 * Function to get the main board panel
@@ -115,5 +118,27 @@ public class MMainFrame extends JFrame
 	public MConsoleWindow getConsoleWindow() {
 		return consoleWindow;
 	}
+
+	/**
+	 * @return the tempPane
+	 */
+	public JPanel getTempPane() {
+		return tempPane;
+	}
+
+	/**
+	 * @param tempPane the tempPane to set
+	 */
+	public void setTempPane(JPanel tempPane) {
+		this.tempPane = tempPane;
+	}
+
+	/**
+	 * @return the mainPane
+	 */
+	public JLayeredPane getMainPane() {
+		return mainPane;
+	}
+	
 
 }
