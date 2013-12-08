@@ -95,6 +95,7 @@ public class RollDiceAction implements ActionListener {
 			MonopolyModelState state = theGame.getModelState();
 			switch(state) {
 			case BUY_REQUEST:
+				theMainFrame.getControl().getBtnRollDice().setText("Pass");
 				break;
 				
 			case CHANCE:
@@ -117,7 +118,6 @@ public class RollDiceAction implements ActionListener {
 			default:
 				break;
 			}
-			theMainFrame.getControl().getBtnRollDice().setText("Pass");
 		}
 		else
 		{
