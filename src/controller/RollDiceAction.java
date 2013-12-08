@@ -39,6 +39,10 @@ public class RollDiceAction implements ActionListener {
 		theBoardModel = theGame.getBoard();
 	}
 	
+	//
+	// State Handling Functions
+	//
+	
 	private void handleChance(Card c) {
 		System.out.println("Landed on Chance");
 		System.out.println("Description: " + c.getDescription());
@@ -49,6 +53,25 @@ public class RollDiceAction implements ActionListener {
 		System.out.println("Landed on Community Chest");
 		System.out.println("Description: " + c.getDescription());
 		System.out.println();
+	}
+	
+	//
+	// View Updating Functions
+	//
+	
+	/**
+	 * Meta-function which calls all the other functions in this class
+	 * that update the view.  This will be called multiple times in the
+	 * main controller
+	 */
+	private void updateView() {
+		// update the dice
+		Dice d = theGame.getDice();
+		theBoardView.rollDice(d);
+		
+		// update the view
+		setPlayerPosViewFromModel();		
+		updatePropertyPanel();
 	}
 	
 	/**
@@ -89,6 +112,10 @@ public class RollDiceAction implements ActionListener {
 		// set the player's position to where they are on the model
 		theBoardView.moveCharacter(curPlayerIndex, currentPlayerPos);
 	}
+	
+	//
+	// Pass Button Change Handler
+	//
 	
 	/**
 	 * Changes the "roll dice" button's ActionListener to handle
@@ -145,16 +172,12 @@ public class RollDiceAction implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// run the next move on the model
-		theGame.nextMove();
-		
-		// update the dice
-		Dice d = theGame.getDice();
-		theBoardView.rollDice(d);
-		
-		// update the view
-		setPlayerPosViewFromModel();		
-		updatePropertyPanel();
+		// run the next move and update model if the game
+		// is in a playable state
+		if (theGame.getModelState() == MonopolyModelState.PLAYING) {
+			theGame.nextMove();
+			updateView();
+		}
 		
 		// run the right function depending on the state of the model
 		MonopolyModelState state = theGame.getModelState();
@@ -162,7 +185,11 @@ public class RollDiceAction implements ActionListener {
 		case BUY_REQUEST:
 			// turns this button into pass mode
 			enablePassButton();
-			break;
+			
+			// function needs to return to get out of the infinite
+			// repeat loop because the game is not meant to continue
+			// until the BUY_REQUEST has been answered...
+			return;
 			
 		case CHANCE:
 			// handle the situation graphically
@@ -185,8 +212,12 @@ public class RollDiceAction implements ActionListener {
 			break;
 		}
 		
-		// update the view after the model has changed stuff
-		setPlayerPosViewFromModel();		
-		updatePropertyPanel();
+		// update the view after the model has changed
+		updateView();
+		
+		// run this function again if the model is not in the playing state
+		if (theGame.getModelState() != MonopolyModelState.PLAYING) {
+			actionPerformed(e);
+		}
 	}
 }
