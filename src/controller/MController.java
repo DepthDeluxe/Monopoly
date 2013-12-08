@@ -86,14 +86,7 @@ public class MController
 	}
 	
 	private void setMortgageFunction() {
-		ActionListener actionListener = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		};
-		
-		theView.getControl().setMortgageAction(actionListener);
+		theView.getControl().setMortgageAction(new MortgageListener(theGame.getPlayers()[0], theView));
 	}
 	
 	private void setMenuBarFunction()
