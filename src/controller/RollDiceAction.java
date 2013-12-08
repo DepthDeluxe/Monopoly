@@ -124,5 +124,6 @@ public class RollDiceAction implements ActionListener {
 			theGame.handleBuyRequest(false);
 			theMainFrame.getControl().getBtnRollDice().setText("Roll Dice!");
 		}
+		updateControlPanel();
 	}
 }

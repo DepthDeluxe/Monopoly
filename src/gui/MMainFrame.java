@@ -56,7 +56,7 @@ public class MMainFrame extends JFrame
 		this.getContentPane().add(controlT, BorderLayout.WEST);
 		this.control = controlT;
 		this.control.setSize(100, 450);
-		double[] arr = {4000.00, 2000.00, 1000.00, 5000.00};
+		double[] arr = {150.00, 150.00, 150.00, 150.00};
 		this.control.setMoneyVals(arr);
 		
 		MPropertiesPanel propertyPanel = new MPropertiesPanel();

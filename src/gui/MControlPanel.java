@@ -37,19 +37,19 @@ public class MControlPanel extends JPanel
 		this.nameLabels = new JLabel[4];
 		this.setLayout(new GridLayout(10, 1, 0, 0));		
 		
-		nameLabels[0] = createLabel("Your Money!:");
+		nameLabels[0] = createLabel("Your Hours:");
 		moneyLabels[0] = createLabel("0");
 		moneyLabels[0].setFont(boldFont);
 		
-		nameLabels[1] = createLabel("Player Two Money!:");
+		nameLabels[1] = createLabel("Player Two Hours:");
 		moneyLabels[1] = createLabel("0");
 		moneyLabels[1].setFont(boldFont);
 		
-		nameLabels[2] = createLabel("Player Three Money!:");
+		nameLabels[2] = createLabel("Player Three Hours:");
 		moneyLabels[2] = createLabel("0");
 		moneyLabels[2].setFont(boldFont);
 		
-		nameLabels[3] = createLabel("Player Four Money!:");
+		nameLabels[3] = createLabel("Player Four Hours:");
 		moneyLabels[3] = createLabel("0");
 		moneyLabels[3].setFont(boldFont);
 		

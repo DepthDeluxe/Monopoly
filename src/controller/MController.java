@@ -75,6 +75,7 @@ public class MController
 			public void actionPerformed(ActionEvent e)
 			{
 				theGame.handleBuyRequest(true);
+				// Update model
 			}
 		});
 	}
