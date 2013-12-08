@@ -44,7 +44,7 @@ public class MMainFrame extends JFrame
 		this.setTitle("Monopoly"); // set fram title
 		this.setLocation(100, 100); // set location
 		this.setResizable(false); // not resizable to keep components in good shape
-		this.setSize(900, 700); // set size of this window
+		this.setSize(900, 800); // set size of this window
 		
 		this.mainPane = new JLayeredPane(); // new layered pane
 		this.mainPane.setBorder(empty); // empty border
@@ -63,7 +63,7 @@ public class MMainFrame extends JFrame
 		MControlPanel controlT = new MControlPanel();
 		this.gamePanel.add(controlT, BorderLayout.WEST);
 		this.control = controlT;
-		this.control.setSize(100, 550);
+		this.control.setSize(100, 450);
 		double[] arr = {4000.00, 2000.00, 1000.00, 5000.00};
 		this.control.setMoneyVals(arr);
 		
@@ -77,6 +77,8 @@ public class MMainFrame extends JFrame
 		
 		this.gamePanel.setBounds(0, 0, 900, 700);
 		this.mainPane.add(gamePanel, 0);
+		
+		this.tempPane = null;
 	}
 	
 	
@@ -131,6 +133,17 @@ public class MMainFrame extends JFrame
 	 */
 	public void setTempPane(JPanel tempPane) {
 		this.tempPane = tempPane;
+		
+		if(tempPane == null)
+		{
+			this.mainPane.remove(tempPane);
+		}
+		else
+		{
+			this.mainPane.add(tempPane, 1);
+			this.tempPane.setBounds(20, 30, 200, 500);
+			this.tempPane.setOpaque(true);
+		}
 	}
 
 	/**

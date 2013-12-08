@@ -183,4 +183,9 @@ public class Player {
 	public boolean isInJail() {
 		return inJail;
 	}
+	
+	public LinkedList<Property> getProperties()
+	{
+		return this.properties;
+	}
 }
