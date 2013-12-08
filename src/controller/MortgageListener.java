@@ -42,13 +42,8 @@ public class MortgageListener implements ActionListener
 			return;
 		}
 		
-		MMortgagePanel panel = new MMortgagePanel(play);
-		JScrollPane scrollPanel = new JScrollPane();
-		scrollPanel.add(panel);
+		MMortgagePanel panel = new MMortgagePanel(frame, play);
 		
-		JPanel tempPane = new JPanel();
-		tempPane.add(scrollPanel);
-		
-		frame.setTempPane(tempPane);
+
 	}
 }

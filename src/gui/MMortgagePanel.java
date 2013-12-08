@@ -11,20 +11,21 @@ import java.awt.GridLayout;
 import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JPanel;
+import javax.swing.JDialog;
 
 import monopoly.Player;
 import monopoly.tiles.Property;
 
-public class MMortgagePanel extends JPanel
+public class MMortgagePanel extends JDialog
 {
 	LinkedList<Property> playProp;
 	int numProps;
 	JCheckBox[] boxes;
 	JButton confirm;
 	
-	public MMortgagePanel(Player play)
+	public MMortgagePanel(MMainFrame frame, Player play)
 	{
+		super(frame, true);
 		playProp = play.getProperties(); // get properties owned by player
 		numProps = playProp.size(); // get number
 		boxes = new JCheckBox[numProps]; // get the right number of checkboxes

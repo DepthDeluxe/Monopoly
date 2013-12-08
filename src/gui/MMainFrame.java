@@ -25,9 +25,6 @@ import monopoly.tiles.Property;
  */
 public class MMainFrame extends JFrame
 {
-	private JLayeredPane mainPane;
-	private JPanel gamePanel;
-	private JPanel tempPane;
 	private MBoardPanel theBoard;
 	private MControlPanel control;
 	private MPropertiesPanel properties;
@@ -46,22 +43,17 @@ public class MMainFrame extends JFrame
 		this.setResizable(false); // not resizable to keep components in good shape
 		this.setSize(900, 800); // set size of this window
 		
-		this.mainPane = new JLayeredPane(); // new layered pane
-		this.mainPane.setBorder(empty); // empty border
-		this.setContentPane(this.mainPane); // make the layered pane the content pane
-		
-		this.gamePanel = new JPanel(new BorderLayout()); // the pane holding the main components 
 		
 		MMenuBar tempBar = new MMenuBar(); // the menu bad
 		menuBar = tempBar;
 		this.setJMenuBar(menuBar); // add it
 		
 		MBoardPanel board = new MBoardPanel(numPlayers); // create the board
-		this.gamePanel.add(board, BorderLayout.CENTER); // in the center
+		this.getContentPane().add(board, BorderLayout.CENTER); // in the center
 		this.theBoard = board;
 		
 		MControlPanel controlT = new MControlPanel();
-		this.gamePanel.add(controlT, BorderLayout.WEST);
+		this.getContentPane().add(controlT, BorderLayout.WEST);
 		this.control = controlT;
 		this.control.setSize(100, 450);
 		double[] arr = {4000.00, 2000.00, 1000.00, 5000.00};
@@ -69,20 +61,13 @@ public class MMainFrame extends JFrame
 		
 		MPropertiesPanel propertyPanel = new MPropertiesPanel();
 		this.properties = propertyPanel;
-		this.gamePanel.add(propertyPanel, BorderLayout.EAST);
+		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
 		
 		/*MConsoleWindow console = new MConsoleWindow();
 		this.consoleWindow = console;
 		this.gamePanel.add(console, BorderLayout.SOUTH);*/
-		
-		this.gamePanel.setBounds(0, 0, 900, 700);
-		this.mainPane.add(gamePanel, 0);
-		
-		this.tempPane = null;
 	}
 	
-	
-
 	/**
 	 * Function to get the main board panel
 	 * @return MBoardPanel instance of the board
@@ -120,38 +105,4 @@ public class MMainFrame extends JFrame
 	public MConsoleWindow getConsoleWindow() {
 		return consoleWindow;
 	}
-
-	/**
-	 * @return the tempPane
-	 */
-	public JPanel getTempPane() {
-		return tempPane;
-	}
-
-	/**
-	 * @param tempPane the tempPane to set
-	 */
-	public void setTempPane(JPanel tempPane) {
-		this.tempPane = tempPane;
-		
-		if(tempPane == null)
-		{
-			this.mainPane.remove(tempPane);
-		}
-		else
-		{
-			this.mainPane.add(tempPane, 1);
-			this.tempPane.setBounds(20, 30, 200, 500);
-			this.tempPane.setOpaque(true);
-		}
-	}
-
-	/**
-	 * @return the mainPane
-	 */
-	public JLayeredPane getMainPane() {
-		return mainPane;
-	}
-	
-
 }
