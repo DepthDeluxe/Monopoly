@@ -64,10 +64,13 @@ public class RollDiceAction implements ActionListener {
 	 */
 	private void updatePropertyPanel()
 	{
-		Player cur = theGame.getCurrentPlayer(); // get the current player
-		int pos = cur.getPosition(); // get their position
-		ITile prop = theBoardModel.getTileAt(pos); // get the tile
-		theMainFrame.getProperties().updateProperty(prop); // update panel
+		// get the current player's position
+		Player cur = theGame.getCurrentPlayer();
+		int pos = cur.getPosition();
+		
+		// update the panel with tile that player is currently landed on
+		ITile prop = theBoardModel.getTileAt(pos);
+		theMainFrame.getProperties().updateProperty(prop);
 	}
 	//
 	// ActionListener Implementation
