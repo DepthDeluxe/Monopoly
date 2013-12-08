@@ -43,12 +43,20 @@ public class RollDiceAction implements ActionListener {
 	// State Handling Functions
 	//
 	
+	/**
+	 * Handles a player landing on chance in GUI
+	 * @param c - The card drawn
+	 */
 	private void handleChance(Card c) {
 		System.out.println("Landed on Chance");
 		System.out.println("Description: " + c.getDescription());
 		System.out.println();
 	}
 	
+	/**
+	 * Handles a player landing on community chest in GUI
+	 * @param c - The card drawn
+	 */
 	private void handleCommChest(Card c) {
 		System.out.println("Landed on Community Chest");
 		System.out.println("Description: " + c.getDescription());
@@ -103,6 +111,10 @@ public class RollDiceAction implements ActionListener {
 		theMainFrame.getProperties().updateProperty(prop);
 	}
 	
+	/**
+	 * Updates the current player's position from their
+	 * location in the model
+	 */
 	private void setPlayerPosViewFromModel() {
 		// get player information
 		int curPlayerIndex = theGame.getCurrentPlayerIndex();
@@ -170,6 +182,12 @@ public class RollDiceAction implements ActionListener {
 	// ActionListener Implementation
 	//
 	
+	/**
+	 * Handles the "Roll Dice" button which progresses the game.  This function
+	 * will run until either a buy request has been posted or the game is in
+	 * the PLAYING state.  This is to allow cards to move players around the
+	 * board and buy properties they are moved to...
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// run the next move and update model if the game
