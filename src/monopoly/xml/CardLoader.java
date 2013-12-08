@@ -58,19 +58,14 @@ public class CardLoader {
 		
 		for (int n = 0; n < cardNodes.getLength(); n++) {
 			Node currentNode = cardNodes.item(n);
-			Element currentElement;
-			try {
-				// try to typecast as element
-				currentElement = (Element)currentNode;
-				
+			
+			// typecast only if it is an element
+			if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
 				// load the card
-				Card loadedCard = XMLToCard(currentElement);
+				Card c = XMLToCard((Element)currentNode);
 				
-				// add the card to the list
-				cards.add(loadedCard);
-			}
-			catch (ClassCastException e) {
-				// don't do anything if the last element was not a node
+				// and add to the list
+				cards.add(c);
 			}
 		}
 		
@@ -79,9 +74,9 @@ public class CardLoader {
 		return cards.toArray(cardArray);
 	}
 	
-	public static Card XMLToCard(Element cardElement) {
-		String description = cardElement.getElementsByTagName("Description").item(0).getNodeValue();
-		String script = cardElement.getElementsByTagName("Script").item(0).getNodeValue();
+	public static Card XMLToCard(Element cardElement) {		
+		String description = TileLoader.getChildValue("Description", cardElement);
+		String script = TileLoader.getChildValue("Script", cardElement);
 		
 		return new Card(description, script);
 	}
