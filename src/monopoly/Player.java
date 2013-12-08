@@ -19,6 +19,7 @@ public class Player {
 
 	private int boardSize;
 	private LinkedList<Property> properties;
+	private int mortgagedProperties;
 	
 	//
 	// Static Variables
@@ -35,7 +36,8 @@ public class Player {
 		this.money = startMoney;
 		this.boardSize = boardSize;
 		
-		position = 0;	
+		position = 0;
+		mortgagedProperties = 0;
 		inJail = false;
 		
 		properties = new LinkedList<Property>();
@@ -187,5 +189,15 @@ public class Player {
 	public LinkedList<Property> getProperties()
 	{
 		return this.properties;
+	}
+	
+	public void changeMortgagedProperties(int x)
+	{
+		this.mortgagedProperties += x;
+	}
+	
+	public int getMortgagedProperties()
+	{
+		return this.mortgagedProperties;
 	}
 }

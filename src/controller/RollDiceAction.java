@@ -237,5 +237,6 @@ public class RollDiceAction implements ActionListener {
 		if (theGame.getModelState() != MonopolyModelState.PLAYING) {
 			actionPerformed(e);
 		}
+		updateControlPanel();
 	}
 }

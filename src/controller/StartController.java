@@ -49,7 +49,7 @@ public class StartController
 	{
 		numHours = 150; // default values for variables
 		numPlayers = 4;
-		playerNames = new String[4];
+		playerNames = new String[] {"Player One", "Player Two", "Player Three", "Player Four"};
 		menu = new MMainMenu();
 		runMainMenu(); // create the start menu
 	}
@@ -74,6 +74,11 @@ public class StartController
 			{
 				MMainFrame frame = new MMainFrame(numPlayers); // open view
 				game = frame;
+				
+				// need to set some variables
+				game.getControl().setMoneyVals(new double[] {numHours, numHours, numHours, numHours}); // doesn't matter numplayers, will set as needed
+				game.getControl().setNames(playerNames);
+				
 				frame.setVisible(true);
 				menu.setVisible(false);
 				

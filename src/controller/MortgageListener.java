@@ -9,14 +9,18 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import monopoly.Player;
+import monopoly.tiles.Property;
 import gui.MMainFrame;
-import gui.MMortgagePanel;
+import gui.MMortgageDialog;
+import gui.MUnmortgageDialog;
 
 
 /**
@@ -36,19 +40,50 @@ public class MortgageListener implements ActionListener
 	
 	public void actionPerformed(ActionEvent e1)
 	{
-		if(play.getProperties().size() == 0)
+		openDialog(); // open the dialog box
+	}
+	
+	private void openDialog()
+	{
+		if(play.getProperties().size()  == 0) // if no properties
 		{
-			JOptionPane.showMessageDialog(null, "You don't have any properties!");
+			JOptionPane.showMessageDialog(null, "You don't have any properties to mortgage!");
 			return;
 		}
-		
-		MMortgagePanel panel = new MMortgagePanel(play);
-		JScrollPane scrollPanel = new JScrollPane();
-		scrollPanel.add(panel);
-		
-		JPanel tempPane = new JPanel();
-		tempPane.add(scrollPanel);
-		
-		frame.setTempPane(tempPane);
+		else if((play.getProperties().size()-play.getMortgagedProperties()) == 0) // all properties are mortgaged
+		{
+			unmortgage();
+		}
+		else if(play.getMortgagedProperties() == 0) // if no mortgaged properties, go straight to mortgaged
+		{
+			mortgage();
+		}
+		else
+		{
+			Object[] options = {"Mortgage", "Unmortgage"};
+			int option = JOptionPane.showOptionDialog(null, "Do you want to mortgage or unmortgage properties?", "Property Management", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			if(option == 0)
+			{
+				mortgage();
+			}
+			else if(option == 1)
+			{
+				unmortgage();
+			}
+		}
+	}
+	
+	private void mortgage()
+	{
+		MMortgageDialog panel = new MMortgageDialog(frame, play);
+		panel.setLocationRelativeTo(frame);
+		panel.setVisible(true);
+	}
+	
+	private void unmortgage()
+	{
+		MUnmortgageDialog panel = new MUnmortgageDialog(frame, play);
+		panel.setLocationRelativeTo(frame);
+		panel.setVisible(true);
 	}
 }

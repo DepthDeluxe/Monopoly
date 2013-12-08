@@ -30,36 +30,36 @@ public class MControlPanel extends JPanel
 	JButton btnRollDice;
 	JButton btnMortgage;
 	
+	int numPlayers;
+	
 	Font boldFont = new Font("Tahoma", Font.BOLD, 11);
-	public MControlPanel() 
+	
+	public MControlPanel(int players) 
 	{
-		this.moneyLabels = new JLabel[4];
-		this.nameLabels = new JLabel[4];
-		this.setLayout(new GridLayout(10, 1, 0, 0));		
+		numPlayers = players;
+		this.moneyLabels = new JLabel[numPlayers];
+		this.nameLabels = new JLabel[numPlayers];
+		this.setLayout(new GridLayout(numPlayers * 2 + 2, 1, 0, 0));		
 		
-		nameLabels[0] = createLabel("Your Money!:");
+		nameLabels[0] = createLabel("Your Hours:");
 		moneyLabels[0] = createLabel("0");
 		moneyLabels[0].setFont(boldFont);
 		
-		nameLabels[1] = createLabel("Player Two Money!:");
-		moneyLabels[1] = createLabel("0");
-		moneyLabels[1].setFont(boldFont);
-		
-		nameLabels[2] = createLabel("Player Three Money!:");
-		moneyLabels[2] = createLabel("0");
-		moneyLabels[2].setFont(boldFont);
-		
-		nameLabels[3] = createLabel("Player Four Money!:");
-		moneyLabels[3] = createLabel("0");
-		moneyLabels[3].setFont(boldFont);
+		for(int x = 1; x < numPlayers; x++)
+		{
+			nameLabels[x] = createLabel("Player " + x + " Hours:");
+			moneyLabels[x] = createLabel("0");
+			moneyLabels[x].setFont(boldFont);
+		}
 		
 		btnRollDice = new JButton("Roll Dice!");
 		btnRollDice.setSize(50, 20);
 		
 		btnMortgage = new JButton("Mortgage!");
+		btnMortgage.setActionCommand("StartMortgage");
 		btnMortgage.setSize(50, 20);
 		
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < numPlayers; x++)
 		{
 			this.add(nameLabels[x]);
 			this.add(moneyLabels[x]);
@@ -87,10 +87,15 @@ public class MControlPanel extends JPanel
 	 */
 	public void setMoneyVals(double[] money)
 	{
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < numPlayers; x++)
 		{
 			moneyLabels[x].setText(Double.toString(money[x]));
 		}
+	}
+	
+	public void setPlayerMoneyVal(int player, double money)
+	{
+		moneyLabels[player].setText(Double.toString(money));
 	}
 	
 	/**
@@ -100,9 +105,9 @@ public class MControlPanel extends JPanel
 	 */
 	public void setNames(String[] names)
 	{
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < numPlayers; x++)
 		{
-			nameLabels[x].setText(names + " money!");
+			nameLabels[x].setText(names[x] + " hours!");
 		}
 	}
 	
