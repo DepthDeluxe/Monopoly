@@ -39,12 +39,16 @@ public class RollDiceAction implements ActionListener {
 		theBoardModel = theGame.getBoard();
 	}
 	
-	private void handleChance() {
-		System.out.println("Landed on chance");
+	private void handleChance(Card c) {
+		System.out.println("Landed on Chance");
+		System.out.println("Description: " + c.getDescription());
+		System.out.println();
 	}
 	
-	private void handleCommChest() {
-		System.out.println("Landed on community chest");
+	private void handleCommChest(Card c) {
+		System.out.println("Landed on Community Chest");
+		System.out.println("Description: " + c.getDescription());
+		System.out.println();
 	}
 	
 	/**
@@ -76,12 +80,22 @@ public class RollDiceAction implements ActionListener {
 		theMainFrame.getProperties().updateProperty(prop);
 	}
 	
+	private void setPlayerPosViewFromModel() {
+		// get player information
+		int curPlayerIndex = theGame.getCurrentPlayerIndex();
+		Player currentPlayer = theGame.getCurrentPlayer();
+		int currentPlayerPos = currentPlayer.getPosition();
+		
+		// set the player's position to where they are on the model
+		theBoardView.moveCharacter(curPlayerIndex, currentPlayerPos);
+	}
+	
 	/**
 	 * Changes the "roll dice" button's ActionListener to handle
 	 * this basic case (basically don't roll dice, change text
 	 * back to roll dice, and then set back the original ActionListener	
 	 */
-	public void enablePassButton() {
+	private void enablePassButton() {
 		// get the original button
 		JButton theButton = theMainFrame.getControl().getBtnRollDice();
 		
@@ -138,10 +152,8 @@ public class RollDiceAction implements ActionListener {
 		Dice d = theGame.getDice();
 		theBoardView.rollDice(d);
 		
-		// update the current player position
-		Player currentPlayer = theGame.getCurrentPlayer();
-		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
-		
+		// update the view
+		setPlayerPosViewFromModel();		
 		updatePropertyPanel();
 		
 		// run the right function depending on the state of the model
@@ -154,7 +166,7 @@ public class RollDiceAction implements ActionListener {
 			
 		case CHANCE:
 			// handle the situation graphically
-			handleChance();
+			handleChance(theBoardModel.getChanceDeck().getTopCard());
 			
 			// update the model
 			theGame.handleChancePull();
@@ -162,7 +174,7 @@ public class RollDiceAction implements ActionListener {
 			
 		case COMMUNITY_CHEST:
 			// handle the situation graphically
-			handleCommChest();
+			handleCommChest(theBoardModel.getCommunityChestDeck().getTopCard());
 			
 			// update the model
 			theGame.handleCommChestPull();
@@ -172,5 +184,9 @@ public class RollDiceAction implements ActionListener {
 		default:
 			break;
 		}
+		
+		// update the view after the model has changed stuff
+		setPlayerPosViewFromModel();		
+		updatePropertyPanel();
 	}
 }
