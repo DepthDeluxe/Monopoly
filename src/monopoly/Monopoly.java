@@ -75,7 +75,6 @@ public class Monopoly {
 		dice.roll();
 		
 		// get the current player and calculate distance
-		currentPlayer = players.get(curPlayerIndex);
 		int distance = dice.getFirstValue() + dice.getSecondValue();
 		
 		// no longer in jail if they rolled doubles
@@ -191,11 +190,14 @@ public class Monopoly {
 	// Private Functions
 	//
 	
-	private void incrementPlayer() {
+	private void incrementPlayer() {		
 		// increment the current player
 		curPlayerIndex++;
 		if (curPlayerIndex == players.size()) {
 			curPlayerIndex = 0;
 		}
+		
+		// assign the value of the current player
+		currentPlayer = players.get(curPlayerIndex);
 	}
 }
