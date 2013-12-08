@@ -12,6 +12,8 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import monopoly.Player;
@@ -23,6 +25,8 @@ import monopoly.tiles.Property;
  */
 public class MMainFrame extends JFrame
 {
+	private JLayeredPane mainPane;
+	private JPanel gamePanel;
 	private MBoardPanel theBoard;
 	private MControlPanel control;
 	private MPropertiesPanel properties;
@@ -35,23 +39,28 @@ public class MMainFrame extends JFrame
 	 */
 	public MMainFrame(int numPlayers)
 	{
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Monopoly");
-		this.setLocation(100, 100);
-		this.setLayout(new BorderLayout());
-		((JComponent) getContentPane()).setBorder(empty);
-		this.setSize(900, 900);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // set to close on exit
+		this.setTitle("Monopoly"); // set fram title
+		this.setLocation(100, 100); // set location
+		this.setResizable(false); // not resizable to keep components in good shape
+		this.setSize(900, 900); // set size of this window
 		
-		MMenuBar tempBar = new MMenuBar();
+		this.mainPane = new JLayeredPane(); // new layered pane
+		this.mainPane.setBorder(empty); // empty border
+		this.setContentPane(this.mainPane); // make the layered pane the content pane
+		
+		this.gamePanel = new JPanel(new BorderLayout()); // the pane holding the main components 
+		
+		MMenuBar tempBar = new MMenuBar(); // the menu bad
 		menuBar = tempBar;
-		this.setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar); // add it
 		
-		MBoardPanel board = new MBoardPanel(numPlayers);
-		this.getContentPane().add(board, BorderLayout.CENTER);
+		MBoardPanel board = new MBoardPanel(numPlayers); // create the board
+		this.gamePanel.add(board, BorderLayout.CENTER); // in the center
 		this.theBoard = board;
 		
 		MControlPanel controlT = new MControlPanel();
-		this.getContentPane().add(controlT, BorderLayout.WEST);
+		this.gamePanel.add(controlT, BorderLayout.WEST);
 		this.control = controlT;
 		this.control.setSize(100, 550);
 		double[] arr = {4000.00, 2000.00, 1000.00, 5000.00};
@@ -59,11 +68,14 @@ public class MMainFrame extends JFrame
 		
 		MPropertiesPanel propertyPanel = new MPropertiesPanel();
 		this.properties = propertyPanel;
-		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
+		this.gamePanel.add(propertyPanel, BorderLayout.EAST);
 		
 		MConsoleWindow console = new MConsoleWindow();
 		this.consoleWindow = console;
-		this.getContentPane().add(console, BorderLayout.SOUTH);
+		this.gamePanel.add(console, BorderLayout.SOUTH);
+		
+		this.gamePanel.setBounds(0, 0, 900, 900);
+		this.mainPane.add(gamePanel, 0);
 	}
 
 	/**
@@ -88,6 +100,20 @@ public class MMainFrame extends JFrame
 	 */
 	public MPropertiesPanel getProperties() {
 		return properties;
+	}
+
+	/**
+	 * @return the menuBar
+	 */
+	public MMenuBar getMMenuBar() {
+		return menuBar;
+	}
+
+	/**
+	 * @return the consoleWindow
+	 */
+	public MConsoleWindow getConsoleWindow() {
+		return consoleWindow;
 	}
 
 }

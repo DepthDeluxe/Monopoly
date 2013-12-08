@@ -60,6 +60,7 @@ public class MController
 		setMortgageFunction();
 		
 		loadViewFromModel();
+		setMenuBarFunction();
 	}
 	
 	//
@@ -83,6 +84,13 @@ public class MController
 		theView.getControl().setMortgageAction(actionListener);
 	}
 	
+	private void setMenuBarFunction()
+	{
+		MenuListener listen = new MenuListener();
+		theView.getMMenuBar().setActionListener(listen);
+
+	}
+	
 	//
 	// Private Functions
 	//
@@ -90,14 +98,14 @@ public class MController
 	public void loadViewFromModel() {
 		JTextArea[] props = theView.getTheBoard().getPropertyLabels(); // get all the property labels
 		Board theBoard = theGame.getBoard(); // get the board itself
-		int x = 0; // need two seperate incrementers to go trhough the props array
+		int x = 0; // need two separate incrementers to go through the props array
 		for(int y = 0; y < theBoard.getNumTiles(); y++) // parse through the board and tiles 
 		{
 			Property prop = theBoard.getPropertyAt(y); // gets property or null if not property
 			if(prop != null && prop.getTileType() == TileType.PROPERTY) // check if not null, and double check not a railroad or utility
 			{
 				props[x].setText(prop.getName()); // set text to name
-				x++; // incrememnt props incrementer
+				x++; // Increment props incrementer
 			}
 		}
 	}
