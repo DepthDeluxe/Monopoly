@@ -3,8 +3,11 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+
 import monopoly.*;
 import monopoly.tiles.ITile;
+import monopoly.tiles.Property;
 import gui.MMainFrame;
 import gui.MBoardPanel;
 
@@ -33,19 +36,12 @@ public class RollDiceAction implements ActionListener {
 		theBoardModel = theGame.getBoard();
 	}
 	
-	/** Handles a buy request graphically
-	 * @return TRUE if the user wants to buy
-	 */
-	private boolean handleBuyRequest() {
-		return false;
-	}
-	
 	private void handleChance() {
-		
+		System.out.println("Landed on chance");
 	}
 	
 	private void handleCommChest() {
-		
+		System.out.println("Landed on community chest");
 	}
 	
 	/**
@@ -80,48 +76,53 @@ public class RollDiceAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// run the next move on the model
-		theGame.nextMove();
-		
-		// update the dice
-		Dice d = theGame.getDice();
-		theBoardView.rollDice(d);
-		
-		// update the current player position
-		Player currentPlayer = theGame.getCurrentPlayer();
-		theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
-		
-		updatePropertyPanel();
-		
-		// run the right function depending on the state of the model
-		MonopolyModelState state = theGame.getModelState();
-		switch(state) {
-		case BUY_REQUEST:
-			// get the user request
-			boolean userResponse = handleBuyRequest();
+		String action = theMainFrame.getControl().getBtnRollDice().getText();
+		if(action.equals("Roll Dice!"))
+		{
+			theGame.nextMove();
 			
-			// update the model
-			theGame.handleBuyRequest(userResponse);
-			break;
+			// update the dice
+			Dice d = theGame.getDice();
+			theBoardView.rollDice(d);
 			
-		case CHANCE:
-			// handle the situation graphically
-			handleChance();
+			// update the current player position
+			Player currentPlayer = theGame.getCurrentPlayer();
+			theBoardView.moveCharacter(theGame.getCurrentPlayerIndex(), currentPlayer.getPosition());
 			
-			// update the model
-			theGame.handleChancePull();
-			break;
+			updatePropertyPanel();
 			
-		case COMMUNITY_CHEST:
-			// handle the situation graphically
-			handleCommChest();
+			// run the right function depending on the state of the model
+			MonopolyModelState state = theGame.getModelState();
+			switch(state) {
+			case BUY_REQUEST:
+				break;
+				
+			case CHANCE:
+				// handle the situation graphically
+				handleChance();
+				
+				// update the model
+				theGame.handleChancePull();
+				break;
+				
+			case COMMUNITY_CHEST:
+				// handle the situation graphically
+				handleCommChest();
+				
+				// update the model
+				theGame.handleCommChestPull();
+				break;
 			
-			// update the model
-			theGame.handleCommChestPull();
-			break;
-		
-		// PLAYING state
-		default:
-			break;
+			// PLAYING state
+			default:
+				break;
+			}
+			theMainFrame.getControl().getBtnRollDice().setText("Pass");
+		}
+		else
+		{
+			theGame.handleBuyRequest(false);
+			theMainFrame.getControl().getBtnRollDice().setText("Roll Dice!");
 		}
 	}
 }

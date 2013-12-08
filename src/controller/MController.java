@@ -58,6 +58,7 @@ public class MController
 		}
 		setRollDiceFunction();
 		setMortgageFunction();
+		setBuyButtonFunction();
 		
 		loadViewFromModel();
 	}
@@ -65,6 +66,17 @@ public class MController
 	//
 	// Main Functions
 	//
+	
+	private void setBuyButtonFunction()
+	{
+		theView.getProperties().getBtnBuy().addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				theGame.handleBuyRequest(true);
+			}
+		});
+	}
 	
 	private void setRollDiceFunction() {
 		RollDiceAction actionListener = new RollDiceAction(theView, theGame);

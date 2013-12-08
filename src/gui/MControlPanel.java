@@ -117,4 +117,9 @@ public class MControlPanel extends JPanel
 	public void setMortgageAction(ActionListener al) {
 		btnMortgage.addActionListener(al);
 	}
+	
+	public JButton getBtnRollDice()
+	{
+		return btnRollDice;
+	}
 }
