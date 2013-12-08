@@ -75,11 +75,6 @@ public class TileLoader {
 		for (int n = 0; n < propertyNodes.getLength(); n++) {
 			Node currentNode = propertyNodes.item(n);
 			
-			System.out.println(n);
-			if(n == 5) {
-				System.out.println("erorr");
-			}
-			
 			// typecast as an element only if it is an element
 			if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
 				ITile t = XMLToTile((Element)currentNode);
@@ -99,6 +94,7 @@ public class TileLoader {
 		// see what element type this is
 		String elementType = e.getNodeName();
 		
+		// get pointer to an ITile
 		ITile outTile = null;
 		switch (elementType) {
 			
