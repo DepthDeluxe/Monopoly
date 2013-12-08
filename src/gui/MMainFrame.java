@@ -26,21 +26,27 @@ public class MMainFrame extends JFrame
 	private MBoardPanel theBoard;
 	private MControlPanel control;
 	private MPropertiesPanel properties;
+	private MMenuBar menuBar;
+	private MConsoleWindow consoleWindow;
 	Border empty = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 	
 	/**
 	 * Constructor for the main frame, will initalize the frame and set attributes
 	 */
-	public MMainFrame()
+	public MMainFrame(int numPlayers)
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Monopoly");
 		this.setLocation(100, 100);
 		this.setLayout(new BorderLayout());
 		((JComponent) getContentPane()).setBorder(empty);
-		this.setSize(900, 700);
+		this.setSize(900, 900);
 		
-		MBoardPanel board = new MBoardPanel();
+		MMenuBar tempBar = new MMenuBar();
+		menuBar = tempBar;
+		this.setJMenuBar(menuBar);
+		
+		MBoardPanel board = new MBoardPanel(numPlayers);
 		this.getContentPane().add(board, BorderLayout.CENTER);
 		this.theBoard = board;
 		
@@ -54,6 +60,10 @@ public class MMainFrame extends JFrame
 		MPropertiesPanel propertyPanel = new MPropertiesPanel();
 		this.properties = propertyPanel;
 		this.getContentPane().add(propertyPanel, BorderLayout.EAST);
+		
+		MConsoleWindow console = new MConsoleWindow();
+		this.consoleWindow = console;
+		this.getContentPane().add(console, BorderLayout.SOUTH);
 	}
 
 	/**
