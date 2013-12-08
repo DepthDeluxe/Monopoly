@@ -604,16 +604,6 @@ public class MBoardPanel extends JPanel
 		ccBox.add(mainLabelCommChest);
 	}
 	
-	
-	public void setPropertyNames(Board theBoard)
-	{
-		int x = 0;
-		for(int y = 0; y < 40; y++)
-		{
-			
-		}
-	}
-	
 	/**
 	 * this function will update this panel with the correct image for the dice as assigned by the parameters passed, and will also
 	 * assign a static location on the board to them
