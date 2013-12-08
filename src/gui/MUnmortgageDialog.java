@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import monopoly.Player;
 import monopoly.tiles.Property;
@@ -25,7 +26,7 @@ import monopoly.tiles.Property;
  * @author ajrk001
  *
  */
-public class MMortgageDialog extends JDialog implements ActionListener
+public class MUnmortgageDialog extends JDialog implements ActionListener
 {
 	LinkedList<Property> playProp;
 	int numProps;
@@ -35,7 +36,7 @@ public class MMortgageDialog extends JDialog implements ActionListener
 	Player player;
 	MMainFrame game;
 
-	public MMortgageDialog(MMainFrame frame, Player play)
+	public MUnmortgageDialog(MMainFrame frame, Player play)
 	{
 		super(frame, true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -43,18 +44,22 @@ public class MMortgageDialog extends JDialog implements ActionListener
 		player = play;
 		
 		playProp = player.getProperties(); // get properties owned by player
-		numProps = playProp.size(); // get number
+		numProps = player.getMortgagedProperties(); // get number
 		boxes = new JCheckBox[numProps]; // get the right number of checkboxes
 		
 		this.setLayout(new GridLayout(numProps + 1, 1, 0, 0)); // set layout to +1 size for button
 		
-		for(int x = 0; x < numProps; x++)
+		int y = 0; //second incrementer
+		for(int x = 0; x < playProp.size(); x++)
 		{
-			boxes[x] = new JCheckBox(propToString(playProp.get(x)));
-			this.add(boxes[x]);
+			if(playProp.get(x).isMortgaged())
+			{
+				boxes[y] = new JCheckBox(propToString(playProp.get(x)));
+				this.add(boxes[y]);
+			}
 		}
 		
-		confirm = new JButton("Mortgage Selected Values");
+		confirm = new JButton("Unmortgage Selected Values");
 		confirm.addActionListener(this);
 		this.add(confirm);
 		this.pack();
@@ -70,13 +75,19 @@ public class MMortgageDialog extends JDialog implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		boolean worked = true;
 		for(int x = 0; x < boxes.length; x++)
 		{
 			if(boxes[x].isSelected())
 			{
-				playProp.get(x).mortgage();
-				
+				boolean d =playProp.get(x).unmortgage();
+				if(!d) { worked = false; }
 			}
+		}
+		
+		if(!worked)
+		{
+			JOptionPane.showMessageDialog(null, "There was a problem, and not all of your properties were unmortgaged!");
 		}
 		game.getControl().setPlayerMoneyVal(0, player.getMoney());
 		this.dispose();

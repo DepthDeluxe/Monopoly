@@ -68,6 +68,7 @@ public class Property implements ITile {
 		
 		// give the owner the mortgaged value
 		owner.giveMoney(mortgagedValue);
+		owner.changeMortgagedProperties(1);
 		
 		isMortgaged = true;
 		return true;
@@ -85,6 +86,7 @@ public class Property implements ITile {
 		
 		if (success) {
 			isMortgaged = false;
+			owner.changeMortgagedProperties(-1);
 		}
 		
 		// returns true if the house was unmortgaged

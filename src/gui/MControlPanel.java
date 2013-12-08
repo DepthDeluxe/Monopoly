@@ -56,6 +56,7 @@ public class MControlPanel extends JPanel
 		btnRollDice.setSize(50, 20);
 		
 		btnMortgage = new JButton("Mortgage!");
+		btnMortgage.setActionCommand("StartMortgage");
 		btnMortgage.setSize(50, 20);
 		
 		for(int x = 0; x < numPlayers; x++)
@@ -90,6 +91,11 @@ public class MControlPanel extends JPanel
 		{
 			moneyLabels[x].setText(Double.toString(money[x]));
 		}
+	}
+	
+	public void setPlayerMoneyVal(int player, double money)
+	{
+		moneyLabels[player].setText(Double.toString(money));
 	}
 	
 	/**

@@ -49,7 +49,7 @@ public class StartController
 	{
 		numHours = 150; // default values for variables
 		numPlayers = 4;
-		playerNames = new String[4];
+		playerNames = new String[] {"Player One", "Player Two", "Player Three", "Player Four"};
 		menu = new MMainMenu();
 		runMainMenu(); // create the start menu
 	}
