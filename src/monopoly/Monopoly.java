@@ -122,6 +122,7 @@ public class Monopoly {
 		// reset the model state
 		modelState = MonopolyModelState.PLAYING;
 		incrementPlayer();
+		board.getChanceDeck().nextCard(); // increment the card deck
 		
 		return true;
 	}
@@ -136,6 +137,7 @@ public class Monopoly {
 		// reset the model state
 		modelState = MonopolyModelState.PLAYING;
 		incrementPlayer();
+		board.getCommunityChestDeck().nextCard(); // increment the card deck
 		
 		return true;
 	}
