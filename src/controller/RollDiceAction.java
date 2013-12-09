@@ -165,6 +165,7 @@ public class RollDiceAction implements ActionListener {
 
 				// set the button text back to the start
 				theButton.setText(MAIN_TEXT);
+				
 			}
 		};
 		
@@ -203,6 +204,15 @@ public class RollDiceAction implements ActionListener {
 		MonopolyModelState state = theGame.getModelState();
 		switch(state) {
 		case BUY_REQUEST:
+			theMainFrame.getProperties().getBtnBuy().addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e1){
+					if (e1.getSource() == theMainFrame.getProperties().getBtnBuy()){
+						theGame.handleBuyRequest(true);
+						//theMainFrame.getProperties().changeBuyState();
+					}
+				}
+			});
+			
 			// turns this button into pass mode
 			enablePassButton();
 			
