@@ -5,7 +5,7 @@ public class PlayerBankruptException extends Exception {
 	// Member Variables
 	//
 	
-	private double moneyRemaining;
+	private double amountPaid;
 	
 	//
 	// Constructors
@@ -19,7 +19,7 @@ public class PlayerBankruptException extends Exception {
 	// Getters
 	//
 	
-	public double getMoneyRemaining() {
-		return moneyRemaining;
+	public double getAmountPaid() {
+		return amountPaid;
 	}
 }
