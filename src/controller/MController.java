@@ -81,6 +81,7 @@ public class MController
 					money[i] = theGame.getPlayers()[i].getMoney();
 				}
 				theView.getControl().setMoneyVals(money);
+				theView.getProperties().changeBuyState(false);
 				// Update model
 			}
 		});
