@@ -39,6 +39,9 @@ public class MPlayerProperties extends JDialog implements ActionListener
 	JPanel propPanel; // pane that will contain the table of data or lbl saying no props
 	JLabel lblTitle; // title label
 	int curPlayerDisplayed; // the current player displayed
+	JButton btnLeft;
+	JButton btnBack;
+	JButton btnRight;
 	
 	public MPlayerProperties(Player[] play, MMainFrame frame)
 	{
@@ -52,43 +55,57 @@ public class MPlayerProperties extends JDialog implements ActionListener
 		
 		JPanel tempPanel = new JPanel();
 		// create all the componenets
-		lblTitle = new JLabel("My Properties"); // this is the title label
+		lblTitle = new JLabel(players[0].getName() + " Properties"); // this is the title label
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER); // aligned center
 		lblTitle.setFont(new Font("Dialog", Font.BOLD, 24)); // bold, large font
 		tempPanel.add(lblTitle); // add at the top
 		tempPanel.setPreferredSize(new Dimension(400, 40));
 		
+		
+		// Prop panel is where the properties are displayed
 		propPanel = new JPanel(); // the panel with the table or lbl saying no props
 		propPanel.setLayout(new GridLayout(1, 1, 0, 0));
 		setPropPanel(curPlayerDisplayed);
 		
+		
+		//btn panel has the btns used in the dialog
 		btnPanel = new JPanel(); // bottom panel containing the btns
 		btnPanel.setPreferredSize(new Dimension(400, 40));
 		
-		JButton btnLeft = new JButton("Previous Player");
+		btnLeft = new JButton("Previous Player");
 		btnLeft.setEnabled(false); // can't go back from 0
 		btnLeft.setActionCommand("Prev");
+		btnLeft.addActionListener(this);
 		btnPanel.add(btnLeft);
-		JButton btnBack = new JButton("Back"); // btn to go back to game
+		
+		btnBack = new JButton("Back"); // btn to go back to game
 		btnBack.setActionCommand("Back");
+		btnBack.addActionListener(this);
 		btnPanel.add(btnBack);
-		JButton btnRight = new JButton("Next Player");
+		
+		btnRight = new JButton("Next Player");
 		btnRight.setActionCommand("Next");
+		btnRight.addActionListener(this);
 		btnPanel.add(btnRight);		
 		
-		this.add(tempPanel, BorderLayout.NORTH);
-		this.add(propPanel, BorderLayout.CENTER);
-		this.add(btnPanel, BorderLayout.SOUTH);
+		this.add(tempPanel, BorderLayout.NORTH); // to the top
+		this.add(propPanel, BorderLayout.CENTER); // in the middle
+		this.add(btnPanel, BorderLayout.SOUTH); // to the bottom
 		
 		this.pack();
 	}
 
+	/**
+	 * Function to set the details of the middle panel that contains property information
+	 * @param player - the number of the player that is to be added
+	 */
 	private void setPropPanel(int player)
 	{
 		propPanel.removeAll(); // make sure clean panel
 		if(players[player].getProperties().size() == 0) // if there are no properties, just put a label
 		{
 			JLabel noProps = new JLabel("No Properties Owned!");
+			noProps.setHorizontalAlignment(SwingConstants.CENTER);
 			propPanel.add(noProps);
 		}
 		else
@@ -120,8 +137,31 @@ public class MPlayerProperties extends JDialog implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) 
+	{
+		String action = e.getActionCommand();
 		
+		if(action.equals("Back")) { this.dispose(); } // if they want to go back, just dispose of dialog
+		
+		else if(action.equals("Next"))
+		{
+			curPlayerDisplayed++;
+			
+			lblTitle.setText(players[curPlayerDisplayed].getName() + " Properties");
+			setPropPanel(curPlayerDisplayed);
+			
+			if(players.length == (curPlayerDisplayed + 1)) { btnRight.setEnabled(false); }
+			btnLeft.setEnabled(true);
+		}
+		else
+		{
+			curPlayerDisplayed--;
+			
+			lblTitle.setText(players[curPlayerDisplayed].getName() + " Properties");
+			setPropPanel(curPlayerDisplayed);
+			
+			if(0 == curPlayerDisplayed) { btnLeft.setEnabled(false); }
+			btnRight.setEnabled(true);
+		}
 	}
 }
