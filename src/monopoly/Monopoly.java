@@ -121,33 +121,32 @@ public class Monopoly {
 		return success;
 	}
 	
-	public boolean handleChancePull() {
+	public boolean handleCardPull(TileType cardType) {
 		// get the pulled card
-		Card pulledCard = board.getChanceDeck().getTopCard();
+		Card pulledCard;
+		if (cardType == TileType.CHANCE) {
+			pulledCard = board.getChanceDeck().getTopCard();
+		}
+		else if (cardType == TileType.COMMUNITY_CHEST) {
+			pulledCard = board.getCommunityChestDeck().getTopCard();
+		}
+		else {
+			throw new RuntimeException("Error: Invalid card type!");
+		}
 		
 		// run the script on the card
 		modelState = pulledCard.runScript(this);
 		
-		
-		incrementPlayer();
 		board.getChanceDeck().nextCard(); // increment the card deck
 		
-		return true;
-	}
-	
-	public boolean handleCommChestPull() {
-		// get the pulled card
-		Card pulledCard = board.getCommunityChestDeck().getTopCard();
+		// only increment player if the model state is PLAYING
+		if (modelState == MonopolyModelState.PLAYING) {
+			incrementPlayer();		
+			return true;
+		}
 		
-		// run the script on the card
-		pulledCard.runScript(this);
-		
-		// reset the model state
-		modelState = MonopolyModelState.PLAYING;
-		incrementPlayer();
-		board.getCommunityChestDeck().nextCard(); // increment the card deck
-		
-		return true;
+		// return false if the game is not done
+		return false;
 	}
 	
 	public boolean handleIdleState() {

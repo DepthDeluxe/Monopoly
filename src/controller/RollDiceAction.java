@@ -49,20 +49,29 @@ public class RollDiceAction implements ActionListener {
 	 * Handles a player landing on chance in GUI
 	 * @param c - The card drawn
 	 */
-	private void handleChance(Card c) {
-		System.out.println("Landed on Chance");
+	private void handleCardPull(CardDeck deckToPull, TileType deckType) {
+		Card c = deckToPull.getTopCard();
+		
+		String deckName;
+		if (deckType == TileType.CHANCE) {
+			deckName = "Chance";
+		}
+		else if (deckType == TileType.COMMUNITY_CHEST) {
+			deckName = "Community Chest";
+		}
+		else {
+			throw new RuntimeException("Invalid TileType specified!");
+		}
+		
+		// dump the card to the console
+		System.out.println("Landed on " + deckName);
 		System.out.println("Description: " + c.getDescription());
 		System.out.println();
-	}
-	
-	/**
-	 * Handles a player landing on community chest in GUI
-	 * @param c - The card drawn
-	 */
-	private void handleCommChest(Card c) {
-		System.out.println("Landed on Community Chest");
-		System.out.println("Description: " + c.getDescription());
-		System.out.println();
+		
+		// handle the card dialog
+		MCardDialog cardDiag = new MCardDialog(c, theMainFrame, deckType);
+		cardDiag.setLocationRelativeTo(theMainFrame);
+		cardDiag.setVisible(true);
 	}
 	
 	/**
@@ -90,6 +99,8 @@ public class RollDiceAction implements ActionListener {
 		// update the view
 		setPlayerPosViewFromModel();		
 		updatePropertyPanel();
+		
+		// update the control panel
 	}
 	
 	/**
@@ -201,12 +212,12 @@ public class RollDiceAction implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// run the next move and update model if the game
-		// is in a playable state
-		if (theGame.getModelState() == MonopolyModelState.PLAYING) {
-			theGame.nextMove();
-			updateView();
-		}
+		// always run nextMove() no matter which state the game is in,
+		// it won't do anything if there is nothing to do
+		theGame.nextMove();
+		
+		// update the view after the model is updated
+		updateView();
 		
 		// have to work on this
 		if (theGame.getModelState() == MonopolyModelState.BUY_REQUEST){
@@ -238,26 +249,18 @@ public class RollDiceAction implements ActionListener {
 			
 		case CHANCE:
 			// handle the situation graphically
-			handleChance(theBoardModel.getChanceDeck().getTopCard());
-			
-			MCardDialog cardDiag = new MCardDialog(theBoardModel.getChanceDeck().getTopCard(), theMainFrame, TileType.CHANCE);
-			cardDiag.setLocationRelativeTo(theMainFrame);
-			cardDiag.setVisible(true);
+			handleCardPull(theBoardModel.getChanceDeck(), TileType.CHANCE);
 			
 			// update the model
-			theGame.handleChancePull();
+			theGame.handleCardPull(TileType.CHANCE);
 			break;
 			
 		case COMMUNITY_CHEST:
 			// handle the situation graphically
-			handleCommChest(theBoardModel.getCommunityChestDeck().getTopCard());
-			
-			MCardDialog cardDia = new MCardDialog(theBoardModel.getCommunityChestDeck().getTopCard(), theMainFrame, TileType.COMMUNITY_CHEST);
-			cardDia.setLocationRelativeTo(theMainFrame);
-			cardDia.setVisible(true);
+			handleCardPull(theBoardModel.getCommunityChestDeck(), TileType.COMMUNITY_CHEST);
 			
 			// update the model
-			theGame.handleCommChestPull();
+			theGame.handleCardPull(TileType.COMMUNITY_CHEST);
 			break;
 			
 		case PLAYING:
@@ -283,11 +286,5 @@ public class RollDiceAction implements ActionListener {
 		
 		// update the view after the model has changed
 		updateView();
-		
-		// run this function again if the model is not in the playing state
-		if (theGame.getModelState() != MonopolyModelState.PLAYING) {
-			actionPerformed(e);
-		}
-		updateControlPanel();
 	}
 }
