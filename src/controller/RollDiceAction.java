@@ -225,9 +225,14 @@ public class RollDiceAction implements ActionListener {
 			theGame.handleCommChestPull();
 			break;
 		
-		// PLAYING state
-		default:
+		case PLAYING:
+			// handle a normal playing state
+			theGame.handleIdleState();
 			break;
+			
+		// this should never happen
+		default:
+			throw new RuntimeException("Invalid MonopolyModelState Received!");
 		}
 		
 		// update the view after the model has changed

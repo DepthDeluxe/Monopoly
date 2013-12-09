@@ -90,16 +90,8 @@ public class Monopoly {
 		modelState = tile.landOn(currentPlayer);
 		
 		// return true if there isn't any other action required by
-		// the controller to continue the game and increment the player
-		// because there is no response needed from the controller
-		if (modelState == MonopolyModelState.PLAYING) {
-			incrementPlayer();
-			
-			return true;
-		}
-		else {
-			return false;
-		}
+		// the controller
+		return (modelState == MonopolyModelState.PLAYING);
 	}
 	
 	public boolean handleBuyRequest(boolean buying) {
@@ -143,6 +135,16 @@ public class Monopoly {
 		
 		// reset the model state
 		modelState = MonopolyModelState.PLAYING;
+		incrementPlayer();
+		
+		return true;
+	}
+	
+	public boolean handleIdleState() {
+		// make sure the modelState is playing
+		modelState = MonopolyModelState.PLAYING;
+		
+		// and increment the player
 		incrementPlayer();
 		
 		return true;
