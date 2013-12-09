@@ -94,12 +94,12 @@ public class MController
 	}
 	
 	private void setMortgageFunction() {
-		theView.getControl().setMortgageAction(new MortgageListener(theGame.getPlayers()[0], theView));
+		theView.getControl().setMortgageAction(new MortgageListener(theGame.getCurrentPlayer(), theView));
 	}
 	
 	private void setMenuBarFunction()
 	{
-		MenuListener listen = new MenuListener();
+		MenuListener listen = new MenuListener(theGame, theView);
 		theView.getMMenuBar().setActionListener(listen);
 
 	}
