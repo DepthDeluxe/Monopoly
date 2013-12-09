@@ -69,8 +69,10 @@ public class TaxTile implements ITile {
 		}
 		// if he can't pay...
 		catch (PlayerBankruptException e) {
-			// pay free parking what player can
-			freeParking.addToPot(e.getAmountPaid());
+			// pay free parking what player can if it exists...
+			if (freeParking != null) {
+				freeParking.addToPot(e.getAmountPaid());
+			}
 			
 			// let controller know that the government screwed him
 			return MonopolyModelState.PLAYER_BANKRUPT;
