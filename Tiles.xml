@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Tiles count="40">
-	<Go></Go>
+	<Go>
+	    <CollectAmount>24.0</CollectAmount>
+	</Go>
 	<Property>
 		<Name>Trees</Name>
 		<Value>6.0</Value>
