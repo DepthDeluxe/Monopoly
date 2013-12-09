@@ -3,8 +3,7 @@ package monopoly;
 import java.util.LinkedList;
 
 import monopoly.tiles.Property;
-import monopoly.tiles.Railroad;
-import monopoly.tiles.Utility;
+import monopoly.tiles.TileType;
 
 public class Player {
 	//
@@ -170,17 +169,11 @@ public class Player {
 	}
 	
 	public int getNumRailroads() {
-		// iterate through the properties, seeing which ones you
-		// can typecast to Railroad.  If it can't, it will throw
-		// a ClassCastException
+		// count how many properties are railroads
 		int numRailroads = 0;
 		for (Property p : properties) {
-			try {
-				Railroad r = (Railroad)p;
+			if (p.getTileType() == TileType.RAILROAD) {
 				numRailroads++;
-			}
-			catch (ClassCastException e) {
-				// don't do anything, this is not a railroad
 			}
 		}
 		
@@ -188,17 +181,11 @@ public class Player {
 	}
 	
 	public int getNumUtilities() {
-		// iterate through the properties, seeing which ones you
-		// can typecast to Utility.  If it can't, it will throw
-		// a ClassCastException
+		// count how many properties are utilities
 		int numUtilities = 0;
 		for (Property p : properties) {
-			try {
-				Utility u = (Utility)p;
+			if (p.getTileType() == TileType.UTILITY) {
 				numUtilities++;
-			}
-			catch (ClassCastException e) {
-				// don't do anything, this is not a utility
 			}
 		}
 		
