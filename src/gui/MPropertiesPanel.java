@@ -174,5 +174,12 @@ public class MPropertiesPanel extends JPanel
 	{
 		return this.action;
 	}
+	
+	public void changeBuyState(){
+		if(this.action.isEnabled())
+			this.action.setEnabled(false);
+		else
+			this.action.setEnabled(true);
+	}
 }
 
