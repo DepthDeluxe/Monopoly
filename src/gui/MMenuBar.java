@@ -19,15 +19,15 @@ import controller.MenuListener;
  */
 public class MMenuBar extends JMenuBar
 {
-	private JMenu fileMenu, gameMenu;
-	private JMenuItem[] fileOptions;
-	private JMenuItem[] gameOptions;
+	private JMenu fileMenu, gameMenu, helpMenu; // the different menus
+	private JMenuItem[] fileOptions, gameOptions, helpOptions; // the different options within menus
 	
 	public MMenuBar()
 	{
 		fileMenu = new JMenu("File"); // create the main menu holder
 		this.add(fileMenu);
 		
+		// the first menu is the file - contains new, load, save and exit
 		fileOptions = new JMenuItem[4]; // array of options for file
 		
 		fileOptions[0] = new JMenuItem("New Game");
@@ -47,13 +47,30 @@ public class MMenuBar extends JMenuBar
 		fileOptions[3].setActionCommand("Exit");
 		fileMenu.add(fileOptions[3]);
 		
+		
+		// second menu has game specific options
 		gameMenu = new JMenu("Game Options");
 		this.add(gameMenu);
 		
-		gameOptions = new JMenuItem[1];
+		gameOptions = new JMenuItem[2];
 		gameOptions[0] = new JMenuItem("See Player Properties");
 		gameOptions[0].setActionCommand("SeeProps");
+		gameOptions[1] = new JMenuItem("Browse Random Subreddit");
+		gameOptions[1].setActionCommand("Browse");
 		gameMenu.add(gameOptions[0]);
+		gameMenu.add(gameOptions[1]);
+		
+		helpMenu = new JMenu("Help");
+		this.add(helpMenu);
+		
+		helpOptions = new JMenuItem[2];
+		helpOptions[0] = new JMenuItem("See User Manual");
+		helpOptions[0].setActionCommand("Manual");
+		helpMenu.add(helpOptions[0]);
+		helpMenu.addSeparator();
+		helpOptions[1] = new JMenuItem("About");
+		helpOptions[1].setActionCommand("About");
+		helpMenu.add(helpOptions[1]);
 	}
 
 	public void setActionListener(MenuListener listen)
@@ -65,6 +82,10 @@ public class MMenuBar extends JMenuBar
 		for(int x = 0; x < gameOptions.length; x++)
 		{
 			gameOptions[x].addActionListener(listen);
+		}
+		for(int x = 0; x < helpOptions.length; x++)
+		{
+			helpOptions[x].addActionListener(listen);
 		}
 	}
 }
