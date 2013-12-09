@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.After;
 
 import monopoly.Player;
+import monopoly.PlayerBankruptException;
 import monopoly.tiles.Property;
 import monopoly.tiles.Railroad;
 
@@ -40,19 +41,20 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void takeMoney() {
+	public void takeMoney() throws PlayerBankruptException {
 		double toTake = 320.0;
 		double originalMoney = player.getMoney();
 		
-		boolean success = player.takeMoney(toTake);
-		
+		boolean success;
+		success = player.takeMoney(toTake);
+			
 		// make sure the transfer was a success and the proper amount was moved
 		assertTrue(success);
 		assertEquals(originalMoney - toTake, player.getMoney(), ERROR);
 	}
 	
-	@Test
-	public void takeMoneyFail() {
+	@Test(expected = PlayerBankruptException.class)
+	public void takeMoneyFail() throws PlayerBankruptException {
 		// take $1000 more than he has
 		double toTake = player.getMoney() + 1000;
 		
@@ -87,7 +89,7 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void buyPropertyMoneyFail() {
+	public void buyPropertyMoneyFail() throws PlayerBankruptException {
 		// make sure there is not enough money left
 		player.takeMoney(START_MONEY - 1);
 		

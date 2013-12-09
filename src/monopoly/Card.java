@@ -2,6 +2,10 @@ package monopoly;
 
 import monopoly.tiles.TileType;
 
+class InvalidCardScriptException extends RuntimeException {
+	public InvalidCardScriptException() { super("This CardScript is invalid!"); }
+}
+
 public class Card {
 	//
 	// Member Variables
@@ -31,107 +35,146 @@ public class Card {
 		return cardScript;
 	}
 	
-	public void runScript(Monopoly theGame) {
+	public MonopolyModelState runScript(Monopoly theGame) {
 		// get board and current player references
 		Board theBoard = theGame.getBoard();
 		Player currentPlayer = theGame.getCurrentPlayer();
 		
-		// split up the script into lines and iterate through them
-		String[] lines = cardScript.split("\n");
-		for (String line : lines) {
-			// get the arguments
-			String[] args = line.split(" ");
-			if (args.length == 0) {
-				continue;
-			}
-			
-			// interpret the command
-			String command = args[0];
-			switch (command) {
-			case "collect":
-				// get the amount to pay
-				double amount = Double.parseDouble(args[1]);
-				
-				// and give money to the player
-				currentPlayer.giveMoney(amount);
-				break;
-				
-			case "pay":
-				// get the amount to pay
-				amount = Double.parseDouble(args[1]);
-				
-				// and transfer the money from the player to Free Parking
-				currentPlayer.takeMoney(amount);
-				theBoard.getFreeParking().addToPot(amount);
-				
-				break;
-				
-			case "collectfromall":
-				// get amount to pay
-				amount = Double.parseDouble(args[1]);
-				
-				// give to all players
-				for (Player p : theGame.getPlayers()) {
-					p.takeMoney(amount);
-					currentPlayer.giveMoney(amount);
-				}
-				
-				break;
-				
-			case "paytoall":
-				// get amount to pay
-				amount = Double.parseDouble(args[1]);
-				
-				// give to all players
-				for (Player p : theGame.getPlayers()) {
-					currentPlayer.takeMoney(amount);
-					p.giveMoney(amount);
-				}
-				
-				break;
-				
-			case "move":
-				// get distance to move
-				int distance = Integer.parseInt(args[1]);
-				
-				currentPlayer.move(distance);
-				
-				break;
-				
-			case "utility":
-				// get the nearest utility location
-				int startLocation = currentPlayer.getPosition();
-				int nearestUtilLocation = getNearest(TileType.UTILITY, startLocation, theBoard);
-				
-				// and move there
-				currentPlayer.moveTo(nearestUtilLocation);
-				
-				break;
-				
-			case "railroad":
-				// get the nearest railroad location
-				startLocation = currentPlayer.getPosition();
-				int nearestRailroadLocation = getNearest(TileType.RAILROAD, startLocation, theBoard);
-				
-				// and move there
-				currentPlayer.moveTo(nearestRailroadLocation);
-				
-				break;
-				
-			case "jail":
-				startLocation = currentPlayer.getPosition();
-				currentPlayer.moveTo(theBoard.getJailLocation());
-				
-				// don't get $200 for passing go...
-				if (startLocation > currentPlayer.getPosition()) {
-					currentPlayer.takeMoney(Player.GO_MONEY);
-				}
-				
-				break;
-				
-			}
-			
+		// get the arguments, if it has not length, there is a problem w/the script
+		String[] args = cardScript.split(" ");
+		if (args.length == 0) {
+			throw new InvalidCardScriptException();
 		}
+		
+		// interpret the command
+		String command = args[0];
+		switch (command) {
+		case "collect":
+			// get the amount to pay
+			double amount = Double.parseDouble(args[1]);
+			
+			// and give money to the player
+			currentPlayer.giveMoney(amount);
+			break;
+			
+		case "pay":
+			// get the amount to pay
+			amount = Double.parseDouble(args[1]);
+			
+			// try to remove the money
+			try {
+				currentPlayer.takeMoney(amount);
+			}
+			catch (PlayerBankruptException e) {
+				// put however much player could pay into the pot
+				theBoard.getFreeParking().addToPot(e.getAmountPaid());
+				
+				return MonopolyModelState.PLAYER_BANKRUPT;
+			}
+			
+			theBoard.getFreeParking().addToPot(amount);
+			
+			break;
+			
+		case "collectfromall":
+			// get amount to pay
+			amount = Double.parseDouble(args[1]);
+			
+			// give to all players
+			for (Player p : theGame.getPlayers()) {
+				try {
+					p.takeMoney(amount);
+				}
+				catch (PlayerBankruptException e) {
+					throw new RuntimeException("Not sure how to handle other player bankrupt while trying to pay a community chest guy...");
+				}
+				currentPlayer.giveMoney(amount);
+			}
+			
+			break;
+			
+		case "paytoall":
+			// get amount to pay
+			amount = Double.parseDouble(args[1]);
+			
+			// calculate the total amount owed
+			int numPlayers = theGame.getPlayers().length;
+			double totalToAllPlayers = numPlayers * amount;
+			
+			// give to all players
+			for (Player p : theGame.getPlayers()) {
+				try {
+					currentPlayer.takeMoney(amount);
+				}
+				// if player can't pay the money owed, he will only owe money
+				// to the first person he can't pay (whatevs..)
+				catch (PlayerBankruptException e) {
+					// pay the person the amount he has
+					p.giveMoney(e.getAmountPaid());
+					
+					// add this guy as the creditor
+					currentPlayer.setCreditor(p);
+					
+					// return the PLAYER_BANKRUPT state
+					return MonopolyModelState.PLAYER_BANKRUPT;
+				}
+				p.giveMoney(amount);
+			}
+			
+			break;
+			
+		case "move":
+			// get distance to move
+			int distance = Integer.parseInt(args[1]);
+			
+			currentPlayer.move(distance);
+			
+			return MonopolyModelState.PLAYER_MOVED;
+			
+		case "utility":
+			// get the nearest utility location
+			int startLocation = currentPlayer.getPosition();
+			int nearestUtilLocation = getNearest(TileType.UTILITY, startLocation, theBoard);
+			
+			// and move there
+			currentPlayer.moveTo(nearestUtilLocation);
+			
+			return MonopolyModelState.PLAYER_MOVED;
+			
+		case "railroad":
+			// get the nearest railroad location
+			startLocation = currentPlayer.getPosition();
+			int nearestRailroadLocation = getNearest(TileType.RAILROAD, startLocation, theBoard);
+			
+			// and move there
+			currentPlayer.moveTo(nearestRailroadLocation);
+			
+			return MonopolyModelState.PLAYER_MOVED;
+			
+		case "jail":
+			startLocation = currentPlayer.getPosition();
+			currentPlayer.moveTo(theBoard.getJailLocation());
+			
+			// don't get $200 for passing go...
+			if (startLocation > currentPlayer.getPosition()) {
+				try {
+					currentPlayer.takeMoney(Player.GO_MONEY);						
+				}
+				catch (PlayerBankruptException e) {
+					// this should never happen because the player passed GO so he should
+					// at least have this amount in his account..
+					throw new RuntimeException("Card scripting interface is broken!");
+				}
+			}
+			
+			return MonopolyModelState.PLAYER_MOVED;
+		
+		// if anything else shows up, the script was invalid!
+		default:
+			throw new InvalidCardScriptException();
+		}
+		
+		return MonopolyModelState.PLAYING;
 	}
 	
 	private int getNearest(TileType tileType, int startLocation, Board theBoard) {

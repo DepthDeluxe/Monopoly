@@ -63,6 +63,14 @@ public class RollDiceAction implements ActionListener {
 		System.out.println();
 	}
 	
+	/**
+	 * Handles a player going bankrupt.  Will open them mortgage
+	 * panel and force him to mortgage all his properties.
+	 */
+	private void handlePlayerBankrupt() {
+		throw new RuntimeException("handlePlayerBankrupt() is not implemented!");
+	}
+	
 	//
 	// View Updating Functions
 	//
@@ -224,15 +232,26 @@ public class RollDiceAction implements ActionListener {
 			// update the model
 			theGame.handleCommChestPull();
 			break;
-		
+			
 		case PLAYING:
 			// handle a normal playing state
 			theGame.handleIdleState();
 			break;
 			
+		case PLAYER_MOVED:
+			// run this actionEvent again!
+			actionPerformed(e);
+			
+			break;
+			
+		case PLAYER_BANKRUPT:
+			handlePlayerBankrupt();
+			
+			break;
+			
 		// this should never happen
 		default:
-			throw new RuntimeException("Invalid MonopolyModelState Received!");
+			throw new RuntimeException("Invalid MonopolyModelState Received! (" + state + ")");
 		}
 		
 		// update the view after the model has changed

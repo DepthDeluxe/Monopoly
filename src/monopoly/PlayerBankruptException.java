@@ -11,8 +11,10 @@ public class PlayerBankruptException extends Exception {
 	// Constructors
 	//
 	
-	public PlayerBankruptException(double moneyRemaining) {
+	public PlayerBankruptException(double amountPaid) {		
 		super();
+		
+		this.amountPaid = amountPaid;
 	}
 	
 	//

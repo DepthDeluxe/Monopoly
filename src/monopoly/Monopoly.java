@@ -66,29 +66,38 @@ public class Monopoly {
 			throw new NoPlayersException();
 		}
 		
-		// don't do anything if the model currently isn't in a playable state
-		if (modelState != MonopolyModelState.PLAYING) {
-			return false;
+		// if the model is in PLAYER_MOVED state that means the player already
+		// rolled the diced and moved before but was moved by a chance card.
+		// Don't do anything if the model is in a different state.
+		switch (modelState) {
+		case PLAYING:
+			// roll the dice and cycle the player
+			dice.roll();
+			
+			// get the current player and calculate distance
+			int distance = dice.getFirstValue() + dice.getSecondValue();
+			
+			// no longer in jail if they rolled doubles
+			if (dice.getFirstValue() == dice.getSecondValue()) {
+				currentPlayer.setInJail(false);
+			}
+			
+			// player will not move if they are in jail
+			currentPlayer.move(distance);
+			
+		// this gets run when game is in PLAYING or PLAYER_MOVED state
+		case PLAYER_MOVED:
+			
+			// run the landOn of the current tile
+			ITile tile = board.getTileAt(currentPlayer.getPosition());
+			modelState = tile.landOn(currentPlayer);
+			
+			break;
+			
+		// in other cases, don't do anything
 		}
 		
-		// roll the dice and cycle the player
-		dice.roll();
-		
-		// get the current player and calculate distance
-		int distance = dice.getFirstValue() + dice.getSecondValue();
-		
-		// no longer in jail if they rolled doubles
-		if (dice.getFirstValue() == dice.getSecondValue()) {
-			currentPlayer.setInJail(false);
-		}
-		
-		// player will not move if they are in jail
-		currentPlayer.move(distance);
-		
-		// run the landOn
-		ITile tile = board.getTileAt(currentPlayer.getPosition());
-		modelState = tile.landOn(currentPlayer);
-		
+
 		// return true if there isn't any other action required by
 		// the controller
 		return (modelState == MonopolyModelState.PLAYING);
@@ -117,10 +126,9 @@ public class Monopoly {
 		Card pulledCard = board.getChanceDeck().getTopCard();
 		
 		// run the script on the card
-		pulledCard.runScript(this);
+		modelState = pulledCard.runScript(this);
 		
-		// reset the model state
-		modelState = MonopolyModelState.PLAYING;
+		
 		incrementPlayer();
 		
 		return true;

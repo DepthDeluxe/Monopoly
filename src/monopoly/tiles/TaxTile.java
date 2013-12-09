@@ -3,6 +3,8 @@ package monopoly.tiles;
 import monopoly.MonopolyModelState;
 import monopoly.Player;
 
+import monopoly.PlayerBankruptException;
+
 public class TaxTile implements ITile {
 
 	//
@@ -62,8 +64,18 @@ public class TaxTile implements ITile {
 		}
 		
 		// take the money
-		p.takeMoney(amountOwed);
-		
+		try {
+			p.takeMoney(amountOwed);
+		}
+		// if he can't pay...
+		catch (PlayerBankruptException e) {
+			// pay free parking what player can
+			freeParking.addToPot(e.getAmountPaid());
+			
+			// let controller know that the government screwed him
+			return MonopolyModelState.PLAYER_BANKRUPT;
+		}
+			
 		// add the money into free parking if it has been saved
 		if (freeParking != null) {
 			freeParking.addToPot(amountOwed);

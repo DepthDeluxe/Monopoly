@@ -7,7 +7,9 @@ import org.junit.Before;
 import org.junit.After;
 
 import monopoly.tiles.Property;
+import monopoly.MonopolyModelState;
 import monopoly.Player;
+import monopoly.PlayerBankruptException;
 
 public class PropertyTest {
 
@@ -48,11 +50,13 @@ public class PropertyTest {
 		double singleRent = property.getRent();
 		
 		// buy the property again and calculate double rent
-		player.buyProperty(property);
+		player.buyProperty(new Property(PROPERTY_NAME, PROPERTY_VALUE, PROPERTY_RENT,
+				PROPERTY_MORTGAGE_VALUE, PROPERTY_GROUP));
 		double doubleRent = property.getRent();
 		
 		// buy property again and calculate triple rent
-		player.buyProperty(property);
+		player.buyProperty(new Property(PROPERTY_NAME, PROPERTY_VALUE, PROPERTY_RENT,
+				PROPERTY_MORTGAGE_VALUE, PROPERTY_GROUP));
 		double tripleRent = property.getRent();
 		
 		// make sure the rents are the right value
@@ -63,9 +67,10 @@ public class PropertyTest {
 	
 	@Test
 	public void rentTransfer() {		
-		boolean success = property.chargeRent(otherPlayer);
+		// run the landOn function
+		MonopolyModelState mms = property.landOn(otherPlayer);
 		
-		assertTrue(success);
+		assertTrue(mms == MonopolyModelState.PLAYING);
 		assertEquals(player.getMoney(), START_MONEY + property.getRent(), ERROR);
 		assertEquals(otherPlayer.getMoney(), START_MONEY - property.getRent(), ERROR);
 	}
@@ -80,7 +85,7 @@ public class PropertyTest {
 	}
 	
 	@Test
-	public void mortgageFailure() {
+	public void mortgageFailure() throws PlayerBankruptException {
 		// mortgage once and take away the value earned
 		property.mortgage();
 		player.takeMoney(property.getMortgagedValue());
@@ -94,15 +99,16 @@ public class PropertyTest {
 	}
 	
 	@Test
-	public void mortgagedRent() {
+	public void mortgagedRent() throws PlayerBankruptException {
 		// mortgage the property and take away the amount earned
 		property.mortgage();
 		player.takeMoney(property.getMortgagedValue());
 		
-		boolean success = property.chargeRent(otherPlayer);
+		// run the landOn function
+		MonopolyModelState mms = property.landOn(player);
 		
 		// make sure fail flag passed, and no money was transferred
-		assertTrue(!success);
+		assertTrue(mms == MonopolyModelState.PLAYING);
 		assertEquals(player.getMoney(), START_MONEY, ERROR);
 		assertEquals(otherPlayer.getMoney(), START_MONEY, ERROR);
 	}

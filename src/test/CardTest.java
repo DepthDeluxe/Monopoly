@@ -143,18 +143,11 @@ public class CardTest {
 		theCard.runScript(theGame);
 		
 		// find the nearest railroad
-		Integer nearestRailroadPos = null;
-		for (int n = START_POSITION; n < theBoard.getNumTiles(); n++) {
-			ITile t = theBoard.getTileAt(n);
-			
-			if (t.getTileType() == TileType.RAILROAD) {
-				nearestRailroadPos = n;
-			}
-		}
+		throw new RuntimeException("Needs to be reimplemented");
 		
 		// verify correct changes
-		assertEquals(thePlayer.getMoney(), START_AMOUNT, ERROR);
-		assertTrue(thePlayer.getPosition() == (START_POSITION + nearestRailroadPos));
+		//assertEquals(thePlayer.getMoney(), START_AMOUNT, ERROR);
+		//assertTrue(thePlayer.getPosition() == (START_POSITION + nearestRailroadPos));
 	}
 	
 	@Test
@@ -163,19 +156,11 @@ public class CardTest {
 		
 		theCard.runScript(theGame);
 		
-		// find the nearest railroad
-		Integer nearestUtilityPos = null;
-		for (int n = START_POSITION; n < theBoard.getNumTiles(); n++) {
-			ITile t = theBoard.getTileAt(n);
-			
-			if (t.getTileType() == TileType.RAILROAD) {
-				nearestUtilityPos = n;
-			}
-		}
+		throw new RuntimeException("Needs to be reimplemented");
 		
 		// verify correct changes
-		assertEquals(thePlayer.getMoney(), START_AMOUNT, ERROR);
-		assertTrue(thePlayer.getPosition() == (START_POSITION + nearestUtilityPos));
+		//assertEquals(thePlayer.getMoney(), START_AMOUNT, ERROR);
+		//assertTrue(thePlayer.getPosition() == (START_POSITION + nearestUtilityPos));
 	}
 
 	@After

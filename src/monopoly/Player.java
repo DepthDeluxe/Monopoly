@@ -21,6 +21,10 @@ public class Player {
 	private LinkedList<Property> properties;
 	private int mortgagedProperties;
 	
+	// for debt management
+	private Player creditor;
+	private double amountOwed;
+	
 	//
 	// Static Variables
 	//
@@ -78,10 +82,18 @@ public class Player {
 		this.money += amount;
 	}
 	
-	public boolean takeMoney(double amount) {
-		// don't allow player to have negative money
+	public boolean takeMoney(double amount) throws PlayerBankruptException {
+		// if player out of money, throw exception returning
+		// the amount of remaining money the player has
 		if (money < amount) {
-			return false;
+			double playerMoney = money;
+			money = 0;
+			
+			// set the amount owed
+			amountOwed = amount - playerMoney;
+			
+			// pass out the amount remaining
+			throw new PlayerBankruptException(playerMoney);
 		}
 		
 		// subtract the money and return true
@@ -105,6 +117,17 @@ public class Player {
 		properties.add(p);
 		p.setOwner(this);		// set the new owner of property
 		return true;
+	}
+	
+	public void goBankrupt() {
+		// iterate through every owned property and set owner to null
+		for (Property p : properties) {
+			// on setting new owner, the property state will be reset
+			p.setOwner(null);
+		}
+		
+		// clear the list of properties
+		properties.clear();
 	}
 	
 	public void setInJail(boolean inJail) {
@@ -191,13 +214,52 @@ public class Player {
 		return this.properties;
 	}
 	
+	public int getMortgagedProperties()
+	{
+		return this.mortgagedProperties;
+	}
+	
+	public boolean payOffDebt() {		
+		// don't allow to pay off debt until they have the right money
+		if (amountOwed > money) {
+			return false;
+		}
+		
+		// pay off the money
+		money -= amountOwed;
+		
+		// give to the creditor if there is one, player can owe money
+		// to the house
+		if (creditor != null) {			
+			creditor.giveMoney(amountOwed);
+		}
+		
+		// zero out amount owed an erase the creditor
+		amountOwed = 0;
+		creditor = null;
+		
+		return true;
+	}
+	
+	//
+	// Setters
+	//
+	
 	public void changeMortgagedProperties(int x)
 	{
 		this.mortgagedProperties += x;
 	}
 	
-	public int getMortgagedProperties()
-	{
-		return this.mortgagedProperties;
+	/**
+	 * Sets the player that this player owes money to.
+	 * @param p	The player that this player owes money to
+	 */
+	public void setCreditor(Player p) {
+		// don't do anything if this player doesn't owe anything
+		if (amountOwed == 0) {
+			return;
+		}
+		
+		this.creditor = p;
 	}
 }

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.After;
 
 import monopoly.Player;
+import monopoly.PlayerBankruptException;
 import monopoly.tiles.TaxTile;
 import monopoly.tiles.FreeParking;
 
@@ -40,7 +41,7 @@ public class TaxTileTest {
 	}
 	
 	@Test
-	public void taxMinimum() {
+	public void taxMinimum() throws PlayerBankruptException {
 		// have player have only $50 remaining
 		thePlayer.takeMoney(0.75 * START_AMOUNT);
 		

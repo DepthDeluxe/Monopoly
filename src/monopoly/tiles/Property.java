@@ -2,6 +2,7 @@ package monopoly.tiles;
 
 import monopoly.Player;
 import monopoly.MonopolyModelState;
+import monopoly.PlayerBankruptException;
 
 public class Property implements ITile {
 	//
@@ -48,20 +49,6 @@ public class Property implements ITile {
 		isMortgaged = false;
 	}
 	
-	public boolean chargeRent(Player player) {
-		// can't charge rent if property is unowned or mortaged
-		if (owner == null || isMortgaged == true) {
-			return false;
-		}
-		
-		// transfer the rent from the player that landed on the
-		// tile to the owner of the tile
-		player.takeMoney(getRent());
-		owner.giveMoney(getRent());
-		
-		return true;
-	}
-	
 	public boolean mortgage() {
 		// can't mortgage an unowned house,
 		// can't mortgage an already mortgaged house
@@ -84,12 +71,26 @@ public class Property implements ITile {
 			return false;
 		}
 		
-		// try to take the mortgaged value + 10%
-		boolean success = owner.takeMoney(1.1 * mortgagedValue);
+		// calculate the amount owed to unmortage
+		double unmortgageCost = 1.1 * mortgagedValue;
 		
-		if (success) {
+		// 
+		if (unmortgageCost > owner.getMoney()) {
+			return false;
+		}
+		
+		// try to take the mortgaged value + 10%
+		try {
+			owner.takeMoney(1.1 * mortgagedValue);
+			
 			isMortgaged = false;
 			owner.changeMortgagedProperties(-1);
+		}
+		catch(PlayerBankruptException e) {
+			// Throw a generic exception because this should never happen.
+			// The model shouldn't allow the transfer of money... before
+			// it transfers it
+			throw new RuntimeException("Property unmortgaging is broken!");
 		}
 		
 		// returns true if the house was unmortgaged
@@ -168,15 +169,18 @@ public class Property implements ITile {
 			double amountToTransfer = getRent();
 			
 			// try to take the money from the player who landed
-			boolean success = p.takeMoney(amountToTransfer);
-			if (!success) {
-				// if not enough money, transfer rest of money from player and give to owner
-				double moneyRemaining = p.getMoney();
-				p.takeMoney(moneyRemaining);
-				p.giveMoney(moneyRemaining);
+			try {
+				p.takeMoney(amountToTransfer);
+			}
+			catch (PlayerBankruptException e) {
+				// transfer the remaining money to the player
+				owner.giveMoney(e.getAmountPaid());
 				
-				// let controller know a player has lost
-				return MonopolyModelState.PLAYER_OUT_OF_MONEY;
+				// set the creditor
+				p.setCreditor(owner);
+				
+				// let controller know a player has run out of money
+				return MonopolyModelState.PLAYER_BANKRUPT;
 			}
 			
 			// give the money to the owner
