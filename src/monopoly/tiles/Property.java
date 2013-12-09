@@ -43,6 +43,9 @@ public class Property implements ITile {
 	
 	public void setOwner(Player newOwner) {
 		this.owner = newOwner;
+		
+		// reset mortgaged status
+		isMortgaged = false;
 	}
 	
 	public boolean chargeRent(Player player) {
@@ -173,7 +176,7 @@ public class Property implements ITile {
 				p.giveMoney(moneyRemaining);
 				
 				// let controller know a player has lost
-				return MonopolyModelState.PLAYER_LOST;
+				return MonopolyModelState.PLAYER_OUT_OF_MONEY;
 			}
 			
 			// give the money to the owner
