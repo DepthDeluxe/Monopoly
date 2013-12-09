@@ -26,7 +26,7 @@ public class RollDiceAction implements ActionListener {
 	Board		theBoardModel;
 	
 	private static String MAIN_TEXT = "Roll Dice!";
-	private static String PASS_TEXT = "Pass";
+	private static String PASS_TEXT = "End Turn";
 	
 	//
 	// Constructors
@@ -198,6 +198,13 @@ public class RollDiceAction implements ActionListener {
 		if (theGame.getModelState() == MonopolyModelState.PLAYING) {
 			theGame.nextMove();
 			updateView();
+		}
+		
+		// have to work on this
+		if (theGame.getModelState() == MonopolyModelState.BUY_REQUEST){
+			theMainFrame.getProperties().changeBuyState(true);
+			ITile p = theGame.getBoard().getTileAt(theGame.getCurrentPlayer().getPosition());
+			theMainFrame.getProperties().updateProperty(p);
 		}
 		
 		// run the right function depending on the state of the model
