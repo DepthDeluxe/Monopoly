@@ -7,8 +7,15 @@
  */
 package controller;
 
+import gui.MMainFrame;
+import gui.MPlayerProperties;
+import gui.MUnmortgageDialog;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import monopoly.Monopoly;
+import monopoly.Player;
 
 /**
  * @author ajrk001
@@ -16,7 +23,15 @@ import java.awt.event.ActionListener;
  */
 public class MenuListener implements ActionListener
 {
-
+	Player[] play;
+	MMainFrame frame;
+	
+	public MenuListener(Monopoly game, MMainFrame gm)
+	{
+		play = game.getPlayers();
+		frame = gm;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -42,8 +57,9 @@ public class MenuListener implements ActionListener
 		}
 		else if(action.equals("SeeProps")) // if they want to see the properties owned by each player
 		{
-			// do see stuff
-			System.out.println("See properties of all players!");
+			MPlayerProperties panel = new MPlayerProperties(play, frame);
+			panel.setLocationRelativeTo(frame);
+			panel.setVisible(true);
 		}
 	}
 
