@@ -7,6 +7,8 @@ import monopoly.xml.TileLoader;
 import monopoly.xml.CardLoader;
 
 class NoPlayersException extends RuntimeException {
+	private static final long serialVersionUID = -4783179608622400629L;
+
 	public NoPlayersException() { super("There are not enough players added to the game!"); }	
 }
 
@@ -54,7 +56,7 @@ public class Monopoly {
 		// load the board
 		board = new Board(boardTiles, chanceDeck, commChestDeck);
 		
-		modelState = modelState.PLAYING;
+		modelState = MonopolyModelState.PLAYING;
 	}
 	
 	//
@@ -95,6 +97,7 @@ public class Monopoly {
 			break;
 			
 		// in other cases, don't do anything
+		default:
 		}
 		
 
