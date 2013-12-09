@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import monopoly.*;
 import monopoly.tiles.ITile;
 import monopoly.tiles.Property;
+import monopoly.tiles.TileType;
+import gui.MCardDialog;
 import gui.MMainFrame;
 import gui.MBoardPanel;
 
@@ -213,6 +215,10 @@ public class RollDiceAction implements ActionListener {
 			// handle the situation graphically
 			handleChance(theBoardModel.getChanceDeck().getTopCard());
 			
+			MCardDialog cardDiag = new MCardDialog(theBoardModel.getChanceDeck().getTopCard(), theMainFrame, TileType.CHANCE);
+			cardDiag.setLocationRelativeTo(theMainFrame);
+			cardDiag.setVisible(true);
+			
 			// update the model
 			theGame.handleChancePull();
 			break;
@@ -220,6 +226,10 @@ public class RollDiceAction implements ActionListener {
 		case COMMUNITY_CHEST:
 			// handle the situation graphically
 			handleCommChest(theBoardModel.getCommunityChestDeck().getTopCard());
+			
+			MCardDialog cardDia = new MCardDialog(theBoardModel.getCommunityChestDeck().getTopCard(), theMainFrame, TileType.COMMUNITY_CHEST);
+			cardDia.setLocationRelativeTo(theMainFrame);
+			cardDia.setVisible(true);
 			
 			// update the model
 			theGame.handleCommChestPull();

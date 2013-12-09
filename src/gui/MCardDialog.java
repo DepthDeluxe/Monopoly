@@ -10,6 +10,7 @@ package gui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class MCardDialog extends JDialog implements ActionListener
 {
 	Card card; // the card that you have to display
 	MMainFrame game;
+	String[] funnyButtonIdeas;
 	
 	private final String fileChance = "Images/chance.jpg";
 	private final String fileCommChest = "Images/commChest.jpg";
@@ -40,6 +42,11 @@ public class MCardDialog extends JDialog implements ActionListener
 		this.setLayout(new GridLayout(2, 1, 0, 0));
 		game = frame;		
 		card = chosen;
+		
+		Random rand = new Random();
+		int randInt = rand.nextInt(5);
+		
+		funnyButtonIdeas = new String[] {"This message has been recieved and ignored", "Goddamitt, this again?", "Unbelievable. Absolutely Unbelievable", "No.", "Praise Gaben!"};
 		
 		JPanel tempPane = new JPanel(); // get temp pane to seperate things
 		
@@ -59,13 +66,15 @@ public class MCardDialog extends JDialog implements ActionListener
 		
 		this.add(tempPane);
 		
-		JButton confirm = new JButton("This message has been recieved and ignored"); // button to continue the game
+		JButton confirm = new JButton(funnyButtonIdeas[randInt]); // button to continue the game
 		confirm.addActionListener(this);
 		this.add(confirm);
+		
+		this.pack();
 	}
 	
 	public void actionPerformed(ActionEvent e1)
 	{
-		
+		this.dispose();
 	}
 }
