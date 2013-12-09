@@ -17,16 +17,13 @@ public class CardDeck {
 		return topCard;
 	}
 	
-	public Card nextCard() {
-		topCard = cards[curCardIndex];
-		
+	public void nextCard() {
 		// increment the card counter.  If it reached the end,
 		// reset to zero
 		curCardIndex++;
 		if (curCardIndex == cards.length) {
 			curCardIndex = 0;
 		}
-		
-		return topCard;
+		topCard = cards[curCardIndex];
 	}
 }

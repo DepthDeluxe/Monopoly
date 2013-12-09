@@ -123,4 +123,6 @@ public class MControlPanel extends JPanel
 	{
 		return btnRollDice;
 	}
+
+
 }

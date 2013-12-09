@@ -45,7 +45,7 @@ public class MortgageListener implements ActionListener
 	
 	private void openDialog()
 	{
-		if(play.getProperties().size()  == 0) // if no properties
+		if(play.getProperties().size() == 0) // if no properties
 		{
 			JOptionPane.showMessageDialog(null, "You don't have any properties to mortgage!");
 			return;

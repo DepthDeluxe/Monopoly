@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import monopoly.*;
 import monopoly.tiles.ITile;
 import monopoly.tiles.Property;
+import monopoly.tiles.TileType;
+import gui.MCardDialog;
 import gui.MMainFrame;
 import gui.MBoardPanel;
 
@@ -24,7 +26,7 @@ public class RollDiceAction implements ActionListener {
 	Board		theBoardModel;
 	
 	private static String MAIN_TEXT = "Roll Dice!";
-	private static String PASS_TEXT = "Pass";
+	private static String PASS_TEXT = "End Turn";
 	
 	//
 	// Constructors
@@ -171,6 +173,7 @@ public class RollDiceAction implements ActionListener {
 
 				// set the button text back to the start
 				theButton.setText(MAIN_TEXT);
+				
 			}
 		};
 		
@@ -205,10 +208,26 @@ public class RollDiceAction implements ActionListener {
 			updateView();
 		}
 		
+		// have to work on this
+		if (theGame.getModelState() == MonopolyModelState.BUY_REQUEST){
+			theMainFrame.getProperties().changeBuyState(true);
+			ITile p = theGame.getBoard().getTileAt(theGame.getCurrentPlayer().getPosition());
+			theMainFrame.getProperties().updateProperty(p);
+		}
+		
 		// run the right function depending on the state of the model
 		MonopolyModelState state = theGame.getModelState();
 		switch(state) {
 		case BUY_REQUEST:
+			theMainFrame.getProperties().getBtnBuy().addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e1){
+					if (e1.getSource() == theMainFrame.getProperties().getBtnBuy()){
+						theGame.handleBuyRequest(true);
+						//theMainFrame.getProperties().changeBuyState();
+					}
+				}
+			});
+			
 			// turns this button into pass mode
 			enablePassButton();
 			
@@ -221,6 +240,10 @@ public class RollDiceAction implements ActionListener {
 			// handle the situation graphically
 			handleChance(theBoardModel.getChanceDeck().getTopCard());
 			
+			MCardDialog cardDiag = new MCardDialog(theBoardModel.getChanceDeck().getTopCard(), theMainFrame, TileType.CHANCE);
+			cardDiag.setLocationRelativeTo(theMainFrame);
+			cardDiag.setVisible(true);
+			
 			// update the model
 			theGame.handleChancePull();
 			break;
@@ -228,6 +251,10 @@ public class RollDiceAction implements ActionListener {
 		case COMMUNITY_CHEST:
 			// handle the situation graphically
 			handleCommChest(theBoardModel.getCommunityChestDeck().getTopCard());
+			
+			MCardDialog cardDia = new MCardDialog(theBoardModel.getCommunityChestDeck().getTopCard(), theMainFrame, TileType.COMMUNITY_CHEST);
+			cardDia.setLocationRelativeTo(theMainFrame);
+			cardDia.setVisible(true);
 			
 			// update the model
 			theGame.handleCommChestPull();

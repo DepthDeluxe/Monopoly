@@ -169,10 +169,15 @@ public class MPropertiesPanel extends JPanel
 		this.add(action);
 		this.revalidate();
 	}
+
 	
 	public JButton getBtnBuy()
 	{
 		return this.action;
+	}
+	
+	public void changeBuyState(boolean state){
+		this.action.setEnabled(state);
 	}
 }
 

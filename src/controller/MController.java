@@ -75,6 +75,13 @@ public class MController
 			public void actionPerformed(ActionEvent e)
 			{
 				theGame.handleBuyRequest(true);
+				Player player = theGame.getCurrentPlayer();
+				double[] money = new double[theGame.getPlayers().length];
+				for(int i = 0 ; i < theGame.getPlayers().length ; i++){
+					money[i] = theGame.getPlayers()[i].getMoney();
+				}
+				theView.getControl().setMoneyVals(money);
+				theView.getProperties().changeBuyState(false);
 				// Update model
 			}
 		});
@@ -87,12 +94,12 @@ public class MController
 	}
 	
 	private void setMortgageFunction() {
-		theView.getControl().setMortgageAction(new MortgageListener(theGame.getPlayers()[0], theView));
+		theView.getControl().setMortgageAction(new MortgageListener(theGame.getCurrentPlayer(), theView));
 	}
 	
 	private void setMenuBarFunction()
 	{
-		MenuListener listen = new MenuListener();
+		MenuListener listen = new MenuListener(theGame, theView);
 		theView.getMMenuBar().setActionListener(listen);
 
 	}
