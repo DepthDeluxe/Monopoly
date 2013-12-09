@@ -3,6 +3,8 @@ package monopoly;
 import monopoly.tiles.TileType;
 
 class InvalidCardScriptException extends RuntimeException {
+	private static final long serialVersionUID = 2482137175816724626L;
+
 	public InvalidCardScriptException() { super("This CardScript is invalid!"); }
 }
 
@@ -96,10 +98,6 @@ public class Card {
 		case "paytoall":
 			// get amount to pay
 			amount = Double.parseDouble(args[1]);
-			
-			// calculate the total amount owed
-			int numPlayers = theGame.getPlayers().length;
-			double totalToAllPlayers = numPlayers * amount;
 			
 			// give to all players
 			for (Player p : theGame.getPlayers()) {
