@@ -1,5 +1,7 @@
 package monopoly;
 
+import java.util.LinkedList;
+
 import monopoly.tiles.Property;
 import monopoly.tiles.TileType;
 
@@ -61,7 +63,21 @@ public class AIPlayer extends Player {
 			break;
 			
 		case PLAYER_BANKRUPT:
-			handlePlayerBankrupt();
+			boolean handled = handlePlayerBankrupt();
+			boolean success = true;
+			if(handled) // if they now have enough money
+			{
+				success = this.payOffDebt();
+			}
+			else if(!handled)
+			{
+				// remove them
+			}
+			
+			if(!success) // if it didn't work
+			{
+				//remove them
+			}
 			
 		default: // should never
 			throw new RuntimeException("Invalid MonopolyModelState Received! (" + state + ")"); 
@@ -87,11 +103,35 @@ public class AIPlayer extends Player {
 		return false;
 	}
 	
-	
-	
 	private boolean handlePlayerBankrupt()
 	{
-		int moneyRaised = 0;
-		return false;
+		double moneyRaised = 0;
+		double moneyOwed = this.getAmountOwed(); // the amount they've got to pay
+		LinkedList<Property> playProps = this.getProperties(); // all their properties
+		
+		// increment through their properties to see if they can mortgaged enough such that they can
+		// pay back debt
+		for(int x = 0; x < playProps.size(); x++)
+		{
+			Property prop = playProps.get(x);
+			if(!prop.isMortgaged()) // if not already mortgaged
+			{
+				moneyRaised += prop.getMortgagedValue();
+			}
+		}
+		
+		if(moneyRaised < moneyOwed) { return false; } // if they can't pay it back just return false
+		
+		moneyRaised = 0; // reset so that we can mortgage the right amount of properties
+		int x = 0; // an incrementer to go through the properties and mortgage them
+		
+		while(moneyRaised < moneyOwed)
+		{
+			Property prop = playProps.get(x);
+			prop.mortgage(); // even if its already mortgaged, fn will just return false and not do anything
+			x++;
+		}
+		
+		return true;
 	}
 }
