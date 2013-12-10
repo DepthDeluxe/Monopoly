@@ -2,7 +2,6 @@ package monopoly;
 
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class CardDeck {
 	private LinkedList<Card> cards;
