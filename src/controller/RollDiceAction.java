@@ -139,14 +139,13 @@ public class RollDiceAction implements ActionListener {
 	 * Updates the current player's position from their
 	 * location in the model
 	 */
-	private void updatePlayerPos() {
-		// get player information
-		int curPlayerIndex = theGame.getCurrentPlayerIndex();
-		Player currentPlayer = theGame.getCurrentPlayer();
-		int currentPlayerPos = currentPlayer.getPosition();
-		
-		// set the player's position to where they are on the model
-		theBoardView.moveCharacter(curPlayerIndex, currentPlayerPos);
+	private void updatePlayerPos() {		
+		// update every single player
+		Player[] thePlayers = theGame.getPlayers();
+		for (int n = 0; n < thePlayers.length; n++) {
+			Player thePlayer = thePlayers[n];
+			theBoardView.moveCharacter(n, thePlayer.getPosition());
+		}
 	}
 	
 	//
