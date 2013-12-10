@@ -68,6 +68,11 @@ public class Monopoly {
 			throw new NoPlayersException();
 		}
 		
+		// since currentPlayer changes after the handle functions called, there
+		// needs to be another reference to the current player
+		Player playerThisRun = currentPlayer;
+		int originalNumGoTimes = playerThisRun.getNumTimesPassedGo();
+		
 		// if the model is in PLAYER_MOVED state that means the player already
 		// rolled the diced and moved before but was moved by a chance card.
 		// Don't do anything if the model is in a different state.
@@ -100,7 +105,11 @@ public class Monopoly {
 		default:
 		}
 		
-
+		// calculate the amount owed to the player and transfer it to him
+		int timesPassedGoDiff = playerThisRun.getNumTimesPassedGo() - originalNumGoTimes;
+		double moneyOwedToPlayer = board.getGoTile().getGoMoney() * timesPassedGoDiff;
+		playerThisRun.giveMoney(moneyOwedToPlayer);
+		
 		// return true if there isn't any other action required by
 		// the controller
 		return (modelState == MonopolyModelState.PLAYING);
@@ -125,22 +134,26 @@ public class Monopoly {
 	}
 	
 	public boolean handleCardPull(TileType cardType) {
-		// get the pulled card
-		Card pulledCard;
+		// get the card deck
+		CardDeck theDeck;
 		if (cardType == TileType.CHANCE) {
-			pulledCard = board.getChanceDeck().getTopCard();
+			theDeck = board.getChanceDeck();
 		}
 		else if (cardType == TileType.COMMUNITY_CHEST) {
-			pulledCard = board.getCommunityChestDeck().getTopCard();
+			theDeck = board.getCommunityChestDeck();
 		}
 		else {
 			throw new RuntimeException("Error: Invalid card type!");
 		}
 		
+		// get the pulled card from the selected deck
+		Card pulledCard = theDeck.getTopCard();
+		
 		// run the script on the card
 		modelState = pulledCard.runScript(this);
 		
-		board.getChanceDeck().nextCard(); // increment the card deck
+		// increment the card deck
+		board.getChanceDeck().nextCard();
 		
 		// only increment player if the model state is PLAYING
 		if (modelState == MonopolyModelState.PLAYING) {

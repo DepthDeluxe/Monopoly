@@ -16,6 +16,7 @@ public class Board {
 	
 	// special tiles
 	private FreeParking freeParking;
+	private GoTile goTile;
 	private int jailLocation;
 	
 	//
@@ -36,6 +37,9 @@ public class Board {
 				break;
 			}
 		}
+		
+		// goTile should always be the first one
+		goTile = (GoTile)tiles[0];
 		
 		// find the jail location
 		jailLocation = 0;
@@ -110,6 +114,10 @@ public class Board {
 	
 	public FreeParking getFreeParking() {
 		return freeParking;
+	}
+	
+	public GoTile getGoTile() {
+		return goTile;
 	}
 	
 	public int getJailLocation() {

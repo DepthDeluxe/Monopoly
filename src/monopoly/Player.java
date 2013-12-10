@@ -13,7 +13,9 @@ public class Player {
 	private String name;
 	private double money;
 
+	// position management
 	private int position;
+	private int numTimesPassedGo;
 	private boolean inJail;
 
 	private int boardSize;
@@ -25,12 +27,6 @@ public class Player {
 	private double amountOwed;
 	
 	//
-	// Static Variables
-	//
-	
-	public static final double GO_MONEY = 200;
-	
-	//
 	// Constructors
 	//
 	
@@ -40,6 +36,7 @@ public class Player {
 		this.boardSize = boardSize;
 		
 		position = 0;
+		numTimesPassedGo = 0;
 		mortgagedProperties = 0;
 		inJail = false;
 		
@@ -58,12 +55,11 @@ public class Player {
 		
 		this.position += numProperties;
 		
-		// go back to the beginning, and collect money for
-		// passing go
+		// a full loop completed, increment numTimesPassedGo
 		if (this.position > boardSize) {
 			this.position -= boardSize;
 			
-			giveMoney(GO_MONEY);
+			numTimesPassedGo++;
 		}
 	}
 	
@@ -71,9 +67,9 @@ public class Player {
 		int oldPos = this.position;
 		this.position = destination;
 		
-		// give GO_MONEY if player passed go (i.e. destination smaller than start)
+		// increment the times player passed GO if his new position
 		if (oldPos > this.position) {
-			giveMoney(GO_MONEY);
+			numTimesPassedGo++;
 		}
 	}
 	
@@ -147,6 +143,10 @@ public class Player {
 	
 	public int getPosition() {
 		return position;
+	}
+	
+	public int getNumTimesPassedGo() {
+		return numTimesPassedGo;
 	}
 	
 	public boolean owns(Property p) {

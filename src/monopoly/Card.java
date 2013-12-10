@@ -134,6 +134,14 @@ public class Card {
 			int startLocation = currentPlayer.getPosition();
 			int nearestUtilLocation = getNearest(TileType.UTILITY, startLocation, theBoard);
 			
+			// if the startLocation is after the util location, give money for passing go
+			if (startLocation > nearestUtilLocation) {
+				double amountOwed = theBoard.getGoTile().getGoMoney();
+				
+				// give player the money
+				currentPlayer.giveMoney(amountOwed);
+			}
+			
 			// and move there
 			currentPlayer.moveTo(nearestUtilLocation);
 			
@@ -147,23 +155,19 @@ public class Card {
 			// and move there
 			currentPlayer.moveTo(nearestRailroadLocation);
 			
+			// if the startLocation is after the util location, give money for passing go
+			if (startLocation > nearestRailroadLocation) {
+				double amountOwed = theBoard.getGoTile().getGoMoney();
+				
+				// give player the money
+				currentPlayer.giveMoney(amountOwed);
+			}
+			
 			return MonopolyModelState.PLAYER_MOVED;
 			
 		case "jail":
-			startLocation = currentPlayer.getPosition();
+			// just move the player, don't collect money
 			currentPlayer.moveTo(theBoard.getJailLocation());
-			
-			// don't get $200 for passing go...
-			if (startLocation > currentPlayer.getPosition()) {
-				try {
-					currentPlayer.takeMoney(Player.GO_MONEY);						
-				}
-				catch (PlayerBankruptException e) {
-					// this should never happen because the player passed GO so he should
-					// at least have this amount in his account..
-					throw new RuntimeException("Card scripting interface is broken!");
-				}
-			}
 			
 			return MonopolyModelState.PLAYER_MOVED;
 		

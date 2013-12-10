@@ -94,6 +94,12 @@ public class TileLoader {
 		// get pointer to an ITile
 		ITile outTile = null;
 		switch (elementType) {
+		
+		case "Go":
+			String collectAmountStr = getChildValue("CollectAmount", e);
+			double collectAmount = Double.parseDouble(collectAmountStr);
+			
+			outTile = new GoTile(collectAmount);
 			
 		case "CardTile":
 			String type = getChildValue("Type", e);
