@@ -414,24 +414,24 @@ public class MBoardPanel extends JPanel
 		property25.setBounds(400, 0, 50, 100);
 		add(property25);
 		
-		JLabel imageUtilityTwo = new JLabel("");
-		property25.add(imageUtilityTwo);
-		imageUtilityTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityEnhancment.png")));
+		properties[15] = new JTextArea();
+		properties[15].setEditable(false);
+		properties[15].setLineWrap(true);
+		properties[15].setText("Property");
+		property25.add(properties[15]);
+		
+		JLabel colorBox16 = new JLabel("");
+		colorBox16.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
+		property25.add(colorBox16);
 		
 		Box property26 = Box.createVerticalBox();
 		property26.setBorder(new LineBorder(new Color(0, 0, 0)));
 		property26.setBounds(450, 0, 50, 100);
 		add(property26);
 		
-		properties[15] = new JTextArea();
-		properties[15].setEditable(false);
-		properties[15].setLineWrap(true);
-		properties[15].setText("Property");
-		property26.add(properties[15]);
-		
-		JLabel colorBox16 = new JLabel("");
-		colorBox16.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/ColorBoxes/yellow.jpg")));
-		property26.add(colorBox16);
+		JLabel imageUtilityTwo = new JLabel("");
+		property26.add(imageUtilityTwo);
+		imageUtilityTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityEnhancment.png")));
 		
 		Box property27 = Box.createVerticalBox();
 		property27.setBorder(new LineBorder(new Color(0, 0, 0)));
