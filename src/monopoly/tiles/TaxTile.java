@@ -20,8 +20,8 @@ public class TaxTile implements ITile {
 	// Constructors
 	//
 	
-	public TaxTile(double taxRate, double taxMinimum) {
-		this.taxRate = taxRate;
+	public TaxTile(double taxRate, double taxMinimumPct) {
+		this.taxRate = taxRate / 100;		// save the decimal value and not the percentage!
 		this.taxMinimum = taxMinimum;
 		
 		// free parking has to be assigned to after the game has
