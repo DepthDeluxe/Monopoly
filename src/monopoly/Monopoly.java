@@ -9,6 +9,7 @@ import monopoly.xml.XMLIO;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import monopoly.xml.ISerializable;
 
@@ -254,7 +255,7 @@ public class Monopoly implements ISerializable {
 		
 		// current player index
 		Element curPlayerIndexElement = XMLIO.classMemberToElement(
-				"CurrentPlayerIndex", Integer.toString(curPlayerIndex), doc);
+				"CurPlayerIndex", Integer.toString(curPlayerIndex), doc);
 		monopolyElement.appendChild(curPlayerIndexElement);
 		
 		// the board
@@ -267,5 +268,39 @@ public class Monopoly implements ISerializable {
 		monopolyElement.appendChild(mmsElement);
 		
 		return monopolyElement;
+	}
+	
+	@Override
+	public void deSerialize(Element rootNode) {
+		// load players
+		players.clear();
+		Element playersElement = (Element)rootNode.getElementsByTagName("Players").item(0);
+		NodeList playerNodes = playersElement.getElementsByTagName("Player");
+		for (int n = 0; n < playerNodes.getLength(); n++) {
+			// get the next player element
+			Element playerElement = (Element)playerNodes.item(n);
+			
+			// create a player and deserialize him
+			Player p = new Player(null, 0, board.getNumTiles());
+			p.deSerialize(playerElement);
+			
+			// add him to the players list
+			players.add(p);
+		}
+		
+		String tempStr;
+		
+		// curPlayerIndex
+		tempStr = XMLIO.getChildValue("CurPlayerIndex", rootNode);
+		curPlayerIndex = Integer.parseInt(tempStr);
+		
+		// currentPlayer - from curPlayerIndex
+		currentPlayer = players.get(curPlayerIndex);
+		
+		// no dice (lol i'm punny)
+		
+		// the model state
+		tempStr = XMLIO.getChildValue("ModelState", rootNode);
+		MonopolyModelState.valueOf(tempStr);
 	}
 }

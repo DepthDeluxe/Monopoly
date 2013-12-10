@@ -162,8 +162,19 @@ public class Board implements ISerializable {
 		// free parking money
 		Element freeParkingAmtElement = XMLIO.classMemberToElement(
 				"FreeParkingAmount", Double.toString(freeParking.getMoneyInPot()), doc);
-		boardElement.appendChild(boardElement);
+		boardElement.appendChild(freeParkingAmtElement);
 		
 		return boardElement;
+	}
+	
+	@Override
+	public void deSerialize(Element rootNode) {
+		// load the free parking money
+		String tempStr = XMLIO.getChildValue("FreeParkingAmount", rootNode);
+		double savedAmount = Double.parseDouble(tempStr);
+		
+		// calculate discrepancy and resolve it by adding that amount to pot
+		double discrepancy = savedAmount - freeParking.getMoneyInPot();
+		freeParking.addToPot(discrepancy);
 	}
 }

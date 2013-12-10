@@ -9,6 +9,8 @@ import monopoly.xml.XMLIO;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Player implements ISerializable {
 	//
@@ -329,5 +331,57 @@ public class Player implements ISerializable {
 		
 		return playerElement;
 	}
-
+	
+	@Override
+	public void deSerialize(Element rootNode) {
+		// load all of the elements
+		//
+		
+		String tempStr;
+		
+		// name
+		name = XMLIO.getChildValue("Name", rootNode);
+		
+		// money
+		tempStr = XMLIO.getChildValue("Money", rootNode);
+		money = Double.parseDouble(tempStr);
+		
+		// position
+		tempStr = XMLIO.getChildValue("Position", rootNode);
+		position = Integer.parseInt(tempStr);
+		
+		// inJail
+		tempStr = XMLIO.getChildValue("InJail", rootNode);
+		inJail = Boolean.parseBoolean(tempStr);
+		
+		// properties
+		Element propertiesElement = (Element)rootNode.getElementsByTagName("Properties").item(0);
+		NodeList propertyNodes = propertiesElement.getElementsByTagName("Property");
+		for (int n = 0; n < propertyNodes.getLength(); n++) {
+			// get the current node
+			Node node = propertyNodes.item(0);
+			
+			// skip over non-element nodes
+			if (node.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+			
+			// typecast to element
+			Element element = (Element)node;
+			
+			throw new RuntimeException("Owned property loading doesn't work...");
+		}
+		
+		// mortgaged properties count
+		tempStr = XMLIO.getChildValue("MortgagedProperties", rootNode);
+		mortgagedProperties = Integer.parseInt(tempStr);
+		
+		// amount owed
+		tempStr = XMLIO.getChildValue("AmountOwed", rootNode);
+		amountOwed = Double.parseDouble(tempStr);
+		
+		// isBankrupt
+		tempStr = XMLIO.getChildValue("IsBankrupt", rootNode);
+		isBankrupt = Boolean.parseBoolean(tempStr);
+	}
 }
