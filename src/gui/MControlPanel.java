@@ -82,15 +82,13 @@ public class MControlPanel extends JPanel
 	}
 	
 	/**
-	 * This function will take in a array that represents each players money, and set the labels as needed.
-	 * @param money - a double array representating four players money
+	 * This function will set the money label for a player at "index" to "money"
+	 * @param index - The index of the player to change to
+	 * @param money - A double array representing four players money
 	 */
-	public void setMoneyVals(double[] money)
+	public void setMoneyLabel(int index, double money)
 	{
-		for(int x = 0; x < numPlayers; x++)
-		{
-			moneyLabels[x].setText(Double.toString(money[x]));
-		}
+		moneyLabels[index].setText(Double.toString(money));
 	}
 	
 	public void setPlayerMoneyVal(int player, double money)

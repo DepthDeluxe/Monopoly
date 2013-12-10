@@ -75,14 +75,13 @@ public class StartController
 				MMainFrame frame = new MMainFrame(numPlayers); // open view
 				game = frame;
 				
-				// need to set some variables
-				game.getControl().setMoneyVals(new double[] {numHours, numHours, numHours, numHours}); // doesn't matter numplayers, will set as needed
+				// set the names of the players
 				game.getControl().setNames(playerNames);
 				
 				frame.setVisible(true);
 				menu.setVisible(false);
 				
-				// create the model
+				// instantiate the model from the different tiles
 				theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
 				
 				// create the controller

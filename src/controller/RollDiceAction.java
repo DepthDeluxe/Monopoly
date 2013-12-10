@@ -39,6 +39,8 @@ public class RollDiceAction implements ActionListener {
 		// save the board components
 		theBoardView = theMainFrame.getTheBoard();
 		theBoardModel = theGame.getBoard();
+		
+		updateView();
 	}
 	
 	//
@@ -91,16 +93,17 @@ public class RollDiceAction implements ActionListener {
 	 * that update the view.  This will be called multiple times in the
 	 * main controller
 	 */
-	private void updateView() {
+	public void updateView() {
 		// update the dice
 		Dice d = theGame.getDice();
 		theBoardView.rollDice(d);
 		
 		// update the view
-		setPlayerPosViewFromModel();		
+		updatePlayerPos();		
 		updatePropertyPanel();
 		
 		// update the control panel
+		updateControlPanel();
 	}
 	
 	/**
@@ -108,13 +111,13 @@ public class RollDiceAction implements ActionListener {
 	 */
 	private void updateControlPanel()
 	{
-		Player[] players = theGame.getPlayers(); // get all the players
-		double[] money = new double[4]; 
-		for(int x = 0; x < 4; x++)
-		{
-			money[x] = players[x].getMoney(); // get their money
+		// get the player list
+		Player[] playerList = theGame.getPlayers();
+		
+		// update all of the values
+		for (int n = 0; n < playerList.length; n++) {
+			theMainFrame.getControl().setMoneyLabel(n, playerList[n].getMoney());
 		}
-		theMainFrame.getControl().setMoneyVals(money); // pass to the function
 	}
 	
 	/**
@@ -136,7 +139,7 @@ public class RollDiceAction implements ActionListener {
 	 * Updates the current player's position from their
 	 * location in the model
 	 */
-	private void setPlayerPosViewFromModel() {
+	private void updatePlayerPos() {
 		// get player information
 		int curPlayerIndex = theGame.getCurrentPlayerIndex();
 		Player currentPlayer = theGame.getCurrentPlayer();
