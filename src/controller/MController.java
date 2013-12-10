@@ -61,7 +61,7 @@ public class MController
 		setBuyButtonFunction();
 		
 		populateBoardFieldsFromModel();
-		setMenuBarFunction();
+		setMenuBarFunction();		
 	}
 	
 	//

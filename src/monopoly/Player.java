@@ -249,4 +249,13 @@ public class Player {
 		
 		this.creditor = p;
 	}
+
+	/**
+	 * @return the amountOwed
+	 */
+	public double getAmountOwed() {
+		return amountOwed;
+	}
+	
+	
 }

@@ -55,7 +55,7 @@ public class MMortgageDialog extends JDialog implements ActionListener
 		{
 			if(!playProp.get(x).isMortgaged())
 			{
-				boxes[x] = new JCheckBox(propToString(playProp.get(x)));
+				boxes[y] = new JCheckBox(propToString(playProp.get(x)));
 				indexes[y] = x;
 				this.add(boxes[y]);
 				y++;
