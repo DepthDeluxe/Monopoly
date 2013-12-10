@@ -25,6 +25,7 @@ public class Player {
 	// for debt management
 	private Player creditor;
 	private double amountOwed;
+	private boolean isBankrupt;
 	
 	//
 	// Constructors
@@ -123,6 +124,9 @@ public class Player {
 		
 		// clear the list of properties
 		properties.clear();
+		
+		// set isBankrupt to true
+		isBankrupt = true;
 	}
 	
 	public void setInJail(boolean inJail) {
@@ -228,6 +232,10 @@ public class Player {
 		return true;
 	}
 	
+	public boolean isBankrupt() {
+		return isBankrupt;
+	}
+	
 	//
 	// Setters
 	//
@@ -256,6 +264,4 @@ public class Player {
 	public double getAmountOwed() {
 		return amountOwed;
 	}
-	
-	
 }
