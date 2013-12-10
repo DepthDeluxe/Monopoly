@@ -563,7 +563,7 @@ public class MBoardPanel extends JPanel
 		
 		JLabel lblMonopoly = new JLabel("MONOPOLY");
 		lblMonopoly.setFont(new Font("Tahoma", Font.BOLD, 34));
-		lblMonopoly.setBounds(232, 273, 211, 52);
+		lblMonopoly.setBounds(232, 273, 252, 52);
 		add(lblMonopoly);
 		
 		JLabel lblRedditEdition = new JLabel("Reddit Edition");

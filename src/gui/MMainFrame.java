@@ -41,7 +41,7 @@ public class MMainFrame extends JFrame
 		this.setTitle("Monopoly"); // set fram title
 		this.setLocation(100, 100); // set location
 		this.setResizable(false); // not resizable to keep components in good shape
-		this.setSize(900, 800); // set size of this window
+		this.setSize(960, 800); // set size of this window
 		
 		
 		MMenuBar tempBar = new MMenuBar(); // the menu bad
