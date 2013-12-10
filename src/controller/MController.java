@@ -56,6 +56,7 @@ public class MController
 		{
 			this.theGame.addPlayer(new Player(playerNames[x], numHours, theGame.getBoard().getNumTiles()));
 		}
+		
 		setRollDiceFunction();
 		setMortgageFunction();
 		setBuyButtonFunction();

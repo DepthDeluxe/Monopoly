@@ -69,6 +69,30 @@ public class MControlPanel extends JPanel
 	}
 	
 	/**
+	 * function to remove a player from this panel, such that it will hide the data
+	 * @param player
+	 */
+	public void removePlayer(int player)
+	{
+		JLabel[] tempArrNames = new JLabel[numPlayers];
+		JLabel[] tempArrMoney = new JLabel[numPlayers];
+		
+		for(int x = 0; x < numPlayers; x++) 
+		{
+			tempArrNames[x] = nameLabels[x];
+			tempArrMoney[x] = moneyLabels[x];
+		}
+		
+		nameLabels = new JLabel[numPlayers-1];
+		moneyLabels = new JLabel[numPlayers-1];
+	}
+	
+	public void bankruptPlayer(int player)
+	{
+		moneyLabels[player].setText("Bankrupt!");
+	}
+	
+	/**
 	 * This function will create a new JLabel that has a horizontal alignment set so that
 	 * repeated lines of code are not needed
 	 * @param text - a String representing the text the JLabel should contain
@@ -83,17 +107,15 @@ public class MControlPanel extends JPanel
 	
 	/**
 	 * This function will set the money label for a player at "index" to "money"
-	 * @param index - The index of the player to change to
+	 * @param player - The index of the player to change to
 	 * @param money - A double array representing four players money
 	 */
-	public void setMoneyLabel(int index, double money)
+	public void setMoneyLabel(int player, double money)
 	{
-		moneyLabels[index].setText(Double.toString(money));
-	}
-	
-	public void setPlayerMoneyVal(int player, double money)
-	{
-		moneyLabels[player].setText(Double.toString(money));
+		if(!moneyLabels[player].getText().equals("Bankrupt!"))
+		{
+			moneyLabels[player].setText(Double.toString(money));
+		}
 	}
 	
 	/**

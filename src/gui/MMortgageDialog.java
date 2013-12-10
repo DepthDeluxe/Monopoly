@@ -86,7 +86,7 @@ public class MMortgageDialog extends JDialog implements ActionListener
 				
 			}
 		}
-		game.getControl().setPlayerMoneyVal(0, player.getMoney());
+		game.getControl().setMoneyLabel(0, player.getMoney());
 		this.dispose();
 	}
 }

@@ -93,7 +93,7 @@ public class MUnmortgageDialog extends JDialog implements ActionListener
 		{
 			JOptionPane.showMessageDialog(null, "There was a problem, and not all of your properties were unmortgaged!");
 		}
-		game.getControl().setPlayerMoneyVal(0, player.getMoney());
+		game.getControl().setMoneyLabel(0, player.getMoney());
 		this.dispose();
 	}
 }

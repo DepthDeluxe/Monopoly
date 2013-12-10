@@ -28,7 +28,6 @@ import monopoly.Dice;
 public class MBoardPanel extends JPanel
 {
 	private int[][] positions; // array that will hold the positions on the board where the labels should be moved to
-	private int[] playerPos; // where each player is on the board
 	JLabel[] players; // array of the jlabels of each player
 	JTextArea[] properties;
 	JLabel diceOne; // image of the first dice
@@ -41,16 +40,10 @@ public class MBoardPanel extends JPanel
 		this.numPlayers = playersNo;
 		this.positions = new int[40][2];
 		this.players = new JLabel[numPlayers];
-		this.playerPos = new int[numPlayers];
 		this.properties = new JTextArea[22];
 		
 		this.setConstants(); // function that just sets the large array this.positions with default vals
-		
-		for(int x = 0; x < numPlayers; x++)
-		{
-			this.playerPos[x] = 3; // needs to be at a different value than default 0 so it can set positions
-		}
-		
+
 		this.setSize(650, 650); // set size of panel
 		this.setLayout(null); // set by absolute values
 		
@@ -639,28 +632,14 @@ public class MBoardPanel extends JPanel
 	 */
 	public void moveCharacter(int player, int position)
 	{
-		int temp = 0;
-		for(int x = 0; x < numPlayers; x++)
-		{
-			if(x != player)
-			{
-				if(this.playerPos[x] == position)
-				{
-					temp += 1;
-				}
-			}
-		}
-
-		temp *= 21;
 		if(position < 11 || (position > 19 && position < 31))
 		{
-			this.players[player].setBounds(this.positions[position][0], this.positions[position][1] + temp, 20, 20);
+			this.players[player].setBounds(this.positions[position][0], this.positions[position][1] + (player*21), 20, 20);
 		}
 		else
 		{
-			this.players[player].setBounds(this.positions[position][0] + temp, this.positions[position][1], 20, 20);
+			this.players[player].setBounds(this.positions[position][0] + (player*21), this.positions[position][1], 20, 20);
 		}
-		this.playerPos[player] = position;
 	}
 	
 	/**
