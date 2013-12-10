@@ -32,14 +32,12 @@ public class GoTile implements ITile {
 	
 	@Override
 	public MonopolyModelState landOn(Player p) {
-		// TODO Auto-generated method stub
-		return null;
+		return MonopolyModelState.PLAYING;
 	}
 
 	@Override
 	public TileType getTileType() {
-		// TODO Auto-generated method stub
-		return null;
+		return TileType.GO;
 	}
 
 }

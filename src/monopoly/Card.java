@@ -184,7 +184,7 @@ public class Card {
 		
 		for (int n = startLocation+1; n < theBoard.getNumTiles(); n++) {					
 			// if tile the right type, then move the player to that position
-			if (theBoard.getTileAt(n).getTileType() == TileType.UTILITY) {
+			if (theBoard.getTileAt(n).getTileType() == tileType) {
 				nearestLocation = n;
 				break;
 			}
@@ -194,7 +194,7 @@ public class Card {
 		if (nearestLocation == -1) {
 			for (int n = 0; n < startLocation; n++) {
 				// if the property is the utility, then move the player to that position
-				if (theBoard.getTileAt(n).getTileType() == TileType.UTILITY) {
+				if (theBoard.getTileAt(n).getTileType() == tileType) {
 					nearestLocation = n;
 					break;
 				}
