@@ -17,12 +17,12 @@ public class AIPlayer extends Player {
 	// Constructors
 	//
 	
-	public AIPlayer(float propBuyRatio, String name, double startMoney, int boardSize, Monopoly game) {
+	public AIPlayer(float difficulty, String name, double startMoney, Monopoly game) {
 		// init the Player parent class
-		super(name, startMoney, boardSize);
+		super(name, startMoney, game.getBoard().getNumTiles());
 		
 		this.theGame = game;
-		this.propBuyRatio = propBuyRatio;
+		this.propBuyRatio = difficulty;
 	}
 	
 	//
@@ -30,7 +30,7 @@ public class AIPlayer extends Player {
 	//
 	
 	/**
-	 * Function that mimics what the the controller falls
+	 * Function that mimics what the the controller does
 	 */
 	public void autoMove()
 	{
@@ -71,12 +71,12 @@ public class AIPlayer extends Player {
 			}
 			else if(!handled)
 			{
-				// remove them
+				goBankrupt();
 			}
 			
 			if(!success) // if it didn't work
 			{
-				//remove them
+				goBankrupt();
 			}
 			
 		default: // should never

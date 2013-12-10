@@ -44,12 +44,14 @@ public class StartController
 	int numHours;
 	int numPlayers;
 	String[] playerNames;
+	String difficulty;
 	
 	public StartController()
 	{
 		numHours = 150; // default values for variables
 		numPlayers = 4;
 		playerNames = new String[] {"Player One", "Player Two", "Player Three", "Player Four"};
+		difficulty = "Easy";
 		menu = new MMainMenu();
 		runMainMenu(); // create the start menu
 	}
@@ -85,7 +87,7 @@ public class StartController
 				theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
 				
 				// create the controller
-				theController = new MController(frame, theGame, numHours, numPlayers, playerNames);
+				theController = new MController(frame, theGame, numHours, numPlayers, playerNames, difficulty);
 			}
 		});
 		
@@ -169,6 +171,7 @@ public class StartController
 			numHours = hoursTemp; // set the val of the member vars to the vals you get from the frame
 			numPlayers = players;
 			JTextField[] fields = settings.getPlayerName();
+			difficulty = (String) settings.getComboAI().getModel().getSelectedItem();
 			for(int d = 0; d < 4; d++) { playerNames[d] = fields[d].getText(); }
 			settings.setVisible(false); // change the frame
 			menu.setVisible(true);

@@ -20,10 +20,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Random;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import monopoly.Monopoly;
 import monopoly.Player;
+import monopoly.xml.MonopolyIO;
 
 /**
  * @author ajrk001
@@ -34,6 +37,7 @@ public class MenuListener implements ActionListener
 	Player[] play; // the player array that gets passed as needed
 	MMainFrame frame; // need to attach the frame to jdialogs
 	Random rand; // to get a random int for subreddits
+	Monopoly theGame;
 	
 	private final String reddit = "http://www.reddit.com/r/";
 	private final String[] urls = {"gaming", "IAmA", "explainlikeimfive",
@@ -44,6 +48,7 @@ public class MenuListener implements ActionListener
 	{
 		play = game.getPlayers();
 		frame = gm;
+		theGame = game;
 		rand = new Random();
 	}
 	
@@ -58,13 +63,11 @@ public class MenuListener implements ActionListener
 		}
 		else if(action.equals("SaveGame")) // save game
 		{
-			// do save game stuff
-			System.out.println("Save Game!");
+			runSaveGame();
 		}
 		else if(action.equals("LoadGame")) // load game
 		{
-			// do load game stuff
-			System.out.println("Load Game!");
+			runLoadGame();
 		}
 		else if(action.equals("Exit")) // exit
 		{
@@ -118,6 +121,58 @@ public class MenuListener implements ActionListener
 		catch (Exception e) 
 		{
 			JOptionPane.showMessageDialog(null, "An error occured, and a browser window will not be launched");
+		}
+	}
+	
+	private void runLoadGame()
+	{
+		final JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setAcceptAllFileFilterUsed(false); // user cannot pick all file option
+		fileChooser.setFileFilter(new XMLFilter()); // uses custom class to exclude all non-xml files
+		fileChooser.setSelectedFile(new File("saveFile.xml")); // what the default file name should be
+		
+		int returnVal = fileChooser.showOpenDialog(frame); // attaches filechooser to the menu pane
+		
+		if(returnVal == JFileChooser.APPROVE_OPTION)
+		{
+			File file = fileChooser.getSelectedFile(); //  get the selected path
+			String filePath = file.toString(); // need the string file path to pass to save class
+			String ext = filePath.substring(filePath.lastIndexOf(".")); //  the extension itself
+			
+			if(ext.equalsIgnoreCase(".xml")) // is it an xml?
+			{
+				MonopolyIO.loadGame(filePath); // load game
+			}
+			else // otherwise tell user
+			{
+				JOptionPane.showMessageDialog(frame, "That is not a valid file that can be loaded from");
+			}
+		}
+	}
+	
+	private void runSaveGame()
+	{
+		final JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setAcceptAllFileFilterUsed(false); // user cannot pick all file option
+		fileChooser.setFileFilter(new XMLFilter()); // uses custom class to exclude all non-xml files
+		fileChooser.setSelectedFile(new File("saveFile.xml")); // what the default file name should be
+		
+		int returnVal = fileChooser.showSaveDialog(frame); // attaches filechooser to the menu pane
+		
+		if(returnVal == JFileChooser.APPROVE_OPTION)
+		{
+			File file = fileChooser.getSelectedFile(); //  get the selected path
+			String filePath = file.toString(); // need the string file path to pass to save class
+			String ext = filePath.substring(filePath.lastIndexOf(".")); //  the extension itself
+			
+			if(ext.equalsIgnoreCase(".xml")) // is it an xml?
+			{
+				MonopolyIO.saveGame(filePath, theGame); // save game
+			}
+			else // otherwise tell user
+			{
+				JOptionPane.showMessageDialog(frame, "That is not a valid file that can be saved to");
+			}
 		}
 	}
 }
