@@ -88,6 +88,26 @@ public class Board implements ISerializable {
 		return outProperty;
 	}
 	
+	public Property getPropertyByName(String s) {
+		// iterate through the tiles, searching for the one with teh right name
+		for (ITile t : tiles) {
+			// don't search if the tile type is not a derivative of a property
+			if (!TileType.isAPropertyDerivative(t.getTileType())) {
+				continue;
+			}
+			
+			Property p = (Property)t;
+			
+			// if names are the same, return the property
+			if (s.equals(p.getName())) {
+				return p;
+			}
+		}
+		
+		// return null if the property wasn't there
+		return null;
+	}
+	
 	public Property[] getPropertiesInGroup(int group) {
 		ArrayList<Property> pInGroup = new ArrayList<Property>();
 		
