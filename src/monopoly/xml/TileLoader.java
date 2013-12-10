@@ -118,7 +118,10 @@ public class TileLoader {
 			break;
 			
 		case "FreeParking":
-			outTile = new FreeParking();
+			String startAmountStr = getChildValue("StartAmount", e);
+			double startAmount = Double.parseDouble(startAmountStr);
+			
+			outTile = new FreeParking(startAmount);
 			break;
 			
 		case "GoToJailTile":

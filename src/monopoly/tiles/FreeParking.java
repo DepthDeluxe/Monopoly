@@ -11,20 +11,14 @@ public class FreeParking implements ITile {
 	private double moneyInPot;
 	private double nextPotStart;
 	
-	public static final double POT_START_AMOUNT = 150.0;
-	
 	private static final TileType TILE_TYPE = TileType.FREE_PARKING;
 	
 	//
 	// Constructors
 	//
 	
-	public FreeParking() {
-		this(POT_START_AMOUNT);
-	}
-	
-	public FreeParking(double amountToStart) {
-		this.moneyInPot = amountToStart;
+	public FreeParking(double potStartAmount) {
+		this.moneyInPot = potStartAmount;
 		this.nextPotStart = 2 * this.moneyInPot;	// amount in pot doubles every time
 	}
 	
@@ -49,7 +43,8 @@ public class FreeParking implements ITile {
 		// give player the money that is in the pot
 		p.giveMoney(moneyInPot);
 		
-		// fill the pot with some money, 
+		// fill the pot with the next starting amount,
+		// double the starting amount for next time
 		moneyInPot = nextPotStart;
 		nextPotStart *= 2;
 		

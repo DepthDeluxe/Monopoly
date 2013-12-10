@@ -111,7 +111,9 @@
 		<Mortgage>10.0</Mortgage>
 		<Group>3</Group>
 	</Property>
-	<FreeParking></FreeParking>
+	<FreeParking>
+		<StartAmount>150.0</StartAmount>
+	</FreeParking>
 	<Property>
 		<Name>Today I Learned</Name>
 		<Value>22.0</Value>
