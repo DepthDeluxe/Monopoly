@@ -5,6 +5,12 @@ import java.util.LinkedList;
 import monopoly.tiles.*;
 import monopoly.xml.TileLoader;
 import monopoly.xml.CardLoader;
+import monopoly.xml.XMLIO;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import monopoly.xml.ISerializable;
 
 class NoPlayersException extends RuntimeException {
 	private static final long serialVersionUID = -4783179608622400629L;
@@ -12,7 +18,7 @@ class NoPlayersException extends RuntimeException {
 	public NoPlayersException() { super("There are not enough players added to the game!"); }	
 }
 
-public class Monopoly {
+public class Monopoly implements ISerializable {
 	//
 	// Member Variables
 	//
@@ -226,5 +232,40 @@ public class Monopoly {
 		
 		// assign the value of the current player
 		currentPlayer = players.get(curPlayerIndex);
+	}
+	
+	//
+	// ISerializable Implementation
+	//
+	
+	@Override
+	public Element serialize(Document doc) {
+		// create the root element
+		Element monopolyElement = doc.createElement("Monopoly");
+		
+		// players
+		Element playersElement = doc.createElement("Players");
+		for (Player p : players) {
+			// serialize and append the child
+			Element pe = p.serialize(doc);
+			playersElement.appendChild(pe);
+		}
+		monopolyElement.appendChild(playersElement);
+		
+		// current player index
+		Element curPlayerIndexElement = XMLIO.classMemberToElement(
+				"CurrentPlayerIndex", Integer.toString(curPlayerIndex), doc);
+		monopolyElement.appendChild(curPlayerIndexElement);
+		
+		// the board
+		Element boardElement = board.serialize(doc);
+		monopolyElement.appendChild(boardElement);
+		
+		// the model state
+		Element mmsElement = XMLIO.classMemberToElement(
+				"MonopolyModelState", modelState.toString(), doc);
+		monopolyElement.appendChild(mmsElement);
+		
+		return monopolyElement;
 	}
 }

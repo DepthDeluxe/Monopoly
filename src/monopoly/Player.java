@@ -4,8 +4,13 @@ import java.util.LinkedList;
 
 import monopoly.tiles.Property;
 import monopoly.tiles.TileType;
+import monopoly.xml.ISerializable;
+import monopoly.xml.XMLIO;
 
-public class Player {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class Player implements ISerializable {
 	//
 	// Member Variables
 	//
@@ -263,5 +268,59 @@ public class Player {
 	 */
 	public double getAmountOwed() {
 		return amountOwed;
+	}
+	
+	//
+	// Serializable Implementation
+	//
+	
+	@Override
+	public Element serialize(Document doc) {
+		// the root element
+		Element playerElement = doc.createElement("Player");
+		
+		// name
+		Element nameElement = XMLIO.classMemberToElement("Name", name, doc);
+		playerElement.appendChild(nameElement);
+		
+		// money
+		Element moneyElement = XMLIO.classMemberToElement("Money", Double.toString(money), doc);
+		playerElement.appendChild(moneyElement);
+		
+		// position
+		Element positionElement = XMLIO.classMemberToElement(
+				"Position", Integer.toString(position), doc);
+		playerElement.appendChild(positionElement);
+		
+		// inJail
+		Element inJailElement = XMLIO.classMemberToElement(
+				"InJail", Boolean.toString(inJail), doc);
+		playerElement.appendChild(inJailElement);
+		
+		// Properties
+		// NEEDS TO BE IMPLEMNETED
+		
+		// mortgaged properties count
+		Element mortgagedPropertiesElement = XMLIO.classMemberToElement(
+				"MortagedProperties", Integer.toString(mortgagedProperties), doc);
+		playerElement.appendChild(mortgagedPropertiesElement);
+		
+		// only save creditor if there is one
+		if (creditor != null) {
+			Element creditorElement = XMLIO.classMemberToElement("Creditor", creditor.getName(), doc);
+			playerElement.appendChild(creditorElement);
+		}
+		
+		// amount owed
+		Element amountOwedElement = XMLIO.classMemberToElement(
+				"AmountOwed", Double.toString(amountOwed), doc);
+		playerElement.appendChild(amountOwedElement);
+		
+		// is bankrupt
+		Element isBankruptElement = XMLIO.classMemberToElement(
+				"IsBankrupt", Boolean.toString(isBankrupt), doc);
+		playerElement.appendChild(isBankruptElement);
+		
+		return playerElement;
 	}
 }

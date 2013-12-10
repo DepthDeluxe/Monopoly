@@ -4,7 +4,13 @@ import java.util.ArrayList;
 
 import monopoly.tiles.*;
 
-public class Board {
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
+import monopoly.xml.ISerializable;
+import monopoly.xml.XMLIO;
+
+public class Board implements ISerializable {
 	//
 	// Member Variables
 	//
@@ -122,5 +128,22 @@ public class Board {
 	
 	public int getJailLocation() {
 		return jailLocation;
+	}
+	
+	//
+	// ISerializable Implementation
+	//
+	
+	@Override
+	public Element serialize(Document doc) {
+		// create the root element
+		Element boardElement = doc.createElement("Board");
+		
+		// free parking money
+		Element freeParkingAmtElement = XMLIO.classMemberToElement(
+				"FreeParkingAmount", Double.toString(freeParking.getMoneyInPot()), doc);
+		boardElement.appendChild(boardElement);
+		
+		return boardElement;
 	}
 }
