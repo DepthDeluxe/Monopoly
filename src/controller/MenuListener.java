@@ -83,7 +83,7 @@ public class MenuListener implements ActionListener
 		}
 		else if(action.equals("Manual")) // open the manual in default viewer
 		{
-			openFile("userManual.pdf");
+			openFile("UserManual.pdf");
 		}
 		else if(action.equals("About")) // open custom jdialog with about settings
 		{
