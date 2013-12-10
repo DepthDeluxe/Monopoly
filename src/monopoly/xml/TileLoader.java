@@ -101,6 +101,8 @@ public class TileLoader {
 			
 			outTile = new GoTile(collectAmount);
 			
+			break;
+			
 		case "CardTile":
 			String type = getChildValue("Type", e);
 			if (type.equals("Chance")) {
