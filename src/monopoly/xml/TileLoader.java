@@ -96,7 +96,7 @@ public class TileLoader {
 		switch (elementType) {
 		
 		case "Go":
-			String collectAmountStr = getChildValue("CollectAmount", e);
+			String collectAmountStr = XMLIO.getChildValue("CollectAmount", e);
 			double collectAmount = Double.parseDouble(collectAmountStr);
 			
 			outTile = new GoTile(collectAmount);
@@ -104,7 +104,7 @@ public class TileLoader {
 			break;
 			
 		case "CardTile":
-			String type = getChildValue("Type", e);
+			String type = XMLIO.getChildValue("Type", e);
 			if (type.equals("Chance")) {
 				outTile = new CardTile(MonopolyModelState.CHANCE);
 			}
@@ -118,7 +118,7 @@ public class TileLoader {
 			break;
 			
 		case "FreeParking":
-			String startAmountStr = getChildValue("StartAmount", e);
+			String startAmountStr = XMLIO.getChildValue("StartAmount", e);
 			double startAmount = Double.parseDouble(startAmountStr);
 			
 			outTile = new FreeParking(startAmount);
@@ -126,7 +126,7 @@ public class TileLoader {
 			
 		case "GoToJailTile":
 			// get the destination board location
-			String destStr = getChildValue("Destination", e);
+			String destStr = XMLIO.getChildValue("Destination", e);
 			int destination = Integer.parseInt(destStr);
 					
 			outTile = new GoToJailTile(destination);
@@ -134,22 +134,22 @@ public class TileLoader {
 			
 		case "Property":
 			// get the name
-			String name = getChildValue("Name", e);
+			String name = XMLIO.getChildValue("Name", e);
 			
 			// get the value
-			String strValue = getChildValue("Value", e);
+			String strValue = XMLIO.getChildValue("Value", e);
 			double value = Double.parseDouble(strValue);
 			
 			// get the rent
-			String strRent = getChildValue("Rent", e);
+			String strRent = XMLIO.getChildValue("Rent", e);
 			double rent = Double.parseDouble(strRent);
 			
 			// get mortgage value
-			String strMortgage = getChildValue("Mortgage", e);
+			String strMortgage = XMLIO.getChildValue("Mortgage", e);
 			double mortgageValue = Double.parseDouble(strMortgage);
 			
 			// get the group number
-			String strGroup = getChildValue("Group", e);
+			String strGroup = XMLIO.getChildValue("Group", e);
 			int group = Integer.parseInt(strGroup);
 			
 			outTile = new Property(name, value, rent, mortgageValue, group);
@@ -157,18 +157,18 @@ public class TileLoader {
 			
 		case "Railroad":
 			// get the name
-			name = getChildValue("Name", e);
+			name = XMLIO.getChildValue("Name", e);
 			
 			// get the value
-			strValue = getChildValue("Value", e);
+			strValue = XMLIO.getChildValue("Value", e);
 			value = Double.parseDouble(strValue);
 			
 			// get the base rent for railroad
-			String strRentBase = getChildValue("Rent", e);
+			String strRentBase = XMLIO.getChildValue("Rent", e);
 			double rentBase = Double.parseDouble(strRentBase);
 			
 			// get mortgage value
-			strMortgage = getChildValue("Mortgage", e);
+			strMortgage = XMLIO.getChildValue("Mortgage", e);
 			mortgageValue = Double.parseDouble(strMortgage);
 			
 			outTile = new Railroad(name, value, rentBase, mortgageValue);
@@ -176,14 +176,14 @@ public class TileLoader {
 			
 		case "Utility":
 			// get the name
-			name = getChildValue("Name", e);
+			name = XMLIO.getChildValue("Name", e);
 			
 			// get the value
-			strValue = getChildValue("Value", e);
+			strValue = XMLIO.getChildValue("Value", e);
 			value = Double.parseDouble(strValue);
 			
 			// get mortgage value
-			strMortgage = getChildValue("Mortgage", e);
+			strMortgage = XMLIO.getChildValue("Mortgage", e);
 			mortgageValue = Double.parseDouble(strMortgage);
 			
 			outTile = new Utility(name, value, mortgageValue);
@@ -191,11 +191,11 @@ public class TileLoader {
 			
 		case "Tax":
 			// get the rate
-			String rateStr = getChildValue("Rate", e);
+			String rateStr = XMLIO.getChildValue("Rate", e);
 			double rate = Double.parseDouble(rateStr);
 			
 			// get the minimum
-			String taxMinStr = getChildValue("Minimum", e);
+			String taxMinStr = XMLIO.getChildValue("Minimum", e);
 			double taxMin = Double.parseDouble(taxMinStr);
 			
 			// construct the tax tile
@@ -224,9 +224,5 @@ public class TileLoader {
 		}
 		
 		return outTile;
-	}
-	
-	public static String getChildValue(String nodeName, Element e) {		
-		return e.getElementsByTagName(nodeName).item(0).getFirstChild().getNodeValue();
 	}
 }

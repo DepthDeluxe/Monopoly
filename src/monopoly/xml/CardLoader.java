@@ -75,8 +75,8 @@ public class CardLoader {
 	}
 	
 	public static Card XMLToCard(Element cardElement) {		
-		String description = TileLoader.getChildValue("Description", cardElement);
-		String script = TileLoader.getChildValue("Script", cardElement);
+		String description = XMLIO.getChildValue("Description", cardElement);
+		String script = XMLIO.getChildValue("Script", cardElement);
 		
 		return new Card(description, script);
 	}
