@@ -271,7 +271,7 @@ public class Player implements ISerializable {
 	}
 	
 	//
-	// Serializable Implementation
+	// ISerializable Implementation
 	//
 	
 	@Override
@@ -297,8 +297,14 @@ public class Player implements ISerializable {
 				"InJail", Boolean.toString(inJail), doc);
 		playerElement.appendChild(inJailElement);
 		
-		// Properties
-		// NEEDS TO BE IMPLEMNETED
+		// Properties, save the name for each property owned
+		Element propertiesElement = doc.createElement("Properties");
+		for (Property p : properties) {
+			Element propNameElement = XMLIO.classMemberToElement(
+					"PropertyName", p.getName(), doc);
+			propertiesElement.appendChild(propNameElement);
+		}
+		playerElement.appendChild(propertiesElement);
 		
 		// mortgaged properties count
 		Element mortgagedPropertiesElement = XMLIO.classMemberToElement(
@@ -323,4 +329,5 @@ public class Player implements ISerializable {
 		
 		return playerElement;
 	}
+
 }
