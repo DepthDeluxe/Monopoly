@@ -38,9 +38,9 @@ Patrick: Controller work, user manual, technical manual, bug finding and fixing
 Group met for 10 hours through the day adding features talked about in presentation
 Colin: worked on getting XML files to work, making the code clearner and easier to read (stayed 
 extra hours fixing bugs)
-Drew: image bug fixing, finding bugs
+Drew: image bug fixing, finding bugs, xml file for properties
 Arjuna: adding features to the GUI 
-Patrick: final bug fixes for the basics of the project
+Patrick: final bug fixes for the basics of the project, xml files for chance and community chest
 
 12/8 
 Met for 5 hours and continued improving the project
@@ -48,3 +48,10 @@ Colin: Recoded and refactored large part of the model, including fixing bugs
 Drew: bug fixes and finding
 Arjuna: adding more functionality to the GUI
 Patrick: bug fixes, updating the view from the model functionality
+
+12/9
+Group met for XX hours and put on final touches to project
+Colin:
+Drew:
+Arjuna:
+Patrick: updated projectlog, usermanual, technical manual, created readme and 
