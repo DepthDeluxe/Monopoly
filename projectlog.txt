@@ -1,23 +1,50 @@
 11/13: created the gitlab project for the group and added the project log
 
-Open Tasks:
-Task #2 : Finish a detailed plan for the structure of the program and share it 
-Task #3 : UML for Model
-Task #4 : 
-
-Assigned Tasks: 
-Task #1 : Work on ControlPanel GUI - Arjuna
-
-Tasks Accomplished:
-
-Impediments:
-
-
 11/19
-
 Group met and assigned tasks for everyone
 
 Patrick: Player class
 Colin: Property class (or tile class)
 Drew: Board class
 Arjuna: GUI
+
+11/24-12-1 (Thanksgiving break)
+Working seperately on different things
+Colin:   15 hours working on the model - got all of the basics of the model to work
+Drew:    03 hours working on getting images and brainstorming board layout
+Arjuna:  10 hours Got the basics of the view to be presented
+Patrick: 03 hours working on UML diagram as well as begining of user manual and technical manual
+
+12/2
+Group met for an hour to discuss the work that was done throughout the week as well as what needed 
+to be done before our presentation on friday
+
+12/3-12/4
+Individual touch ups
+Colin:   05 hours touching up the model
+Drew:    02 hours touching up images to be placed in the GUI
+Arjuna:  03 hours working on the controller
+Patrick: 02 hours on UML and user manual
+
+12/5
+Group met for 7 hours and worked in the computer lab
+Colin: Adding more advanced features to the GUI as well as working on the controller
+Drew: User manual, technical manual, image modifying, and most of the slideshow
+Arjuna: A lot of work on the controller to get it functional for the presentation the next day 
+(stayed extra 3 hours)
+Patrick: Controller work, user manual, technical manual, bug finding and fixing
+
+12/7
+Group met for 10 hours through the day adding features talked about in presentation
+Colin: worked on getting XML files to work, making the code clearner and easier to read (stayed 
+extra hours fixing bugs)
+Drew: image bug fixing, finding bugs
+Arjuna: adding features to the GUI 
+Patrick: final bug fixes for the basics of the project
+
+12/8 
+Met for 5 hours and continued improving the project
+Colin: Recoded and refactored large part of the model, including fixing bugs
+Drew: bug fixes and finding
+Arjuna: adding more functionality to the GUI
+Patrick: bug fixes, updating the view from the model functionality
