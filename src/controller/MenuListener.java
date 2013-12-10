@@ -7,6 +7,7 @@
  */
 package controller;
 
+import gui.AboutDialog;
 import gui.MMainFrame;
 import gui.MPlayerProperties;
 
@@ -37,7 +38,7 @@ public class MenuListener implements ActionListener
 	private final String reddit = "http://www.reddit.com/r/";
 	private final String[] urls = {"gaming", "IAmA", "explainlikeimfive",
 			"pcmasterrace", "FoodPorn", "fffffffuuuuuuuuuuuu", "Technology",
-			"Programming", "AmazingTechnology", "circlejerk", };
+			"Programming", "AmazingTechnology", "circlejerk", "WTF"};
 	
 	public MenuListener(Monopoly game, MMainFrame gm)
 	{
@@ -86,7 +87,9 @@ public class MenuListener implements ActionListener
 		}
 		else if(action.equals("About")) // open custom jdialog with about settings
 		{
-			
+			AboutDialog dialog = new AboutDialog(frame);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setVisible(true);
 		}
 	}
 	
