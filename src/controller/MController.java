@@ -60,7 +60,7 @@ public class MController
 		setMortgageFunction();
 		setBuyButtonFunction();
 		
-		loadViewFromModel();
+		populateBoardFieldsFromModel();
 		setMenuBarFunction();
 	}
 	
@@ -80,7 +80,7 @@ public class MController
 				for(int i = 0 ; i < theGame.getPlayers().length ; i++){
 					money[i] = theGame.getPlayers()[i].getMoney();
 				}
-				theView.getControl().setMoneyVals(money);
+				//theView.getControl().setMoneyVals(money);
 				theView.getProperties().changeBuyState(false);
 				// Update model
 			}
@@ -104,17 +104,13 @@ public class MController
 
 	}
 	
-	//
-	// Private Functions
-	//
-	
-	public void loadViewFromModel() {
-		JTextArea[] props = theView.getTheBoard().getPropertyLabels(); // get all the property labels
-		Board theBoard = theGame.getBoard(); // get the board itself
-		int x = 0; // need two separate incrementers to go through the props array
-		for(int y = 0; y < theBoard.getNumTiles(); y++) // parse through the board and tiles 
+	public void populateBoardFieldsFromModel() {
+		JTextArea[] props = theView.getTheBoard().getPropertyLabels();		// get all the property labels
+		Board theBoard = theGame.getBoard();								// get the board itself
+		int x = 0;															// need two separate incrementers to go through the props array
+		for(int y = 0; y < theBoard.getNumTiles(); y++)						// parse through the board and tiles 
 		{
-			Property prop = theBoard.getPropertyAt(y); // gets property or null if not property
+			Property prop = theBoard.getPropertyAt(y);					// gets property or null if not property
 			if(prop != null && prop.getTileType() == TileType.PROPERTY) // check if not null, and double check not a railroad or utility
 			{
 				props[x].setText(prop.getName()); // set text to name
