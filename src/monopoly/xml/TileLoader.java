@@ -31,37 +31,8 @@ public class TileLoader {
 	//
 	
 	public static ITile[] loadFromXML(String xmlFilename) {
-		// open the file
-		File xmlFile = new File(xmlFilename);
-		
-		// init the builder factory
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		
-		// init the dBuilder
-		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		}
-		catch (ParserConfigurationException e) {
-			// throw stack trace because we have to catch the exception -_-
-			e.printStackTrace();
-			return null;
-		}
-		
-		// parse the document with the builder, if there are any errors,
-		// print the stack trace and return null
-		Document document;
-		try {
-			document = dBuilder.parse(xmlFile);
-		}
-		catch (SAXException e) {
-			e.printStackTrace();
-			return null;
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}		
+		// load the xml document
+		Document document = XMLIO.loadDocumentFromFile(xmlFilename);
 		
 		// get the property nodes and init the property arrays
 		Element propertiesElement = (Element)document.getFirstChild();

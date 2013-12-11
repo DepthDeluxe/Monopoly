@@ -263,6 +263,10 @@ public class Player implements ISerializable {
 		return isBankrupt;
 	}
 	
+	public boolean isAI() {
+		return false;
+	}
+	
 	//
 	// Setters
 	//

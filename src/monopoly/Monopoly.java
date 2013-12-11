@@ -124,6 +124,12 @@ public class Monopoly implements ISerializable {
 		double moneyOwedToPlayer = board.getGoTile().getGoMoney() * timesPassedGoDiff;
 		playerThisRun.giveMoney(moneyOwedToPlayer);
 		
+		// run this player's autoMove
+		if (playerThisRun.isAI()) {
+			AIPlayer aiPlayer = (AIPlayer)playerThisRun;
+			aiPlayer.autoMove();
+		}
+		
 		// return true if there isn't any other action required by
 		// the controller
 		return (modelState == MonopolyModelState.PLAYING);
@@ -240,6 +246,11 @@ public class Monopoly implements ISerializable {
 		
 		// assign the value of the current player
 		currentPlayer = players.get(curPlayerIndex);
+		
+		// run the next move if the current player is an AI
+		if (currentPlayer.isAI()) {
+			nextMove();
+		}
 	}
 	
 	//

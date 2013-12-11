@@ -20,37 +20,8 @@ import monopoly.Card;
 
 public class CardLoader {
 	public static Card[] loadFromFile(String xmlFilename) {
-		// open the file
-		File xmlFile = new File(xmlFilename);
-		
-		// init the builder factory
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		
-		// init the dBuilder
-		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		}
-		catch (ParserConfigurationException e) {
-			// throw stack trace because we have to catch the exception -_-
-			e.printStackTrace();
-			return null;
-		}
-		
-		// parse the document with the builder, if there are any errors,
-		// print the stack trace and return null
-		Document document;
-		try {
-			document = dBuilder.parse(xmlFile);
-		}
-		catch (SAXException e) {
-			e.printStackTrace();
-			return null;
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+		// load the XML document
+		Document document = XMLIO.loadDocumentFromFile(xmlFilename);
 		
 		Element cardsElement = (Element)document.getFirstChild();
 		NodeList cardNodes = cardsElement.getChildNodes();

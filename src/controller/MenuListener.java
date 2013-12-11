@@ -161,7 +161,7 @@ public class MenuListener implements ActionListener
 			
 			if(ext.equalsIgnoreCase(".xml")) // is it an xml?
 			{
-				MonopolyIO.loadGame(filePath); // load game
+				MonopolyIO.loadGame(filePath, null); // load game
 			}
 			else // otherwise tell user
 			{
