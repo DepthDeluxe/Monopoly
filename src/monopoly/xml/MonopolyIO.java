@@ -34,6 +34,7 @@ public class MonopolyIO {
 		
 		// now save the game
 		Element monopolyElement = theGame.serialize(doc);
+		doc.appendChild(monopolyElement);
 		
 		//
 		// write the content to xml
