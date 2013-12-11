@@ -136,6 +136,26 @@ public class Player implements ISerializable {
 		isBankrupt = true;
 	}
 	
+	public boolean canPayOffDebt()
+	{
+		double moneyRaised = 0;
+		double moneyOwed = this.getAmountOwed(); // the amount they've got to pay
+		// increment through their properties to see if they can mortgaged enough such that they can
+		// pay back debt
+		for(int x = 0; x < properties.size(); x++)
+		{
+			Property prop = properties.get(x);
+			if(!prop.isMortgaged()) // if not already mortgaged
+			{
+				moneyRaised += prop.getMortgagedValue();
+			}
+		}
+		
+		if(moneyRaised < moneyOwed) { return false; } // if they can't pay it back just return false
+		
+		return true;
+	}
+	
 	public void setInJail(boolean inJail) {
 		this.inJail = inJail;
 	}
@@ -333,7 +353,10 @@ public class Player implements ISerializable {
 	}
 	
 	@Override
-	public void deSerialize(Element rootNode) {
+	public void deSerialize(Element rootNode, Object outsideParam) {
+		// the outside param is the board
+		Board theBoard = (Board)outsideParam;
+		
 		// load all of the elements
 		//
 		
@@ -369,7 +392,9 @@ public class Player implements ISerializable {
 			// typecast to element
 			Element element = (Element)node;
 			
-			throw new RuntimeException("Owned property loading doesn't work...");
+			// get the property name and find the property
+			String propertyName = element.getNodeValue();
+			properties.add(theBoard.getPropertyByName(propertyName));
 		}
 		
 		// mortgaged properties count

@@ -32,7 +32,7 @@ public class AIPlayer extends Player {
 	/**
 	 * Function that mimics what the the controller does
 	 */
-	public void autoMove()
+	public boolean autoMove()
 	{
 		MonopolyModelState state = theGame.getModelState(); // get the state of the board
 		
@@ -59,8 +59,7 @@ public class AIPlayer extends Player {
 			break;
 			
 		case PLAYER_MOVED:
-			// don't know how to get him to roll again.....
-			break;
+			return true;
 			
 		case PLAYER_BANKRUPT:
 			boolean handled = handlePlayerBankrupt();
@@ -82,6 +81,7 @@ public class AIPlayer extends Player {
 		default: // should never
 			throw new RuntimeException("Invalid MonopolyModelState Received! (" + state + ")"); 
 		}
+		return false;
 	}
 	
 	// TODO implement handlers that essentially do what the controller does but in the back-end instead
@@ -104,25 +104,13 @@ public class AIPlayer extends Player {
 	}
 	
 	private boolean handlePlayerBankrupt()
-	{
-		double moneyRaised = 0;
-		double moneyOwed = this.getAmountOwed(); // the amount they've got to pay
-		LinkedList<Property> playProps = this.getProperties(); // all their properties
+	{ 
+		if(!this.canPayOffDebt()) { return false; }
 		
-		// increment through their properties to see if they can mortgaged enough such that they can
-		// pay back debt
-		for(int x = 0; x < playProps.size(); x++)
-		{
-			Property prop = playProps.get(x);
-			if(!prop.isMortgaged()) // if not already mortgaged
-			{
-				moneyRaised += prop.getMortgagedValue();
-			}
-		}
+		double moneyRaised = 0; // we can mortgage the right amount of properties
+		double moneyOwed = super.getAmountOwed();
+		LinkedList<Property> playProps = this.getProperties();
 		
-		if(moneyRaised < moneyOwed) { return false; } // if they can't pay it back just return false
-		
-		moneyRaised = 0; // reset so that we can mortgage the right amount of properties
 		int x = 0; // an incrementer to go through the properties and mortgage them
 		
 		while(moneyRaised < moneyOwed)

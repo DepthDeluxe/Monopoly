@@ -36,20 +36,13 @@ public class MenuListener implements ActionListener
 {
 	Player[] play; // the player array that gets passed as needed
 	MMainFrame frame; // need to attach the frame to jdialogs
-	Random rand; // to get a random int for subreddits
 	Monopoly theGame;
-	
-	private final String reddit = "http://www.reddit.com/r/";
-	private final String[] urls = {"gaming", "IAmA", "explainlikeimfive",
-			"pcmasterrace", "FoodPorn", "fffffffuuuuuuuuuuuu", "Technology",
-			"Programming", "AmazingTechnology", "circlejerk", "WTF"};
 	
 	public MenuListener(Monopoly game, MMainFrame gm)
 	{
 		play = game.getPlayers();
 		frame = gm;
 		theGame = game;
-		rand = new Random();
 	}
 	
 	@Override
@@ -81,8 +74,7 @@ public class MenuListener implements ActionListener
 		}
 		else if(action.equals("Browse")) // open a random subreddit in default browser
 		{
-			String url = reddit + urls[rand.nextInt(urls.length)];
-	        openBrowser(url);
+	        openBrowser("http://www.reddit/r/random");
 		}
 		else if(action.equals("Manual")) // open the manual in default viewer
 		{

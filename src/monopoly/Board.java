@@ -168,7 +168,7 @@ public class Board implements ISerializable {
 	}
 	
 	@Override
-	public void deSerialize(Element rootNode) {
+	public void deSerialize(Element rootNode, Object outsideParam) {
 		// load the free parking money
 		String tempStr = XMLIO.getChildValue("FreeParkingAmount", rootNode);
 		double savedAmount = Double.parseDouble(tempStr);
