@@ -173,7 +173,7 @@ public class RollDiceAction implements ActionListener {
 	 * this basic case (basically don't roll dice, change text
 	 * back to roll dice, and then set back the original ActionListener	
 	 */
-	private void enablePassButton() {
+	private void enableEndTurn() {
 		// get the original button
 		JButton theButton = theMainFrame.getControl().getBtnRollDice();
 		
@@ -202,8 +202,6 @@ public class RollDiceAction implements ActionListener {
 
 				// set the button text back to the start
 				theButton.setText(MAIN_TEXT);
-				
-				//runAIPlayers();
 			}
 		};
 		
@@ -217,6 +215,26 @@ public class RollDiceAction implements ActionListener {
 		
 		// set the text
 		theButton.setText(PASS_TEXT);
+	}
+	
+	public void enableBuyButton() {
+		theMainFrame.getProperties().changeBuyState(true);
+		ITile p = theGame.getBoard().getTileAt(theGame.getCurrentPlayer().getPosition());
+		theMainFrame.getProperties().updateProperty(p);
+		
+		// activate the buy button
+		theMainFrame.getProperties().getBtnBuy().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e1){
+				if (e1.getSource() == theMainFrame.getProperties().getBtnBuy()){
+					boolean succ = theGame.handleBuyRequest(true);
+					if(!succ) // if for some reason it failys
+					{
+						JOptionPane.showMessageDialog(theMainFrame, "An error occured, and the property was not bought");
+					}
+					//theMainFrame.getProperties().changeBuyState();
+				}
+			}
+		});
 	}
 	
 	//
@@ -238,32 +256,14 @@ public class RollDiceAction implements ActionListener {
 		// update the view after the model is updated
 		updateView();
 		
-		// have to work on this
-		if (theGame.getModelState() == MonopolyModelState.BUY_REQUEST){
-			theMainFrame.getProperties().changeBuyState(true);
-			ITile p = theGame.getBoard().getTileAt(theGame.getCurrentPlayer().getPosition());
-			theMainFrame.getProperties().updateProperty(p);
-		}
-		
 		// run the right function depending on the state of the model
 		MonopolyModelState state = theGame.getModelState();
 		switch(state) {
 		case BUY_REQUEST:
-			theMainFrame.getProperties().getBtnBuy().addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e1){
-					if (e1.getSource() == theMainFrame.getProperties().getBtnBuy()){
-						boolean succ = theGame.handleBuyRequest(true);
-						if(!succ) // if for some reason it failys
-						{
-							JOptionPane.showMessageDialog(theMainFrame, "An error occured, and the property was not bought");
-						}
-						//theMainFrame.getProperties().changeBuyState();
-					}
-				}
-			});
 			
 			// turns this button into pass mode
-			enablePassButton();
+			enableEndTurn();
+			enableBuyButton();
 			
 			// function needs to return to get out of the infinite
 			// repeat loop because the game is not meant to continue
