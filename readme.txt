@@ -7,8 +7,10 @@ controller/MortgageListener.java - listener for the Mortgage button in the game
 controller/RollDiceAction.java - deals with actions performed when the dice are rolled
 controller/XMLFilter.java - file filter that makes sure only XML files are shown
 
+gui/AboutDialog.java - deals with the popup when user clicks about
 gui/MBoardPanel.java - the panel containing the game board
-gui/MCardDialog.java - 
+gui/MCardDialog.java - deals with popups for community chest and chance
+gui/MControlPanel.java - the control panel 
 gui/MMainFrame.java - the main frame for when the game is being played
 gui/MMainMenu.java - the gui for the main menu
 gui/MMenuBar.java - the menu bar at the top of the main frame
@@ -33,6 +35,7 @@ monopoly/PlayerBankruptException.java - an exception used to deal with when a pl
 
 monopoly.tiles/CardTile.java - information about the card type landed on (chance/community chest)
 monopoly.tiles/FreeParking.java - deals with player landing on free parking
+monopoly.tiles/GoTile.java - deals with player landing on or passing go
 monopoly.tiles/GoToJailTile.java - deals with the player landing on go to jail
 monopoly.tiles/ITile.java - an interface that represents a space on the board
 monopoly.tiles/Property.java - implements ITile, has info about spaces that can be bought
@@ -43,6 +46,9 @@ monopoly.tiles/Utility.java - deals with a player landing on a utility space
 
 monopoly.xml/CardLoader.java - can load and parse the XML files for the chance and community chest cards
 monopoly.xml/TileLoader.java - can load and parse the XML files for the ITiles
+monopoly.xml/ISerializable.java - deals with saving and loading the game
+monopoly.xml/MonopolyIO.java - deals with saving the game and loading the game
+monopoly.xml/XMLIO.java - works on elements and documents
 
 test - a package containing test files for the files in the monopoly package
 test.tiles - a package containing test files for the files in the monopoly.tiles package
