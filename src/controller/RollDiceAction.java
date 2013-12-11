@@ -67,11 +67,6 @@ public class RollDiceAction implements ActionListener {
 			throw new RuntimeException("Invalid TileType specified!");
 		}
 		
-		// dump the card to the console
-		System.out.println("Landed on " + deckName);
-		System.out.println("Description: " + c.getDescription());
-		System.out.println();
-		
 		// handle the card dialog
 		MCardDialog cardDiag = new MCardDialog(c, theMainFrame, deckType);
 		cardDiag.setLocationRelativeTo(theMainFrame);
