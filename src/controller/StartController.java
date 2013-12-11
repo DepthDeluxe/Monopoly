@@ -13,11 +13,14 @@ import gui.MSettingsMenu;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import monopoly.Monopoly;
+import monopoly.xml.MonopolyIO;
 
 /**
  * @author ajrk001
@@ -187,7 +190,25 @@ public class StartController
 		final JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setAcceptAllFileFilterUsed(false); // user cannot pick all file option
 		fileChooser.setFileFilter(new XMLFilter()); // uses custom class to exclude all non-xml files
+		fileChooser.setSelectedFile(new File("saveFile.xml")); // what the default file name should be
+		
 		int returnVal = fileChooser.showOpenDialog(menu); // attaches filechooser to the menu pane
+		
+		if(returnVal == JFileChooser.APPROVE_OPTION)
+		{
+			File file = fileChooser.getSelectedFile(); //  get the selected path
+			String filePath = file.toString(); // need the string file path to pass to save class
+			String ext = filePath.substring(filePath.lastIndexOf(".")); //  the extension itself
+			
+			if(ext.equalsIgnoreCase(".xml")) // is it an xml?
+			{
+				MonopolyIO.loadGame(filePath); // load game
+			}
+			else // otherwise tell user
+			{
+				JOptionPane.showMessageDialog(menu, "That is not a valid file that can be loaded from");
+			}
+		}
 	}
 }
 

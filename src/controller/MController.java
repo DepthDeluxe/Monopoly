@@ -35,12 +35,13 @@ public class MController
 	private int numHours;
 	private int numPlayers;
 	private String[] playerNames;
+	private String aiDifficulty;
 	
 	//
 	// Constructors
 	//
 	
-	public MController(MMainFrame theView, Monopoly theGame, int hours, int players, String[] names, String aiDifficulty)
+	public MController(MMainFrame theView, Monopoly theGame, int hours, int players, String[] names, String aiDiff)
 	{
 		// save away the view and the model
 		this.theView = theView;
@@ -50,6 +51,8 @@ public class MController
 		this.numHours = hours;
 		this.numPlayers = players;
 		playerNames = names;
+		
+		aiDifficulty = aiDiff;
 		
 		// create the number of players
 		this.theGame.addPlayer(new Player(playerNames[0], numHours, theGame.getBoard().getNumTiles()));
@@ -110,7 +113,7 @@ public class MController
 	
 	private void setMenuBarFunction()
 	{
-		MenuListener listen = new MenuListener(theGame, theView);
+		MenuListener listen = new MenuListener(this);
 		theView.getMMenuBar().setActionListener(listen);
 
 	}
@@ -128,5 +131,47 @@ public class MController
 				x++; // Increment props incrementer
 			}
 		}
+	}
+
+	/**
+	 * @return the theView
+	 */
+	public MMainFrame getTheView() {
+		return theView;
+	}
+
+	/**
+	 * @return the theGame
+	 */
+	public Monopoly getTheGame() {
+		return theGame;
+	}
+
+	/**
+	 * @return the numHours
+	 */
+	public int getNumHours() {
+		return numHours;
+	}
+
+	/**
+	 * @return the numPlayers
+	 */
+	public int getNumPlayers() {
+		return numPlayers;
+	}
+
+	/**
+	 * @return the playerNames
+	 */
+	public String[] getPlayerNames() {
+		return playerNames;
+	}
+
+	/**
+	 * @return the propBuyRatio
+	 */
+	public String getAIDifficulty() {
+		return aiDifficulty;
 	}
 }

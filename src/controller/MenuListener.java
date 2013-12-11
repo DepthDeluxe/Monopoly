@@ -37,12 +37,14 @@ public class MenuListener implements ActionListener
 	Player[] play; // the player array that gets passed as needed
 	MMainFrame frame; // need to attach the frame to jdialogs
 	Monopoly theGame;
+	MController control; // needs a controller to get 
 	
-	public MenuListener(Monopoly game, MMainFrame gm)
+	public MenuListener(MController controller)
 	{
-		play = game.getPlayers();
-		frame = gm;
-		theGame = game;
+		play = controller.getTheGame().getPlayers();
+		frame = controller.getTheView();
+		theGame = controller.getTheGame();
+		control = controller;
 	}
 	
 	@Override
@@ -51,8 +53,7 @@ public class MenuListener implements ActionListener
 		String action = e.getActionCommand(); // button objective
 		if(action.equals("NewGame")) // new game
 		{
-			// do new game stuff
-			System.out.println("New Game!");
+			runNewGame();
 		}
 		else if(action.equals("SaveGame")) // save game
 		{
@@ -88,6 +89,26 @@ public class MenuListener implements ActionListener
 		}
 	}
 	
+	/**
+	 * a function to open a brand new game in a new window
+	 */
+	private void runNewGame()
+	{
+		MMainFrame newGame = new MMainFrame(control.getNumPlayers());
+		newGame.getControl().setNames(control.getPlayerNames());
+		newGame.setVisible(true);
+		
+		Monopoly theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
+		
+		MController theController = new MController(newGame, theGame, control.getNumHours(), control.getNumPlayers(), control.getPlayerNames(), control.getAIDifficulty());
+		
+		frame.dispose();
+	}
+	
+	/**
+	 * a function to open a pdf file in whatever the default reader is
+	 * @param filePath - filepath to open
+	 */
 	private void openFile(String filePath)
 	{
 		File file = new File(filePath);
@@ -104,6 +125,10 @@ public class MenuListener implements ActionListener
 		}
 	}
 	
+	/**
+	 * a function to open a browser instance to url specified
+	 * @param url - the url to open
+	 */
 	private void openBrowser(String url)
 	{
 		try 
@@ -116,6 +141,9 @@ public class MenuListener implements ActionListener
 		}
 	}
 	
+	/**
+	 * a function that will open a load game window, and then load a brand new game into the window
+	 */
 	private void runLoadGame()
 	{
 		final JFileChooser fileChooser = new JFileChooser();
@@ -142,6 +170,9 @@ public class MenuListener implements ActionListener
 		}
 	}
 	
+	/**
+	 * a function that will run a save game window, and then save the game
+	 */
 	private void runSaveGame()
 	{
 		final JFileChooser fileChooser = new JFileChooser();
