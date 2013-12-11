@@ -353,7 +353,10 @@ public class Player implements ISerializable {
 	}
 	
 	@Override
-	public void deSerialize(Element rootNode) {
+	public void deSerialize(Element rootNode, Object outsideParam) {
+		// the outside param is the board
+		Board theBoard = (Board)outsideParam;
+		
 		// load all of the elements
 		//
 		
@@ -389,7 +392,9 @@ public class Player implements ISerializable {
 			// typecast to element
 			Element element = (Element)node;
 			
-			throw new RuntimeException("Owned property loading doesn't work...");
+			// get the property name and find the property
+			String propertyName = element.getNodeValue();
+			properties.add(theBoard.getPropertyByName(propertyName));
 		}
 		
 		// mortgaged properties count

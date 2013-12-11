@@ -278,7 +278,7 @@ public class Monopoly implements ISerializable {
 	}
 	
 	@Override
-	public void deSerialize(Element rootNode) {
+	public void deSerialize(Element rootNode, Object outsideParam) {
 		// load players
 		players.clear();
 		Element playersElement = (Element)rootNode.getElementsByTagName("Players").item(0);
@@ -287,9 +287,9 @@ public class Monopoly implements ISerializable {
 			// get the next player element
 			Element playerElement = (Element)playerNodes.item(n);
 			
-			// create a player and deserialize him
+			// create a player and deserialize him with the board
 			Player p = new Player(null, 0, board.getNumTiles());
-			p.deSerialize(playerElement);
+			p.deSerialize(playerElement, board);
 			
 			// add him to the players list
 			players.add(p);
