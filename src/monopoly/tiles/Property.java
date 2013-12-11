@@ -97,6 +97,11 @@ public class Property implements ITile {
 		return !isMortgaged;
 	}
 	
+	public void xmlExternalUpdate(Player owner, boolean isMortgaged) {
+		this.owner = owner;
+		this.isMortgaged = isMortgaged;
+	}
+	
 	//
 	// Getters
 	//

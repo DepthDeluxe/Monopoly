@@ -322,9 +322,20 @@ public class Player implements ISerializable {
 		// Properties, save the name for each property owned
 		Element propertiesElement = doc.createElement("Properties");
 		for (Property p : properties) {
-			Element propNameElement = XMLIO.classMemberToElement(
-					"PropertyName", p.getName(), doc);
-			propertiesElement.appendChild(propNameElement);
+			// create the property element
+			Element propElement = doc.createElement("Property");
+			
+			// set name of property
+			Element propNameElement = XMLIO.classMemberToElement("Name", p.getName(), doc);
+			propElement.appendChild(propNameElement);
+			
+			// set isMortgaged
+			Element isMortgagedElement = XMLIO.classMemberToElement(
+					"IsMortgaged", Boolean.toString(p.isMortgaged()), doc);
+			propElement.appendChild(isMortgagedElement);
+			
+			// add the property element to the properties element
+			propertiesElement.appendChild(propElement);
 		}
 		playerElement.appendChild(propertiesElement);
 		
@@ -381,20 +392,19 @@ public class Player implements ISerializable {
 		Element propertiesElement = (Element)rootNode.getElementsByTagName("Properties").item(0);
 		NodeList propertyNodes = propertiesElement.getElementsByTagName("Property");
 		for (int n = 0; n < propertyNodes.getLength(); n++) {
-			// get the current node
-			Node node = propertyNodes.item(0);
+			Element curPropElement = (Element)propertyNodes.item(n);
 			
-			// skip over non-element nodes
-			if (node.getNodeType() != Node.ELEMENT_NODE) {
-				continue;
-			}
+			// get the property name and see if it is mortgaged
+			String propertyName = XMLIO.getChildValue("Name", curPropElement);
+			String isMortgagedStr = XMLIO.getChildValue("IsMortgaged", curPropElement);
+			boolean isMortgaged = Boolean.parseBoolean(isMortgagedStr);
 			
-			// typecast to element
-			Element element = (Element)node;
+			// get the property, updated it internally, and then add
+			// to the list of owned properties
+			Property property = theBoard.getPropertyByName(propertyName);
+			property.xmlExternalUpdate(this, isMortgaged);
 			
-			// get the property name and find the property
-			String propertyName = element.getNodeValue();
-			properties.add(theBoard.getPropertyByName(propertyName));
+			properties.add(property);
 		}
 		
 		// mortgaged properties count
