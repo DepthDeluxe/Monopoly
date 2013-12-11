@@ -345,7 +345,7 @@ public class Player implements ISerializable {
 		
 		// mortgaged properties count
 		Element mortgagedPropertiesElement = XMLIO.classMemberToElement(
-				"MortagedProperties", Integer.toString(mortgagedProperties), doc);
+				"MortgagedProperties", Integer.toString(mortgagedProperties), doc);
 		playerElement.appendChild(mortgagedPropertiesElement);
 		
 		// only save creditor if there is one

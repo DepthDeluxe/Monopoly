@@ -286,7 +286,7 @@ public class Monopoly implements ISerializable {
 		
 		// the model state
 		Element mmsElement = XMLIO.classMemberToElement(
-				"MonopolyModelState", modelState.toString(), doc);
+				"ModelState", modelState.toString(), doc);
 		monopolyElement.appendChild(mmsElement);
 		
 		return monopolyElement;
