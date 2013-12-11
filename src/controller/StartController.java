@@ -55,6 +55,8 @@ public class StartController
 		numPlayers = 4;
 		playerNames = new String[] {"Player One", "Player Two", "Player Three", "Player Four"};
 		difficulty = "Easy";
+		settings = null;
+		
 		menu = new MMainMenu();
 		runMainMenu(); // create the start menu
 	}
@@ -84,7 +86,7 @@ public class StartController
 				game.getControl().setNames(playerNames);
 				
 				frame.setVisible(true);
-				menu.setVisible(false);
+				disposeFrames();
 				
 				// instantiate the model from the different tiles
 				theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
@@ -156,7 +158,7 @@ public class StartController
 	}
 	
 	/** 
-	 * Function that will handle the functionality for clicking the button on the settings frame
+	 * Function that wilcontrol.getl handle the functionality for clicking the button on the settings frame
 	 */
 	private void settingConfirmAction()
 	{
@@ -202,13 +204,28 @@ public class StartController
 			
 			if(ext.equalsIgnoreCase(".xml")) // is it an xml?
 			{
-				MonopolyIO.loadGame(filePath); // load game
+				disposeFrames();
+				
+				MMainFrame newGame = new MMainFrame(numPlayers);
+				newGame.getControl().setNames(playerNames);
+		
+				Monopoly theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
+				
+				MController theController = new MController(newGame, theGame, numHours, numPlayers, playerNames, difficulty);
+				
+				MonopolyIO.loadGame(filePath, theGame); // load game
 			}
 			else // otherwise tell user
 			{
 				JOptionPane.showMessageDialog(menu, "That is not a valid file that can be loaded from");
 			}
 		}
+	}
+	
+	private void disposeFrames()
+	{
+		menu.dispose();
+		if(settings != null) { settings.dispose(); }
 	}
 }
 

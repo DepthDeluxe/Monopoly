@@ -161,7 +161,17 @@ public class MenuListener implements ActionListener
 			
 			if(ext.equalsIgnoreCase(".xml")) // is it an xml?
 			{
-				MonopolyIO.loadGame(filePath, null); // load game
+				MMainFrame newGame = new MMainFrame(control.getNumPlayers());
+				newGame.getControl().setNames(control.getPlayerNames());
+				newGame.setVisible(true);
+				
+				Monopoly theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
+				
+				MController theController = new MController(newGame, theGame, control.getNumHours(), control.getNumPlayers(), control.getPlayerNames(), control.getAIDifficulty());
+				
+				frame.dispose();
+				
+				MonopolyIO.loadGame(filePath, theGame); // load game
 			}
 			else // otherwise tell user
 			{
