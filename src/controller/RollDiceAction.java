@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import monopoly.*;
 import monopoly.tiles.ITile;
@@ -12,6 +13,7 @@ import monopoly.tiles.TileType;
 import gui.MCardDialog;
 import gui.MMainFrame;
 import gui.MBoardPanel;
+import gui.MMortgageDialog;
 
 public class RollDiceAction implements ActionListener {
 	
@@ -81,7 +83,21 @@ public class RollDiceAction implements ActionListener {
 	 * panel and force him to mortgage all his properties.
 	 */
 	private void handlePlayerBankrupt() {
-		throw new RuntimeException("handlePlayerBankrupt() is not implemented!");
+		Player curPlayer = theGame.getCurrentPlayer();
+		if(!theGame.getCurrentPlayer().canPayOffDebt()) // if they can't pay off debt, they lost 
+		{
+			JOptionPane.showMessageDialog(theMainFrame, "You cannot pay off your debt and lose game. The game will now exit!");
+			System.exit(0); // exit the program
+		}
+		else
+		{
+			while(curPlayer.getAmountOwed() > curPlayer.getMoney())
+			{
+				MMortgageDialog panel = new MMortgageDialog(theMainFrame, curPlayer);
+				panel.setLocationRelativeTo(theMainFrame);
+				panel.setVisible(true);
+			}
+		}
 	}
 	
 	//
@@ -236,7 +252,11 @@ public class RollDiceAction implements ActionListener {
 			theMainFrame.getProperties().getBtnBuy().addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e1){
 					if (e1.getSource() == theMainFrame.getProperties().getBtnBuy()){
-						theGame.handleBuyRequest(true);
+						boolean succ = theGame.handleBuyRequest(true);
+						if(!succ) // if for some reason it failys
+						{
+							JOptionPane.showMessageDialog(theMainFrame, "An error occured, and the property was not bought");
+						}
 						//theMainFrame.getProperties().changeBuyState();
 					}
 				}
