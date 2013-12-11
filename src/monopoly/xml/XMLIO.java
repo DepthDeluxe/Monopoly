@@ -12,8 +12,8 @@ public class XMLIO {
 		// create the element
 		Element e = doc.createElement(nodeName);
 		
-		// set the node value
-		e.setNodeValue(nodeName);
+		// set the internal text content
+		e.setTextContent(value);
 		
 		return e;
 	}
