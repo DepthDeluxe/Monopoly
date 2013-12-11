@@ -228,11 +228,14 @@ public class RollDiceAction implements ActionListener {
 		theMainFrame.getProperties().getBtnBuy().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e1){
 				if (e1.getSource() == theMainFrame.getProperties().getBtnBuy()){
-					boolean succ = theGame.handleBuyRequest(true);
-					if(!succ) // if for some reason it failys
+					if(theGame.getCurrentPlayer().getMoney() < theGame.getBoard().getPropertyAt(theGame.getCurrentPlayer().getPosition()).getPrice()) // if for some reason it fails
 					{
 						JOptionPane.showMessageDialog(theMainFrame, "An error occured, and the property was not bought");
+						return;
 					}
+					boolean succ = theGame.handleBuyRequest(true);
+					updateControlPanel();
+					
 					//theMainFrame.getProperties().changeBuyState();
 				}
 			}
