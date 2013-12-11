@@ -131,8 +131,10 @@ public class RollDiceAction implements ActionListener {
 		Player[] playerList = theGame.getPlayers();
 		
 		// update all of the values
-		for (int n = 0; n < playerList.length; n++) {
-			theMainFrame.getControl().setMoneyLabel(n, playerList[n].getMoney());
+		for (int n = 0; n < playerList.length; n++) 
+		{
+			if(playerList[n].isBankrupt()) { theMainFrame.getControl().bankruptPlayer(n); }
+			else { theMainFrame.getControl().setMoneyLabel(n, playerList[n].getMoney()); }
 		}
 	}
 	
@@ -163,7 +165,7 @@ public class RollDiceAction implements ActionListener {
 			theBoardView.moveCharacter(n, thePlayer.getPosition());
 		}
 	}
-	
+	player
 	//
 	// Pass Button Change Handler
 	//
@@ -309,11 +311,5 @@ public class RollDiceAction implements ActionListener {
 		
 		// update the view after the model has changed
 		updateView();
-	}
-	
-	private void runAIPlayers()
-	{
-		Player[] thePlayers = theGame.getPlayers();
-		int numPlayers = thePlayers.length;
 	}
 }

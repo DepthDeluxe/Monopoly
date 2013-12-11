@@ -249,6 +249,10 @@ public class Monopoly implements ISerializable {
 		
 		// run the next move if the current player is an AI
 		if (currentPlayer.isAI()) {
+			if(currentPlayer.isBankrupt()) // if he is bankrupt don't do shit
+			{
+				return; // return
+			}
 			nextMove();
 		}
 	}
