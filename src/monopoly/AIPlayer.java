@@ -122,4 +122,13 @@ public class AIPlayer extends Player {
 		
 		return true;
 	}
+	
+	//
+	// Player Overrides
+	//
+	
+	@Override
+	public boolean isAI() {
+		return true;
+	}
 }
