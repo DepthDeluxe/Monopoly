@@ -187,7 +187,7 @@ public class RollDiceAction implements ActionListener {
 				// set the button text back to the start
 				theButton.setText(MAIN_TEXT);
 				
-				runAIPlayers();
+				//runAIPlayers();
 			}
 		};
 		
@@ -293,6 +293,7 @@ public class RollDiceAction implements ActionListener {
 	
 	private void runAIPlayers()
 	{
-		
+		Player[] thePlayers = theGame.getPlayers();
+		int numPlayers = thePlayers.length;
 	}
 }

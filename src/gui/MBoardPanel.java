@@ -120,7 +120,7 @@ public class MBoardPanel extends JPanel
 		add(property4);
 		
 		JLabel imageTaxOne = new JLabel("");
-		imageTaxOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/taxOne.png")));
+		imageTaxOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/taxOne.jpg")));
 		property4.add(imageTaxOne);
 		
 		Box property5 = Box.createVerticalBox();
@@ -218,7 +218,7 @@ public class MBoardPanel extends JPanel
 		
 		JLabel imageUtilityOne = new JLabel("");
 		property11.add(imageUtilityOne);
-		imageUtilityOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityGold.png")));
+		imageUtilityOne.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityApp.jpg")));
 		
 		Box property12 = Box.createHorizontalBox();
 		property12.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -424,7 +424,7 @@ public class MBoardPanel extends JPanel
 		
 		JLabel imageUtilityTwo = new JLabel("");
 		property26.add(imageUtilityTwo);
-		imageUtilityTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityEnhancment.png")));
+		imageUtilityTwo.setIcon(new ImageIcon(MBoardPanel.class.getResource("/gui/Images/utilityEnhancment.jpg")));
 		
 		Box property27 = Box.createVerticalBox();
 		property27.setBorder(new LineBorder(new Color(0, 0, 0)));
