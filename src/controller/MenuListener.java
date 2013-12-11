@@ -100,7 +100,7 @@ public class MenuListener implements ActionListener
 		
 		Monopoly theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
 		
-		MController theController = new MController(newGame, theGame, control.getNumHours(), control.getNumPlayers(), control.getPlayerNames(), control.getAIDifficulty());
+		MController theController = new MController(newGame, theGame, control.getNumHours(), control.getNumPlayers(), control.getPlayerNames(), control.getAIDifficulty(), true);
 		
 		frame.dispose();
 	}
@@ -166,12 +166,13 @@ public class MenuListener implements ActionListener
 				newGame.setVisible(true);
 				
 				Monopoly theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
+				theGame = MonopolyIO.loadGame(filePath, theGame); // load game
 				
-				MController theController = new MController(newGame, theGame, control.getNumHours(), control.getNumPlayers(), control.getPlayerNames(), control.getAIDifficulty());
+				MController theController = new MController(newGame, theGame, control.getNumHours(), control.getNumPlayers(), control.getPlayerNames(), control.getAIDifficulty(), false);
 				
 				frame.dispose();
 				
-				MonopolyIO.loadGame(filePath, theGame); // load game
+				
 			}
 			else // otherwise tell user
 			{

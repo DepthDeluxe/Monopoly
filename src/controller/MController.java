@@ -41,7 +41,7 @@ public class MController
 	// Constructors
 	//
 	
-	public MController(MMainFrame theView, Monopoly theGame, int hours, int players, String[] names, String aiDiff)
+	public MController(MMainFrame theView, Monopoly theGame, int hours, int players, String[] names, String aiDiff, boolean createPlayers)
 	{
 		// save away the view and the model
 		this.theView = theView;
@@ -54,20 +54,23 @@ public class MController
 		
 		aiDifficulty = aiDiff;
 		
-		// create the number of players
-		this.theGame.addPlayer(new Player(playerNames[0], numHours, theGame.getBoard().getNumTiles()));
-		
-		
-		// create new AIPlayers
-		// first set the difficulty/ratio to buying
-		float propBuyRatio = 0;
-		if(aiDifficulty.equals("Easy")) { propBuyRatio = 20; }
-		else if(aiDifficulty.equals("Medium")) { propBuyRatio = 40; }
-		else { propBuyRatio = 60; }
-			
-		for(int x = 1; x < numPlayers; x++)
+		if(createPlayers)
 		{
-			this.theGame.addPlayer(new AIPlayer(propBuyRatio, playerNames[x], hours, theGame));
+			// create the number of players
+			this.theGame.addPlayer(new Player(playerNames[0], numHours, theGame.getBoard().getNumTiles()));
+		
+		
+			// create new AIPlayers
+			// first set the difficulty/ratio to buying
+			float propBuyRatio = 0;
+			if(aiDifficulty.equals("Easy")) { propBuyRatio = 20; }
+			else if(aiDifficulty.equals("Medium")) { propBuyRatio = 40; }
+			else { propBuyRatio = 60; }
+			
+			for(int x = 1; x < numPlayers; x++)
+			{
+				this.theGame.addPlayer(new AIPlayer(propBuyRatio, playerNames[x], hours, theGame));
+			}
 		}
 		
 		setRollDiceFunction();

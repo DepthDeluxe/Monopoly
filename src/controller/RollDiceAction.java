@@ -165,7 +165,7 @@ public class RollDiceAction implements ActionListener {
 			theBoardView.moveCharacter(n, thePlayer.getPosition());
 		}
 	}
-	player
+	
 	//
 	// Pass Button Change Handler
 	//

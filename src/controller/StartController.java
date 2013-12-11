@@ -92,7 +92,7 @@ public class StartController
 				theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
 				
 				// create the controller
-				theController = new MController(frame, theGame, numHours, numPlayers, playerNames, difficulty);
+				theController = new MController(frame, theGame, numHours, numPlayers, playerNames, difficulty, true);
 			}
 		});
 		
@@ -209,11 +209,14 @@ public class StartController
 				MMainFrame newGame = new MMainFrame(numPlayers);
 				newGame.getControl().setNames(playerNames);
 		
+				newGame.setVisible(true);
+				
 				Monopoly theGame = new Monopoly("Tiles.xml", "Chance.xml", "CommunityChest.xml");
+				theGame = MonopolyIO.loadGame(filePath, theGame); // load game
 				
-				MController theController = new MController(newGame, theGame, numHours, numPlayers, playerNames, difficulty);
+				MController theController = new MController(newGame, theGame, numHours, numPlayers, playerNames, difficulty, false);
 				
-				MonopolyIO.loadGame(filePath, theGame); // load game
+				
 			}
 			else // otherwise tell user
 			{
