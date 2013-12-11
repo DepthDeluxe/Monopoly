@@ -78,6 +78,13 @@ public class Monopoly implements ISerializable {
 		// since currentPlayer changes after the handle functions called, there
 		// needs to be another reference to the current player
 		Player playerThisRun = currentPlayer;
+		
+		if(playerThisRun.isBankrupt())
+		{
+			incrementPlayer();
+			return true;
+		}
+		
 		int originalNumGoTimes = playerThisRun.getNumTimesPassedGo();
 		
 		// if the model is in PLAYER_MOVED state that means the player already
