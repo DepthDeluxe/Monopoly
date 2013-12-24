@@ -1,6 +1,4 @@
 
-import java.awt.EventQueue;
-
 import controller.StartController;
 
 
