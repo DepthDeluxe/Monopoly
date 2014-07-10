@@ -50,131 +50,117 @@ public class Card {
 		
 		// interpret the command
 		String command = args[0];
-		switch (command) {
-		case "collect":
-			// get the amount to pay
-			double amount = Double.parseDouble(args[1]);
-			
-			// and give money to the player
-			currentPlayer.giveMoney(amount);
-			break;
-			
-		case "pay":
-			// get the amount to pay
-			amount = Double.parseDouble(args[1]);
-			
-			// try to remove the money
-			try {
-				currentPlayer.takeMoney(amount);
-			}
-			catch (PlayerBankruptException e) {
-				// put however much player could pay into the pot
-				theBoard.getFreeParking().addToPot(e.getAmountPaid());
-				
-				return MonopolyModelState.PLAYER_BANKRUPT;
-			}
-			
-			theBoard.getFreeParking().addToPot(amount);
-			
-			break;
-			
-		case "collectfromall":
-			// get amount to pay
-			amount = Double.parseDouble(args[1]);
-			
-			// give to all players
-			for (Player p : theGame.getPlayers()) {
-				try {
-					p.takeMoney(amount);
-				}
-				catch (PlayerBankruptException e) {
-					throw new RuntimeException("Not sure how to handle other player bankrupt while trying to pay a community chest guy...");
-				}
-				currentPlayer.giveMoney(amount);
-			}
-			
-			break;
-			
-		case "paytoall":
-			// get amount to pay
-			amount = Double.parseDouble(args[1]);
-			
-			// give to all players
-			for (Player p : theGame.getPlayers()) {
-				try {
-					currentPlayer.takeMoney(amount);
-				}
-				// if player can't pay the money owed, he will only owe money
-				// to the first person he can't pay (whatevs..)
-				catch (PlayerBankruptException e) {
-					// pay the person the amount he has
-					p.giveMoney(e.getAmountPaid());
-					
-					// add this guy as the creditor
-					currentPlayer.setCreditor(p);
-					
-					// return the PLAYER_BANKRUPT state
-					return MonopolyModelState.PLAYER_BANKRUPT;
-				}
-				p.giveMoney(amount);
-			}
-			
-			break;
-			
-		case "move":
-			// get distance to move
-			int distance = Integer.parseInt(args[1]);
-			
-			currentPlayer.move(distance);
-			
-			return MonopolyModelState.PLAYER_MOVED;
-			
-		case "utility":
-			// get the nearest utility location
-			int startLocation = currentPlayer.getPosition();
-			int nearestUtilLocation = getNearest(TileType.UTILITY, startLocation, theBoard);
-			
-			// if the startLocation is after the util location, give money for passing go
-			if (startLocation > nearestUtilLocation) {
-				double amountOwed = theBoard.getGoTile().getGoMoney();
-				
-				// give player the money
-				currentPlayer.giveMoney(amountOwed);
-			}
-			
-			// and move there
-			currentPlayer.moveTo(nearestUtilLocation);
-			
-			return MonopolyModelState.PLAYER_MOVED;
-			
-		case "railroad":
-			// get the nearest railroad location
-			startLocation = currentPlayer.getPosition();
-			int nearestRailroadLocation = getNearest(TileType.RAILROAD, startLocation, theBoard);
-			
-			// and move there
-			currentPlayer.moveTo(nearestRailroadLocation);
-			
-			// if the startLocation is after the util location, give money for passing go
-			if (startLocation > nearestRailroadLocation) {
-				double amountOwed = theBoard.getGoTile().getGoMoney();
-				
-				// give player the money
-				currentPlayer.giveMoney(amountOwed);
-			}
-			
-			return MonopolyModelState.PLAYER_MOVED;
-			
-		case "jail":
-			// just move the player, don't collect money
-			currentPlayer.moveTo(theBoard.getJailLocation());
-			
-			return MonopolyModelState.PLAYER_MOVED;
-		
-		// if anything else shows up, the script was invalid!
-		default:
-			throw new InvalidCardScriptException();
-		}
+        if (command.equals("collect")) {// get the amount to pay
+            double amount = Double.parseDouble(args[1]);
+
+            // and give money to the player
+            currentPlayer.giveMoney(amount);
+
+        } else if (command.equals("pay")) {
+            double amount;// get the amount to pay
+            amount = Double.parseDouble(args[1]);
+
+            // try to remove the money
+            try {
+                currentPlayer.takeMoney(amount);
+            } catch (PlayerBankruptException e) {
+                // put however much player could pay into the pot
+                theBoard.getFreeParking().addToPot(e.getAmountPaid());
+
+                return MonopolyModelState.PLAYER_BANKRUPT;
+            }
+
+            theBoard.getFreeParking().addToPot(amount);
+
+
+        } else if (command.equals("collectfromall")) {
+            double amount;// get amount to pay
+            amount = Double.parseDouble(args[1]);
+
+            // give to all players
+            for (Player p : theGame.getPlayers()) {
+                try {
+                    p.takeMoney(amount);
+                } catch (PlayerBankruptException e) {
+                    throw new RuntimeException("Not sure how to handle other player bankrupt while trying to pay a community chest guy...");
+                }
+                currentPlayer.giveMoney(amount);
+            }
+
+
+        } else if (command.equals("paytoall")) {
+            double amount;// get amount to pay
+            amount = Double.parseDouble(args[1]);
+
+            // give to all players
+            for (Player p : theGame.getPlayers()) {
+                try {
+                    currentPlayer.takeMoney(amount);
+                }
+                // if player can't pay the money owed, he will only owe money
+                // to the first person he can't pay (whatevs..)
+                catch (PlayerBankruptException e) {
+                    // pay the person the amount he has
+                    p.giveMoney(e.getAmountPaid());
+
+                    // add this guy as the creditor
+                    currentPlayer.setCreditor(p);
+
+                    // return the PLAYER_BANKRUPT state
+                    return MonopolyModelState.PLAYER_BANKRUPT;
+                }
+                p.giveMoney(amount);
+            }
+
+
+        } else if (command.equals("move")) {// get distance to move
+            int distance = Integer.parseInt(args[1]);
+
+            currentPlayer.move(distance);
+
+            return MonopolyModelState.PLAYER_MOVED;
+        } else if (command.equals("utility")) {// get the nearest utility location
+            int startLocation = currentPlayer.getPosition();
+            int nearestUtilLocation = getNearest(TileType.UTILITY, startLocation, theBoard);
+
+            // if the startLocation is after the util location, give money for passing go
+            if (startLocation > nearestUtilLocation) {
+                double amountOwed = theBoard.getGoTile().getGoMoney();
+
+                // give player the money
+                currentPlayer.giveMoney(amountOwed);
+            }
+
+            // and move there
+            currentPlayer.moveTo(nearestUtilLocation);
+
+            return MonopolyModelState.PLAYER_MOVED;
+        } else if (command.equals("railroad")) {
+            int startLocation;// get the nearest railroad location
+            startLocation = currentPlayer.getPosition();
+            int nearestRailroadLocation = getNearest(TileType.RAILROAD, startLocation, theBoard);
+
+            // and move there
+            currentPlayer.moveTo(nearestRailroadLocation);
+
+            // if the startLocation is after the util location, give money for passing go
+            if (startLocation > nearestRailroadLocation) {
+                double amountOwed = theBoard.getGoTile().getGoMoney();
+
+                // give player the money
+                currentPlayer.giveMoney(amountOwed);
+            }
+
+            return MonopolyModelState.PLAYER_MOVED;
+        } else if (command.equals("jail")) {// just move the player, don't collect money
+            currentPlayer.moveTo(theBoard.getJailLocation());
+
+            return MonopolyModelState.PLAYER_MOVED;
+
+            // if anything else shows up, the script was invalid!
+        } else {
+            throw new InvalidCardScriptException();
+        }
 		
 		return MonopolyModelState.PLAYING;
 	}

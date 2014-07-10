@@ -7,44 +7,31 @@ public enum TileType {
 	
 	public static TileType parseType(String s) {
 		// return the proper TileType for the string
-		switch (s) {
-		case "Property":
-			return TileType.PROPERTY;
-			
-		case "CardTile":
-			return TileType.CARD_TILE;
-			
-		case "FreeParking":
-			return TileType.FREE_PARKING;
-			
-		case "GoToJail":
-			return TileType.GO_TO_JAIL;
-			
-		case "Jail":
-			return TileType.JAIL;
-			
-		case "Go":
-			return TileType.GO;
-			
-		case "Chance":
-			return TileType.CHANCE;
-			
-		case "CommunityChest":
-			return TileType.COMMUNITY_CHEST;
-			
-		case "Railroad":
-			return TileType.RAILROAD;
-			
-		case "Tax":
-		case "IncomeTax":
-			return TileType.TAX;
-			
-		case "Utility":
-			return TileType.UTILITY;
-			
-		default:
-			return null;
-		}
+        if (s.equals("Property")) {
+            return TileType.PROPERTY;
+        } else if (s.equals("CardTile")) {
+            return TileType.CARD_TILE;
+        } else if (s.equals("FreeParking")) {
+            return TileType.FREE_PARKING;
+        } else if (s.equals("GoToJail")) {
+            return TileType.GO_TO_JAIL;
+        } else if (s.equals("Jail")) {
+            return TileType.JAIL;
+        } else if (s.equals("Go")) {
+            return TileType.GO;
+        } else if (s.equals("Chance")) {
+            return TileType.CHANCE;
+        } else if (s.equals("CommunityChest")) {
+            return TileType.COMMUNITY_CHEST;
+        } else if (s.equals("Railroad")) {
+            return TileType.RAILROAD;
+        } else if (s.equals("Tax") || s.equals("IncomeTax")) {
+            return TileType.TAX;
+        } else if (s.equals("Utility")) {
+            return TileType.UTILITY;
+        } else {
+            return null;
+        }
 	}
 	
 	public static boolean isAPropertyDerivative(TileType t) {

@@ -56,135 +56,126 @@ public class TileLoader {
 		
 		// get pointer to an ITile
 		ITile outTile = null;
-		switch (elementType) {
-		
-		case "Go":
-			String collectAmountStr = XMLIO.getChildValue("CollectAmount", e);
-			double collectAmount = Double.parseDouble(collectAmountStr);
-			
-			outTile = new GoTile(collectAmount);
-			
-			break;
-			
-		case "CardTile":
-			String type = XMLIO.getChildValue("Type", e);
-			if (type.equals("Chance")) {
-				outTile = new CardTile(MonopolyModelState.CHANCE);
-			}
-			else if (type.equals("Community Chest")) {
-				outTile = new CardTile(MonopolyModelState.COMMUNITY_CHEST);
-			}
-			else {
-				throw new InvalidXMLException();
-			}
-			
-			break;
-			
-		case "FreeParking":
-			String startAmountStr = XMLIO.getChildValue("StartAmount", e);
-			double startAmount = Double.parseDouble(startAmountStr);
-			
-			outTile = new FreeParking(startAmount);
-			break;
-			
-		case "GoToJailTile":
-			// get the destination board location
-			String destStr = XMLIO.getChildValue("Destination", e);
-			int destination = Integer.parseInt(destStr);
-					
-			outTile = new GoToJailTile(destination);
-			break;
-			
-		case "Property":
-			// get the name
-			String name = XMLIO.getChildValue("Name", e);
-			
-			// get the value
-			String strValue = XMLIO.getChildValue("Value", e);
-			double value = Double.parseDouble(strValue);
-			
-			// get the rent
-			String strRent = XMLIO.getChildValue("Rent", e);
-			double rent = Double.parseDouble(strRent);
-			
-			// get mortgage value
-			String strMortgage = XMLIO.getChildValue("Mortgage", e);
-			double mortgageValue = Double.parseDouble(strMortgage);
-			
-			// get the group number
-			String strGroup = XMLIO.getChildValue("Group", e);
-			int group = Integer.parseInt(strGroup);
-			
-			outTile = new Property(name, value, rent, mortgageValue, group);
-			break;
-			
-		case "Railroad":
-			// get the name
-			name = XMLIO.getChildValue("Name", e);
-			
-			// get the value
-			strValue = XMLIO.getChildValue("Value", e);
-			value = Double.parseDouble(strValue);
-			
-			// get the base rent for railroad
-			String strRentBase = XMLIO.getChildValue("Rent", e);
-			double rentBase = Double.parseDouble(strRentBase);
-			
-			// get mortgage value
-			strMortgage = XMLIO.getChildValue("Mortgage", e);
-			mortgageValue = Double.parseDouble(strMortgage);
-			
-			outTile = new Railroad(name, value, rentBase, mortgageValue);
-			break;
-			
-		case "Utility":
-			// get the name
-			name = XMLIO.getChildValue("Name", e);
-			
-			// get the value
-			strValue = XMLIO.getChildValue("Value", e);
-			value = Double.parseDouble(strValue);
-			
-			// get mortgage value
-			strMortgage = XMLIO.getChildValue("Mortgage", e);
-			mortgageValue = Double.parseDouble(strMortgage);
-			
-			outTile = new Utility(name, value, mortgageValue);
-			break;
-			
-		case "Tax":
-			// get the rate
-			String rateStr = XMLIO.getChildValue("Rate", e);
-			double rate = Double.parseDouble(rateStr);
-			
-			// get the minimum
-			String taxMinStr = XMLIO.getChildValue("Minimum", e);
-			double taxMin = Double.parseDouble(taxMinStr);
-			
-			// construct the tax tile
-			outTile = new TaxTile(rate, taxMin);
-			break;
-			
-		default:
-			// assign the proper tile type
-			final TileType tileType = TileType.parseType(elementType);
-			
-			// basic board tile cases.  Implement a basic, do nothing, 
-			// return PLAYING landOn() function
-			outTile = new ITile() {
-				@Override
-				public MonopolyModelState landOn(Player p) {
-					return MonopolyModelState.PLAYING;
-				}
-				
-				@Override
-				public TileType getTileType() {
-					return tileType;
-				}
-			};
-			break;
-			
-		}
+        if (elementType.equals("Go")) {
+            String collectAmountStr = XMLIO.getChildValue("CollectAmount", e);
+            double collectAmount = Double.parseDouble(collectAmountStr);
+
+            outTile = new GoTile(collectAmount);
+
+
+        } else if (elementType.equals("CardTile")) {
+            String type = XMLIO.getChildValue("Type", e);
+            if (type.equals("Chance")) {
+                outTile = new CardTile(MonopolyModelState.CHANCE);
+            } else if (type.equals("Community Chest")) {
+                outTile = new CardTile(MonopolyModelState.COMMUNITY_CHEST);
+            } else {
+                throw new InvalidXMLException();
+            }
+
+
+        } else if (elementType.equals("FreeParking")) {
+            String startAmountStr = XMLIO.getChildValue("StartAmount", e);
+            double startAmount = Double.parseDouble(startAmountStr);
+
+            outTile = new FreeParking(startAmount);
+
+        } else if (elementType.equals("GoToJailTile")) {// get the destination board location
+            String destStr = XMLIO.getChildValue("Destination", e);
+            int destination = Integer.parseInt(destStr);
+
+            outTile = new GoToJailTile(destination);
+
+        } else if (elementType.equals("Property")) {// get the name
+            String name = XMLIO.getChildValue("Name", e);
+
+            // get the value
+            String strValue = XMLIO.getChildValue("Value", e);
+            double value = Double.parseDouble(strValue);
+
+            // get the rent
+            String strRent = XMLIO.getChildValue("Rent", e);
+            double rent = Double.parseDouble(strRent);
+
+            // get mortgage value
+            String strMortgage = XMLIO.getChildValue("Mortgage", e);
+            double mortgageValue = Double.parseDouble(strMortgage);
+
+            // get the group number
+            String strGroup = XMLIO.getChildValue("Group", e);
+            int group = Integer.parseInt(strGroup);
+
+            outTile = new Property(name, value, rent, mortgageValue, group);
+
+        } else if (elementType.equals("Railroad")) {
+            String strValue;
+            String strMortgage;
+            String name;
+            double mortgageValue;
+            double value;// get the name
+            name = XMLIO.getChildValue("Name", e);
+
+            // get the value
+            strValue = XMLIO.getChildValue("Value", e);
+            value = Double.parseDouble(strValue);
+
+            // get the base rent for railroad
+            String strRentBase = XMLIO.getChildValue("Rent", e);
+            double rentBase = Double.parseDouble(strRentBase);
+
+            // get mortgage value
+            strMortgage = XMLIO.getChildValue("Mortgage", e);
+            mortgageValue = Double.parseDouble(strMortgage);
+
+            outTile = new Railroad(name, value, rentBase, mortgageValue);
+
+        } else if (elementType.equals("Utility")) {
+            String strValue;
+            String strMortgage;
+            String name;
+            double mortgageValue;
+            double value;// get the name
+            name = XMLIO.getChildValue("Name", e);
+
+            // get the value
+            strValue = XMLIO.getChildValue("Value", e);
+            value = Double.parseDouble(strValue);
+
+            // get mortgage value
+            strMortgage = XMLIO.getChildValue("Mortgage", e);
+            mortgageValue = Double.parseDouble(strMortgage);
+
+            outTile = new Utility(name, value, mortgageValue);
+
+        } else if (elementType.equals("Tax")) {// get the rate
+            String rateStr = XMLIO.getChildValue("Rate", e);
+            double rate = Double.parseDouble(rateStr);
+
+            // get the minimum
+            String taxMinStr = XMLIO.getChildValue("Minimum", e);
+            double taxMin = Double.parseDouble(taxMinStr);
+
+            // construct the tax tile
+            outTile = new TaxTile(rate, taxMin);
+
+        } else {// assign the proper tile type
+            final TileType tileType = TileType.parseType(elementType);
+
+            // basic board tile cases.  Implement a basic, do nothing,
+            // return PLAYING landOn() function
+            outTile = new ITile() {
+                @Override
+                public MonopolyModelState landOn(Player p) {
+                    return MonopolyModelState.PLAYING;
+                }
+
+                @Override
+                public TileType getTileType() {
+                    return tileType;
+                }
+            };
+
+        }
 		
 		return outTile;
 	}
